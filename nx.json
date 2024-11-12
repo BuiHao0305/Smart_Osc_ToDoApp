@@ -12,6 +12,12 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
+    "staging": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)"
+    ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "6731b019622ed47d47a7fa6c",
@@ -19,7 +25,25 @@
     "@angular-devkit/build-angular:application": {
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production"],
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "src/app/core/environments/environment.ts",
+              "with": "src/app/core/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "src/app/core/environments/environment.ts",
+              "with": "src/app/core/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -40,6 +64,9 @@
         "ci": {
           "ci": true,
           "codeCoverage": true
+        },
+        "staging": {
+          "customOption": "staging-value"
         }
       }
     },
@@ -67,6 +94,9 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   },
   "defaultProject": "TodoApp"

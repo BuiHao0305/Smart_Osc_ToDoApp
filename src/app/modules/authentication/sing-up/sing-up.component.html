@@ -1,0 +1,77 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <app-change-languages></app-change-languages>
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="assets/img/login.png" class="img-fluid" alt="Phone image" />
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <h1>{{ 'REGISTER' | translate }}</h1>
+        <form [formGroup]="registerForm">
+          <!-- UserName input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="userName">{{ 'USER_NAME' | translate }}</label>
+            <input
+              formControlName="userName"
+              id="userName"
+              type="text"
+              class="form-control form-control-lg"
+              required
+            />
+            <div *ngIf="registerForm.get('userName')?.invalid && (registerForm.get('userName')?.touched || registerForm.get('userName')?.dirty)">
+              <small class="text-danger">{{ 'USERNAME_INVALID' | translate }}</small>
+            </div>
+          </div>
+
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="email">{{ 'EMAIL' | translate }}</label>
+            <input
+              formControlName="email"
+              id="email"
+              type="email"
+              class="form-control form-control-lg"
+              required
+            />
+            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+              <small class="text-danger">{{ 'EMAIL_INVALID' | translate }}</small>
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="password">{{ 'PASSWORD' | translate }}</label>
+            <input
+              formControlName="password"
+              id="password"
+              type="password"
+              class="form-control form-control-lg"
+              required
+            />
+            <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+              <small class="text-danger">{{ 'PASSWORD_INVALID' | translate }}</small>
+            </div>
+          </div>
+
+          <!-- Confirm Password input -->
+         
+
+          <!-- Account existing link -->
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <a routerLink="/sign-in" style="cursor: pointer">{{ 'ALREADY_HAVE_ACCOUNT' | translate }}</a>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            (click)="validationRegister()"
+            type="button"
+            class="btn btn-primary btn-lg btn-block"
+            [disabled]="registerForm.invalid"
+          >
+            {{ 'REGISTER_BUTTON' | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

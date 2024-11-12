@@ -1,0 +1,16 @@
+.dropdown {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.btn {
+    background-color: white;
+    color: rgb(13, 10, 255);
+    border: none;
+}
+
+.dropdown .dropdown-menu {
+    right: 0;
+    left: auto;
+}

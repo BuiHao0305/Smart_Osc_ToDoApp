@@ -1,0 +1,17 @@
+<div class="side-nav-content">
+  <ul class="nav-list" [ngClass]="{ 'nav-list-open': sideNavStatus }">
+    @for (item of menuItems; track $index) {
+      <li
+        class="nav-list-item"
+        (click)="navigate(item.route)"
+        (keydown)="navigate(item.route)"
+        tabindex="0"
+      >
+        <i [ngClass]="item.icon"></i>
+        <span class="menu-text">
+          <a [routerLink]="item.route">{{ item.name }}</a>
+        </span>
+      </li>
+    }
+  </ul>
+</div>

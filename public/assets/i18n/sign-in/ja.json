@@ -1,0 +1,12 @@
+{
+    "LOGIN": "アカウントでログイン",
+    "EMAIL": "メールアドレス",
+    "PASSWORD": "パスワード",
+    "REMEMBER_ME": "覚えておく",
+    "NO_ACCOUNT": "アカウントをお持ちでないですか？",
+    "FORGET_PASS": "パスワードを忘れた",
+    "SIGN_IN": "サインイン",
+    "WAITING": "お待ちください..",
+    "LOGIN_SUCCESS": "ログイン成功！"
+  }
+  

@@ -1,12 +1,43 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
+import { AuthServiceService } from './services/auth-service.service';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { TokenInterceptor } from './core/interceptors/token-interceptor.interceptor';
+import { AuthTokenInterceptor } from './core/interceptors/auth-interceptor.interceptor';
+import { provideStore } from '@ngrx/store';
+import { authReducer } from './core/store/auth/auth.reducer';
+import { provideEffects } from '@ngrx/effects';
+import { AuthEffects } from './core/store/auth/auth.effects';
+import { translationProviders } from './shared/config/translations.providers';
+import { animationsProviders } from './shared/config/animations.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideClientHydration(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    AuthServiceService,
     provideRouter(appRoutes),
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
+    [provideHttpClient(withInterceptors([]))],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true,
+    },
+    provideStore({ auth: authReducer }),
+    provideEffects([AuthEffects]),
+    ...animationsProviders,
+    ...translationProviders,
   ],
 };
