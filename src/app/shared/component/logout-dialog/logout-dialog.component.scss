@@ -1,0 +1,66 @@
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+
+    .content {
+        position: fixed;
+        background-color: rgb(33, 37, 41);
+        color: rgb(243, 243, 243);
+        border-radius: 8px;
+        overflow: hidden;
+        width: 30%;
+        overflow-y: auto;
+        max-height: 95vh;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+.dialog-content {
+    color: aliceblue;
+    text-align: center;
+    align-items: center;
+}
+
+.dialog-title {
+    border: solid 1px black;
+    text-align: center;
+    color: aliceblue;
+
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: center;
+    border: solid 1px black;
+}
+
+.dialog-button {
+    flex: 1;
+    border-right: 1px solid black;
+    border: none;
+    border-radius: 15px;
+    transition: background-color 0.3s, border 0.3s; 
+
+    &:hover {
+        background-color: #007bff; 
+        color: white; 
+        border-color: #0056b3; 
+    }
+}
+
+
+.dialog-button:last-child {
+    border-right: none;
+}

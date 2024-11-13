@@ -1,32 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable} from 'rxjs';
-import {
-  LoginResponse,
-  UnauthorizedResponse,
-  ValidationErrorResponse,
-} from 'src/app/core/store/interface/auth.interface';
+import { Observable } from 'rxjs';
+
 import { environments } from 'src/app/core/environments/environment';
+import { SignIn, SignInResponse } from 'src/app/core/store/type/auth.type';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SignInServiceService {
+export class SignInServiceService { // Giữ nguyên tên này
   constructor(private http: HttpClient) {}
 
-  login(loginData: {
-    email: string;
-    password: string;
-  }): Observable<
-    LoginResponse | ValidationErrorResponse | UnauthorizedResponse
-  > {
+  login(loginData: SignIn): Observable<SignInResponse> {
     const url = `${environments.API_URL}/${environments.ENDPOINT_METHOD.LOGIN}`;
-
-    return this.http
-      .post<LoginResponse | ValidationErrorResponse | UnauthorizedResponse>(
-        url,
-        loginData
-      )
-      .pipe();
+    return this.http.post<SignInResponse>(url, loginData);
   }
 }

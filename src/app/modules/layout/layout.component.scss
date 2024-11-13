@@ -1,45 +1,48 @@
-
 app-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    height: 4rem;
-    z-index: 10;
-  }
-  
-  .main {
-    display: flex;
-    margin-top: 4rem;
-    height: calc(100vh - 4rem);
-  }
-  
-  app-menu {
-    position: fixed;
-    width: 59px;
-    height: calc(100vh - 4rem);
-    top: 4rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    background-color: rgba(34, 34, 34, 1);
-    border-top: 1px solid white;
-    transition: width 0.4s ease;
-    border-radius: 0px 10px 10px 0px;
-  }
-  .app-menu-open .menu-text {
-    display: block;
-  }
-  
-  .menu-text {
-    display: none;
-  }
-  .app-menu-open{
-    width: 200px;
-    transition: width 0.4s ease;
-  }
-  .display-area {
-    margin-left: 200px;
-    padding: 20px;
-    height: calc(100vh - 4rem);
-    overflow-y: auto;
-    transition: margin-left 0.4s ease;
-    z-index: 5;
-  }
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 4rem;
+  z-index: 10;
+}
+
+.main {
+  display: flex;
+  margin-top: 4rem;
+  height: calc(100vh - 4rem);
+}
+
+app-menu {
+  position: fixed;
+  width: 59px;
+  height: calc(100vh - 4rem);
+  top: 4rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(34, 34, 34, 1);
+  border-top: 1px solid white;
+  transition: width 0.4s ease;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.app-menu-open .menu-text {
+  display: block;
+}
+
+.menu-text {
+  display: none;
+}
+
+.app-menu-open {
+  width: 200px;
+  transition: width 0.4s ease;
+}
+
+.display-area {
+ 
+  padding: 20px;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+  transition: margin-left 0.4s ease;
+  z-index: 5;;
+  margin-left: 40%;
+}

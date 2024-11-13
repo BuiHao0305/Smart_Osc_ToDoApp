@@ -1,20 +1,12 @@
-import { createAction, props } from '@ngrx/store';
+import {createActionGroup, props} from "@ngrx/store";
 
-export const StartLogin = createAction('[Login Page] Start Login');
+import { ErrorResponse, SignIn, SignInResponse } from "../type/auth.type";
 
-export const Login = createAction(
-  '[Login Page] Login',
-  props<{ email: string; password: string }>()
-);
-
-export const LoginSuccess = createAction(
-  '[Auth API] Login Success',
-  props<{ access_token: string; role: string; message: string }>()
-);
-
-export const LoginFailure = createAction(
-  '[Auth API] Login Failure',
-  props<{ error: string }>()
-);
-
-export const Logout = createAction('[Auth] Logout');
+export const authActions = createActionGroup({
+  source: '[Auth]',
+  events: {
+    'Login': props<{ signInData: SignIn }>(),
+    'Login success': props<{ user: SignInResponse }>(), 
+    'Login error': props<{ error: ErrorResponse }>(),
+  }
+})

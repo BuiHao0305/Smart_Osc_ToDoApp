@@ -21,7 +21,7 @@ export class CustomTranslateHttpLoader implements TranslateLoader {
 }
 
 export function HttpLoaderFactory(http: HttpClient, appLangService: AppLangService) {
-  return new CustomTranslateHttpLoader(http, appLangService); // Trả về một instance của CustomTranslateHttpLoader
+  return new CustomTranslateHttpLoader(http, appLangService); 
 }
 
 export const translationProviders = [

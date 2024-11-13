@@ -17,6 +17,7 @@ import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './core/store/auth/auth.effects';
 import { translationProviders } from './shared/config/translations.providers';
 import { animationsProviders } from './shared/config/animations.providers';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -38,6 +39,6 @@ export const appConfig: ApplicationConfig = {
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,
-    ...translationProviders,
+    ...translationProviders, provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 };

@@ -6,14 +6,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SignInServiceService } from 'src/app/services/authentication/sign-in.service';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { AppLang } from 'src/app/core/enum/languages.enum';
 import { AppLangService } from 'src/app/services/app-lang.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { Store } from '@ngrx/store';
+import { authActions } from 'src/app/core/store/auth/auth.action';
+import { Observable } from 'rxjs';
+
+import { AuthState } from 'src/app/core/store/auth/auth.reducer';
+import {
+  selectError,
+  selectLoading,
+  selectUser,
+} from 'src/app/core/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,23 +38,20 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
   ],
 })
 export class SignInComponent implements OnInit, OnDestroy {
-  showChildClick(value: boolean) {
-    this.showChild = value;
-  }
-
   showChild = false;
-
   showOverlay = false;
 
   loginForm: FormGroup;
   emailError = '';
   passwordError = '';
+  loading$: Observable<boolean>;
+  error$: Observable<string | null>;
+  user$: Observable<any>;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthServiceService,
-    private signInService: SignInServiceService,
+    private store: Store<AuthState>,
     private appLangService: AppLangService
   ) {
     this.loginForm = this.fb.group({
@@ -54,12 +59,17 @@ export class SignInComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required, Validators.minLength(3)]],
       rememberMe: [false],
     });
+
+    this.loading$ = this.store.select(selectLoading);
+    this.error$ = this.store.select(selectError);
+    this.user$ = this.store.select(selectUser);
   }
 
   ngOnInit(): void {
     this.appLangService.clearLangContext();
     this.appLangService.setLangContext(AppLang.SIGN_IN);
   }
+
   checkLangContext() {
     const langContext = this.appLangService.getLangContext();
     console.log('Current Lang Context:', langContext);
@@ -67,6 +77,10 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   toggleChild() {
     this.showChild = !this.showChild;
+  }
+
+  showChildClick(value: boolean) {
+    this.showChild = value;
   }
 
   ngOnDestroy(): void {
@@ -80,18 +94,20 @@ export class SignInComponent implements OnInit, OnDestroy {
 
     const { email, password } = this.loginForm.value;
 
-    this.signInService.login({ email, password }).subscribe({
-      next: (response) => {
-        if ('access_token' in response) {
-          this.authService.saveToken(response.access_token);
-          this.router.navigate(['layout/dashboard']);
-        } else if ('message' in response) {
-          this.handleErrors(response.message);
-        }
-      },
-      error: () => {
-        this.passwordError = 'Có lỗi xảy ra, vui lòng thử lại';
-      },
+    // Dispatch action with signInData
+    this.store.dispatch(authActions.login({ signInData: { email, password } }));
+
+    // Subscribe to error and loading states
+    this.error$.subscribe((error) => {
+      if (error) {
+        this.handleErrors(error);
+      }
+    });
+
+    this.loading$.subscribe((loading) => {
+      if (!loading) {
+        this.router.navigate(['layout/dashboard']);
+      }
     });
   }
 

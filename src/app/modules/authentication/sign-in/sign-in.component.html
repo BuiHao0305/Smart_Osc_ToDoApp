@@ -17,19 +17,19 @@
               formControlName="email"
               id="email"
               [ngClass]="{
-                  'is-invalid':
-                    loginForm.get('email')?.invalid &&
-                    (loginForm.get('email')?.touched ||
-                      loginForm.get('email')?.dirty),
-                }"
+                'is-invalid':
+                  loginForm.get('email')?.invalid &&
+                  (loginForm.get('email')?.touched ||
+                    loginForm.get('email')?.dirty)
+              }"
               class="form-control form-control-lg"
               type="email"
               required
             />
             <div>
-              <small (ngModelChange)="clearEmailError()" class="text-danger">
-                {{ emailError }}
-              </small>
+              <small (ngModelChange)="clearEmailError()" class="text-danger">{{
+                emailError
+              }}</small>
             </div>
           </div>
 
@@ -52,9 +52,11 @@
                   loginForm.get('password')?.dirty)
               "
             >
-              <small (ngModelChange)="clearPasswordError()" class="text-danger">
-                {{ passwordError }}
-              </small>
+              <small
+                (ngModelChange)="clearPasswordError()"
+                class="text-danger"
+                >{{ passwordError }}</small
+              >
             </div>
           </div>
 
@@ -74,30 +76,40 @@
             <a style="cursor: pointer" tabindex="0" routerLink="/sign-up">
               {{ 'NO_ACCOUNT' | translate }}
             </a>
-            <a style="cursor: pointer" tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
+            <a
+              style="cursor: pointer"
+              tabindex="0"
+              (click)="toggleChild()"
+              (keydown)="toggleChild()"
+            >
               {{ 'FORGET_PASS' | translate }}
             </a>
           </div>
+
           @if(showChild){
           <app-forgot-password
             (previewVisible)="showChildClick($event)"
           ></app-forgot-password>
           }
-
-          <!-- <button class="btn btn-primary">
-            <span class="spinner-border spinner-border-sm"></span>
-            {{ 'WAITING' | translate }}
-          </button> -->
-
-          <!-- Submit button -->
+          <!-- Show spinner if loading$ is true -->
+          <span
+            *ngIf="loading$ | async"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          {{
+            (loading$ | async)
+              ? ('WAITING' | translate)
+              : ('SIGN_IN' | translate)
+          }}
+          <!-- Submit button with loading spinner -->
           <button
             (click)="validateLogin()"
             type="button"
             class="btn btn-primary btn-lg btn-block mt-2"
-            [disabled]="loginForm.invalid"
-          >
-            {{ 'SIGN_IN' | translate }}
-          </button>
+            [disabled]="loginForm.invalid || (loading$ | async)"
+          ></button>
         </form>
       </div>
     </div>

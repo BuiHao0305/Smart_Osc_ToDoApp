@@ -1,45 +1,39 @@
+// auth.reducer.ts
 import { createReducer, on } from '@ngrx/store';
-import { LoginFailure, LoginSuccess, Logout, StartLogin } from './auth.action';
+import { SignInResponse, ErrorResponse } from '../type/auth.type';
+import { authActions } from './auth.action';
 
 export interface AuthState {
-  loggedIn: boolean;
-  isLoggingIn: boolean;
-  error?: string;
+  user: SignInResponse | null;
+  error: ErrorResponse | null;
+  loading: boolean;
 }
 
 export const initialState: AuthState = {
-  loggedIn: false,
-  isLoggingIn: false,
-  error: undefined,
+  user: null,
+  error: null,
+  loading: false,
 };
 
 export const authReducer = createReducer(
   initialState,
-  on(StartLogin, (state) => {
-    return {
-      ...state,
-      isLoggingIn: true,
-    };
-  }),
-  on(LoginSuccess, (state) => {
-    return {
-      ...state,
-      loggedIn: true,
-      isLoggingIn: false,
-    };
-  }),
-  on(LoginFailure, (state, { error }) => {
-    return {
-      ...state,
-      loggedIn: false,
-      isLoggingIn: false,
-      error,
-    };
-  }),
-  on(Logout, (state) => ({
+  
+  on(authActions.login, (state, { signInData }) => ({
     ...state,
-    loggedIn: false,
-    isLoggingIn: false,
-    error: undefined,
+    loading: true,
+    error: null
   })),
+  
+  on(authActions.loginSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    loading: false,
+    error: null
+  })),
+  
+  on(authActions.loginError, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  }))
 );
