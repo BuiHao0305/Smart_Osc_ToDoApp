@@ -7,7 +7,6 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
-  withInterceptors,
 } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token-interceptor.interceptor';
 import { AuthTokenInterceptor } from './core/interceptors/auth-interceptor.interceptor';
@@ -24,8 +23,7 @@ export const appConfig: ApplicationConfig = {
     AuthServiceService,
     provideRouter(appRoutes),
     provideClientHydration(),
-    provideHttpClient(withFetch()),
-    [provideHttpClient(withInterceptors([]))],
+    provideHttpClient(withFetch()),  
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -39,6 +37,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,
-    ...translationProviders, provideAnimationsAsync(), provideAnimationsAsync(),
+    ...translationProviders,
+    provideAnimationsAsync(), 
   ],
 };

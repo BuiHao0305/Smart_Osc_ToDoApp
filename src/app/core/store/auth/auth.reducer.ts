@@ -1,7 +1,6 @@
-// auth.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import { SignInResponse, ErrorResponse } from '../type/auth.type';
-import { authActions } from './auth.action';
+import { authActions } from './auth.action'; 
 
 export interface AuthState {
   user: SignInResponse | null;
@@ -17,23 +16,23 @@ export const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  
-  on(authActions.login, (state, { signInData }) => ({
+
+  on(authActions.login, (state) => ({
     ...state,
     loading: true,
-    error: null
+    error: null,
   })),
-  
+
   on(authActions.loginSuccess, (state, { user }) => ({
     ...state,
     user,
     loading: false,
-    error: null
+    error: null,
   })),
-  
+
   on(authActions.loginError, (state, { error }) => ({
     ...state,
     error,
-    loading: false
+    loading: false,
   }))
 );

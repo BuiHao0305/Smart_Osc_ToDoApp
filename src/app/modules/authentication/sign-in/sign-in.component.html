@@ -45,19 +45,17 @@
               class="form-control form-control-lg"
               required
             />
-            <div
-              *ngIf="
-                loginForm.get('password')?.invalid &&
-                (loginForm.get('password')?.touched ||
-                  loginForm.get('password')?.dirty)
-              "
-            >
+            @if(loginForm.get('password')?.invalid &&
+            (loginForm.get('password')?.touched ||
+            loginForm.get('password')?.dirty)){
+            <div>
               <small
                 (ngModelChange)="clearPasswordError()"
                 class="text-danger"
                 >{{ passwordError }}</small
               >
             </div>
+            }
           </div>
 
           <div class="d-flex justify-content-around align-items-center mb-4">
@@ -91,25 +89,23 @@
             (previewVisible)="showChildClick($event)"
           ></app-forgot-password>
           }
-          <!-- Show spinner if loading$ is true -->
-          <span
-            *ngIf="loading$ | async"
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          {{
-            (loading$ | async)
-              ? ('WAITING' | translate)
-              : ('SIGN_IN' | translate)
-          }}
-          <!-- Submit button with loading spinner -->
+          <button class="btn btn-primary" *ngIf="loading$ | async">
+            <span class="spinner-border spinner-border-sm"></span>
+            {{ 'WAITING' | translate }}
+          </button>
+
+          <!-- Submit button -->
           <button
             (click)="validateLogin()"
             type="button"
             class="btn btn-primary btn-lg btn-block mt-2"
             [disabled]="loginForm.invalid || (loading$ | async)"
-          ></button>
+          >
+            {{ 'SIGN_IN' | translate }}
+          </button>
+          <!-- Show spinner if loading$ is true -->
+
+          <!-- Submit button with loading spinner -->
         </form>
       </div>
     </div>

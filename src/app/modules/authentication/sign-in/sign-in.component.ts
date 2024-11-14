@@ -15,13 +15,13 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import { Observable } from 'rxjs';
-
 import { AuthState } from 'src/app/core/store/auth/auth.reducer';
 import {
   selectError,
   selectLoading,
   selectUser,
 } from 'src/app/core/store/auth/auth.selectors';
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -52,11 +52,12 @@ export class SignInComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private store: Store<AuthState>,
-    private appLangService: AppLangService
+    private appLangService: AppLangService,
+    private snackbar: SnackbarService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(1)]],
       rememberMe: [false],
     });
 
@@ -68,6 +69,12 @@ export class SignInComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.appLangService.clearLangContext();
     this.appLangService.setLangContext(AppLang.SIGN_IN);
+    this.user$.subscribe((user) => {
+      if (user) {
+        this.router.navigate(['layout/dashboard']);
+        this.snackbar.show('Đăng nhập thành công');
+      }
+    });
   }
 
   checkLangContext() {
@@ -94,31 +101,15 @@ export class SignInComponent implements OnInit, OnDestroy {
 
     const { email, password } = this.loginForm.value;
 
-    // Dispatch action with signInData
+    // Dispatch login action without using startLogin
     this.store.dispatch(authActions.login({ signInData: { email, password } }));
 
-    // Subscribe to error and loading states
+    // Subscribe to the error observable and show snackbar if there's an error
     this.error$.subscribe((error) => {
       if (error) {
-        this.handleErrors(error);
+        this.snackbar.show(error);
       }
     });
-
-    this.loading$.subscribe((loading) => {
-      if (!loading) {
-        this.router.navigate(['layout/dashboard']);
-      }
-    });
-  }
-
-  private handleErrors(error: string) {
-    if (error.includes('email')) {
-      this.emailError = error;
-    } else if (error.includes('password')) {
-      this.passwordError = error;
-    } else {
-      this.passwordError = 'Có lỗi xảy ra, vui lòng thử lại';
-    }
   }
 
   clearEmailError() {
