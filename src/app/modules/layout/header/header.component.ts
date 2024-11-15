@@ -6,6 +6,7 @@ import { MyProfileComponent } from '../../pages/my-profile/my-profile.component'
 import { Store } from '@ngrx/store';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { ChangeLanguagesComponent } from '../../../shared/component/change-languages/change-languages.component';
+import { authActions } from 'src/app/core/store/auth/auth.action';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private store: Store
   ) {}
 
   sideNavToggle() {
@@ -32,6 +34,7 @@ export class HeaderComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.store.dispatch(authActions.logOut());
         this.router.navigate(['/sign-in']);
         this.snackbar.show('Đăng xuất thành công');
       }

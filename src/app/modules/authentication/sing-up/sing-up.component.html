@@ -10,15 +10,15 @@
         <form [formGroup]="registerForm">
           <!-- UserName input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="userName">{{ 'USER_NAME' | translate }}</label>
+            <label class="form-label" for="username">{{ 'USER_NAME' | translate }}</label>
             <input
-              formControlName="userName"
-              id="userName"
+              formControlName="username"
+              id="username"
               type="text"
               class="form-control form-control-lg"
               required
             />
-            <div *ngIf="registerForm.get('userName')?.invalid && (registerForm.get('userName')?.touched || registerForm.get('userName')?.dirty)">
+            <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
               <small class="text-danger">{{ 'USERNAME_INVALID' | translate }}</small>
             </div>
           </div>
@@ -63,7 +63,7 @@
 
           <!-- Submit button -->
           <button
-            (click)="validationRegister()"
+            (click)="onRegister()"
             type="button"
             class="btn btn-primary btn-lg btn-block"
             [disabled]="registerForm.invalid"

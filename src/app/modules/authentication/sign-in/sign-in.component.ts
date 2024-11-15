@@ -60,7 +60,6 @@ export class SignInComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required, Validators.minLength(1)]],
       rememberMe: [false],
     });
-
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
     this.user$ = this.store.select(selectUser);
@@ -98,13 +97,8 @@ export class SignInComponent implements OnInit, OnDestroy {
     if (this.loginForm.invalid) {
       return;
     }
-
     const { email, password } = this.loginForm.value;
-
-    // Dispatch login action without using startLogin
     this.store.dispatch(authActions.login({ signInData: { email, password } }));
-
-    // Subscribe to the error observable and show snackbar if there's an error
     this.error$.subscribe((error) => {
       if (error) {
         this.snackbar.show(error);

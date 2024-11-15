@@ -24,6 +24,9 @@ export type SignInResponse = {
   access_token: string;
 };
 
+export type SignUpResponse = {
+  message:string;
+}
 export type UserResponse = {
   id: string;
   email: string;

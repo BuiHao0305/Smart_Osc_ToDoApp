@@ -1,4 +1,4 @@
-// src/app/app-routing.ts
+
 import { Route } from '@angular/router';
 import { layoutRoutes } from './modules/layout/layout-routing';
 

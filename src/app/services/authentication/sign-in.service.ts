@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { environments } from 'src/app/core/environments/environment';
 import { SignIn, SignInResponse } from 'src/app/core/store/type/auth.type';
 
