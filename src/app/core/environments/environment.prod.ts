@@ -1,6 +1,6 @@
 
 export const environments = {
-    production: true,
+    production: false,
     API_URL: '', 
     ENDPOINT_METHOD: {
       LOGIN: 'sign-in',
