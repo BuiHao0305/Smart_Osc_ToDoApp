@@ -3,15 +3,26 @@ import { LayoutComponent } from './layout.component';
 import { BucketComponent } from '../pages/bucket/bucket.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { MyProfileComponent } from '../pages/my-profile/my-profile.component';
+import { guardGuard } from 'src/app/core/guard/guard.guard';
 
 export const layoutRoutes: Route[] = [
   {
-    path: 'layout',
+    path: '',
     component: LayoutComponent,
     children: [
-      { path: 'bucket', component: BucketComponent },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'profile', component: MyProfileComponent },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [guardGuard],
+      },
+      { path: 'bucket',
+        component: BucketComponent, 
+        canActivate: [guardGuard] },
+      {
+        path: 'profile',
+        component: MyProfileComponent,
+        canActivate: [guardGuard],
+      },
     ],
   },
 ];

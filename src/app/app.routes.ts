@@ -1,8 +1,8 @@
-
 import { Route } from '@angular/router';
-import { layoutRoutes } from './modules/layout/layout-routing';
+import { NotFoundComponent } from './shared/component/not-found/not-found.component';
 
 export const appRoutes: Route[] = [
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   {
     path: '',
     loadChildren: () =>
@@ -10,5 +10,15 @@ export const appRoutes: Route[] = [
         (m) => m.authenticationRoutes
       ),
   },
-  ...layoutRoutes,
+  {
+    path:'layout',
+    loadChildren:()=>
+      import('./modules/layout/layout-routing').then(
+        (m) => m.layoutRoutes
+      )
+  },
+  {
+    path: 'notfound',
+    component: NotFoundComponent,
+  },
 ];

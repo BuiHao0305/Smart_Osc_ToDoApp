@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { ChangeLanguagesComponent } from '../../../shared/component/change-languages/change-languages.component';
 import { authActions } from 'src/app/core/store/auth/auth.action';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent {
     private router: Router,
     private dialog: MatDialog,
     private snackbar: SnackbarService,
-    private store: Store
+    private store: Store,
+    private authService: AuthServiceService
   ) {}
 
   sideNavToggle() {
@@ -36,6 +38,7 @@ export class HeaderComponent {
       if (result) {
         this.store.dispatch(authActions.logOut());
         this.router.navigate(['/sign-in']);
+        this.authService.clearToken()
         this.snackbar.show('Đăng xuất thành công');
       }
     });

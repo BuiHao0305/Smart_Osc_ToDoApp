@@ -2,29 +2,34 @@
   <div class="body">
     <div class="profile-edit-container">
       <h2>Thông tin cá nhân</h2>
-      <form [formGroup]="profileForm">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div id="avatar-image" class="form-group">
           <label for="avatar">Avatar:</label>
           <div class="avatar-image">
-            <img alt="Avatar" [src]="avatarUrl" />
+            <img alt="Avatar" [src]="avatarUrl" *ngIf="avatarUrl" />
+            <span *ngIf="!avatarUrl">Chưa có ảnh</span> <!-- Hiển thị nếu không có avatar -->
           </div>
           <input class="avatar-input" type="file" (change)="onFileChange($event)" />
         </div>
+
         <div class="form-group">
           <label for="email">Email:</label>
-          <input formControlName="email" type="email" id="email" name="email" readonly/>
+          <input formControlName="email" type="email" id="email" name="email"  />
         </div>
+
         <div class="form-group">
-          <label for="name">UserName:</label>
-          <input formControlName="name" type="text" id="name" />
+          <label for="username">UserName:</label>
+          <input formControlName="username" type="text" id="username" />
         </div>
+
         <div class="form-group">
           <label for="password">Password:</label>
           <input formControlName="password" type="password" id="password" />
         </div>
+
         <div id="button" class="form-group">
-          <button type="button" routerLink="/layout/dashboard" routerLinkActive="router-link-active">Hủy</button>
-          <button type="submit" [disabled]="profileForm.invalid">Cập nhật</button>
+          <button type="button" routerLink="/layout/dashboard">Hủy</button>
+          <button type="submit" >Cập nhật</button>
         </div>
       </form>
     </div>
