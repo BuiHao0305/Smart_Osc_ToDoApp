@@ -1,0 +1,46 @@
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button routerLink="/layout/bucket" class="close cancel">X</button>
+    </div>
+    <div class="modal-body">
+      <h2>Update a todo bucket by ID</h2>
+      <form [formGroup]="bucketForm" (ngSubmit)="onSubmit()">
+        <label for="text">Title:<span class="re">*</span></label>
+        <input type="text" id="text" formControlName="title" />
+        @if (bucketForm.get('title')?.invalid &&
+        bucketForm.get('title')?.touched) {
+        <div>
+          <small class="error">Title is required</small>
+        </div>
+        }
+        <label for="public">Public:</label>
+        <select formControlName="public" id="public" class="email">
+          <option [value]="false">False</option>
+          <option [value]="true">True</option>
+        </select>
+        @if(bucketForm.get('public')?.invalid &&
+        bucketForm.get('public')?.touched){
+        <div>
+          <small class="error">Please select public status</small>
+        </div>
+        } @if(bucketData){
+        <div>
+          <p><strong>Created At:</strong> {{ bucketData.createdAt }}</p>
+          <p>
+            <strong>Updated At:</strong>
+            {{ bucketData.updatedAt || 'Not updated yet' }}
+          </p>
+        </div>
+        }
+        <div class="modal-footer">
+          <button type="button" (click)="onDelete()">Delete Bucket</button>
+          <button type="submit" [disabled]="bucketForm.invalid">
+            Update Bucket
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div
+  class="modal1"
+  (click)="changeVisible()"
+  (keydown.enter)="changeVisible()"
+  tabindex="0"
+>
+  <div
+    class="content"
+    (click)="blockFormClosing($event)"
+    (keydown.enter)="changeVisible()"
+    tabindex="0"
+  >
+    <div class="modal-header">
+      <span></span>
+      <button class="close cancel" (click)="changeVisible()">X</button>
+    </div>
+    <div class="modal-body">
+      <h2>Create a new todo bucket</h2>
+      <form [formGroup]="bucketForm" (ngSubmit)="onSubmit()">
+        <label for="text">Title:<span class="re">*</span></label>
+        <input type="text" id="text" formControlName="title" />
+        @if (bucketForm.get('title')?.invalid && bucketForm.get('title')?.touched)
+        {
+        <div>
+          <small class="error">Title is required</small>
+        </div>
+        }
+        <label for="public">Public:</label>
+        <select formControlName="public" id="public" class="email">
+          <option [value]="false">False</option>
+          <option [value]="true">True</option>
+        </select>
+        @if(bucketForm.get('public')?.invalid &&
+        bucketForm.get('public')?.touched){
+        <div>
+          <small class="error">Please select public status</small>
+        </div>
+        }
+
+        <div class="modal-footer">
+          <button type="submit" [disabled]="bucketForm.invalid">
+            Add Bucket
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
