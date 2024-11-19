@@ -2,7 +2,7 @@
   <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
   <div class="main">
     <app-menu [sideNavStatus]="sideNavStatus" [ngClass]="{'app-menu-open': sideNavStatus}"></app-menu>
-    <div class="display-area p-3" [ngStyle]="{'margin-left': sideNavStatus ? '200px' : '60px'}" >
+    <div class="display-area" [ngStyle]="{'margin-left': sideNavStatus ? '200px' : '60px'}" >
       <router-outlet></router-outlet>
     </div>
   </div>

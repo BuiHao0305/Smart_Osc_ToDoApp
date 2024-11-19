@@ -31,8 +31,8 @@ export class MenuComponent  {
       icon: 'bi bi-calendar',
       route: '/layout/profile',
     },
-    // { id: 3, name: 'Person', icon: 'bi bi-person-check', route: '/layout/person' },
-    // { id: 4, name: 'Poins', icon: 'bi bi-pencil', route: '/layout/points' },
+    { id: 3, name: 'To do list', icon: 'bi bi-list-check', route: '/layout/bucket' },
+   
     // { id: 5, name: 'Add Subject', icon: 'bi bi-plus' },
     // { id: 6, name: 'Chat', icon: 'bi bi-chat' },
     // { id: 7, name: 'Budget', icon: 'bi-wallet' },
