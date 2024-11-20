@@ -1,38 +1,49 @@
-<div class="search-bar">
-  <input type="text" placeholder="Search templates..." />
-  <button><i class="bi bi-filter"></i> Use cases</button>
-  <select>
-    <option>Tags</option>
-  </select>
-  <button><i class="bi bi-person"></i> Created by:</button>
-</div>
-<div class="header-bar">
-  <h2>Checklist templates</h2>
-  <button tabindex="0"
-  (click)="toggleChild()"
-  (keydown)="toggleChild()" >Add bucket</button>
-</div>
-@if(showChild){
-  <app-add-bucket
-    (previewVisible)="showChildClick($event)" 
-  ></app-add-bucket>
-  }
-<div class="templates" >
-  @for (items of listBucket; track $index) {
-  <div class="template-card" (keydown)="onBucketClick(items.id)" (click)="onBucketClick(items.id)" >
-    <div class="icon">
-      <span class="list"><i class="bi bi-list-check">TITLE</i></span>
-      @if (items.public === true) {<span class="setting"
-        ><i class="bi bi-lock"></i></span
-      >}
-    </div>
-    <h3 >{{ items.title }}</h3>
-    <i></i>
+<div class="body">
+  <div class="search-bar">
+    <input type="text" placeholder="Search templates..." />
+    <button><i class="bi bi-filter"></i> Use cases</button>
+    <select>
+      <option>Tags</option>
+    </select>
+    <button><i class="bi bi-person"></i> Created by:</button>
   </div>
+  <div class="header-bar">
+    <h2>Checklist templates</h2>
+    <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
+      Add bucket
+    </button>
+  </div>
+  @if(showChild){
+  <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
   }
+  <div class="templates">
+    @for (items of listBucket; track $index) {
+    <div
+      class="template-card"
+      
+    >
+      <div class="icon">
+        <span class="list"><i (keydown)="onBucketClick(items.id)"
+          (click)="onBucketClick(items.id)" class="bi bi-list-check">TITLE</i></span>
+        @if (items.public === true) {<span class="setting"
+          ><i class="bi bi-lock"></i></span
+        >}
+      </div>
+      <div class="action">
+        <h3>{{ items.title }}</h3>
+        <div class="action-button">
+          <i (keydown)="onBucketItemsClick(items.id)"
+          (click)="onBucketItemsClick(items.id)" class="bi bi-pencil"></i>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  <mat-paginator
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    (page)="onPageEvent($event)"
+  >
+  </mat-paginator>
+  
 </div>
-<mat-paginator
-  [length]="totalItems"
-  [pageSize]="pageSize"
-  (page)="onPageEvent($event)">
-</mat-paginator>

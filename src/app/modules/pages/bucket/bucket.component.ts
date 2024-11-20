@@ -60,7 +60,13 @@ export class BucketComponent {
     this.loadBuckets(page, this.pageSize); 
   }
   onBucketClick(bucketId: number): void {
+    
     this.router.navigate([`layout/update-bucket/${bucketId}`]);
-    console.log(`ID của bucket được chọn là: ${bucketId}`);
+    console.log('butketId', bucketId);
+  }
+  onBucketItemsClick(bucketId: number): void {
+    this.router.navigate([`layout/bucket-items/${bucketId}`]);
+    // this.router.navigate([`layout/update-bucket/${bucketId}`]);
+    console.log('butketId', bucketId);
   }
 }

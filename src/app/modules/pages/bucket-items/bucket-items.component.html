@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="header">
+    <i class="fas fa-tasks"></i>
+    <span>LIST ITEM</span>
+    <div class="form-group col-md-4">
+      <input
+        class="form-control rounded-0 py-2"
+        type="search"
+        placeholder="search items"
+        id="example-search-input"
+      />
+    </div>
+  </div>
+  <ul class="task-list">
+    @for (task of bucketItemlist; track $index) {
+    <li class="task-item d-flex align-items-center mt-2">
+      <div class="content flex-grow-1">
+        @if (task.done == true) {
+        <span class="task-title alert alert-success">
+          {{ task.content }}
+        </span>
+        } @if (task.done == false) {
+        <span class="task-title alert alert-danger">
+          {{ task.content }}
+        </span>
+        }
+      </div>
+      <div class="status">
+        @if (task.done == true) {
+        <button class="status-button">
+          <i class="bi bi-check-circle-fill text-success"></i>
+        </button>
+        } @if (task.done == false) {
+        <button class="status-button">
+          <i class="bi bi-x-circle-fill text-danger"></i>
+        </button>
+        }
+      </div>
+    </li>
+    }
+  </ul>
+  <div class="footer">
+    <button routerLink="/layout/bucket" class="me-5">Cancel</button>
+    <button>Add Content</button>
+  </div>
+</div>

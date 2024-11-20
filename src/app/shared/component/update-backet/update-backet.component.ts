@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
@@ -16,7 +21,7 @@ export interface BucketbyID {
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule,ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit {
@@ -37,12 +42,15 @@ export class UpdateBacketComponent implements OnInit {
     if (bucketId) {
       this.getBucketById(+bucketId);
     }
+    this.bucketForm = this.fb.group({
+      title: ['', Validators.required],
+      public: [false], 
+    });
   }
-
   getBucketById(bucketId: number): void {
     this.bucketService.getBucketById(bucketId).subscribe(
       (response: { data: BucketbyID }) => {
-        this.bucketData = response.data; // Lưu dữ liệu bucket
+        this.bucketData = response.data;
         this.bucketForm.patchValue({
           title: this.bucketData.title,
           public: this.bucketData.public,
@@ -57,17 +65,17 @@ export class UpdateBacketComponent implements OnInit {
     if (this.bucketForm.valid) {
       const updatedBucket = {
         title: this.bucketForm.get('title')?.value,
-        public: Boolean(this.bucketForm.get('public')?.value)
+        public: this.bucketForm.get('public')?.value,
       };
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       if (bucketId) {
         this.bucketService.updateBucket(+bucketId, updatedBucket).subscribe(
           (response) => {
-            this.snackBar.show('Bucket updated '+ response)
+            this.snackBar.show('Bucket updated ' + response);
             this.router.navigate(['layout/bucket']);
           },
           (error) => {
-            this.snackBar.show("Error "+error)
+            this.snackBar.show('Error ' + error);
           }
         );
       }
@@ -78,11 +86,11 @@ export class UpdateBacketComponent implements OnInit {
     if (bucketId) {
       this.bucketService.deleteBucket(+bucketId).subscribe(
         (response) => {
-          this.snackBar.show('Bucket deleted '+response)
+          this.snackBar.show('Bucket deleted ' + response);
           this.router.navigate(['layout/bucket']);
         },
         (error) => {
-          this.snackBar.show('Error deleting bucket '+error)
+          this.snackBar.show('Error deleting bucket ' + error);
         }
       );
     }

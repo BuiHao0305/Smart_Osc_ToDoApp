@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environments } from 'src/app/core/environments/environment';
 import { AuthServiceService } from '../auth-service.service';
 
-@Injectable()
+@Injectable(
+)
 export class PaginationService {
   private apiUrl = `${environments.API_URL}/${environments.ENDPOINT_METHOD.BUCKET}`;
 
