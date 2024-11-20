@@ -17,8 +17,8 @@
         }
         <label for="public">Public:</label>
         <select formControlName="public" id="public" class="email">
-          <option [value]="false">False</option>
-          <option [value]="true">True</option>
+          <option [ngValue]="false">False</option>
+          <option [ngValue]="true">True</option>
         </select>
         @if(bucketForm.get('public')?.invalid &&
         bucketForm.get('public')?.touched){

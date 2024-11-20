@@ -1,0 +1,94 @@
+.container {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Times New Roman', Times, serif;
+  padding: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.header span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-left: 5%;
+}
+
+.form-group input {
+  border-radius: 7px !important;
+}
+
+.header i {
+  margin-right: 10px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.task-list .status button {
+  border: none;
+  background-color: #fff;
+}
+
+.task-list .status button i {
+  font-size: 18px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+}
+
+.task-actions .fa-check {
+  color: #28a745;
+  margin-right: 10px;
+}
+
+.task-actions .fa-trash {
+  color: #dc3545;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #007bff;
+  margin-right: 20px;
+}
+
+.footer button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
