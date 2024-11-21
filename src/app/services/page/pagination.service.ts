@@ -11,25 +11,22 @@ export class PaginationService {
 
   constructor(private http: HttpClient, private authService: AuthServiceService) {}
 
-  // getPaginatedData(
-  //   page: number = 1,
-  //   limit: number = 99,
-  // ): Observable<any> {
-  //   const params = new HttpParams()
-  //     .set('page', page)
-  //     .set('limit', limit)
-  //   return this.http.get(`${this.apiUrl}`, { params });
-  // }
   getPaginatedData(
     page: number = 1,
     limit: number = 99,
+    query: string = ''  
   ): Observable<any> {
-    const token = this.authService.getToken(); 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const params = new HttpParams()
+   
+    
+    let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
-
-    return this.http.get(`${this.apiUrl}`, { headers, params });  
+  
+    if (query) {
+      // Gán lại params khi có giá trị query
+      params = params.set('query', query);
+    }  
+  
+    return this.http.get(`${this.apiUrl}`, {params });  
   }
-}
+}  

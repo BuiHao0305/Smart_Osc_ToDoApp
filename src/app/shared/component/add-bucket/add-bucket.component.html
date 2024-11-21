@@ -1,15 +1,5 @@
-<div
-  class="modal1"
-  (click)="changeVisible()"
-  (keydown.enter)="changeVisible()"
-  tabindex="0"
->
-  <div
-    class="content"
-    (click)="blockFormClosing($event)"
-    (keydown.enter)="changeVisible()"
-    tabindex="0"
-  >
+<div class="modal1">
+  <div class="content">
     <div class="modal-header">
       <span></span>
       <button class="close cancel" (click)="changeVisible()">X</button>
@@ -17,10 +7,10 @@
     <div class="modal-body">
       <h2>Create a new todo bucket</h2>
       <form [formGroup]="bucketForm" (ngSubmit)="onSubmit()">
-        <label for="text">Title:<span class="re">*</span></label>
+        <label for="text">Title:<span class="required">*</span></label>
         <input type="text" id="text" formControlName="title" />
-        @if (bucketForm.get('title')?.invalid && bucketForm.get('title')?.touched)
-        {
+        @if (bucketForm.get('title')?.invalid &&
+        bucketForm.get('title')?.touched) {
         <div>
           <small class="error">Title is required</small>
         </div>

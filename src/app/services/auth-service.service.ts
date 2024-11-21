@@ -21,8 +21,9 @@ export class AuthServiceService {
     }
   }
   getToken(): string | null {
-    return this.isBrowser() ? localStorage.getItem('access_token') : null;
-
+    const token = this.isBrowser() ? localStorage.getItem('access_token') : null;
+    console.log('Retrieved Token:', token); 
+    return token;
   }
 
   clearToken(): void {
@@ -62,7 +63,7 @@ export class AuthServiceService {
     const header = parts[0];
     const payload = parts[1];
     const signature = parts[2];
-    
+
     if (!header || !payload || !signature) {
       return false;
     }

@@ -1,0 +1,54 @@
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button class="close cancel" (click)="changeVisibleUpdateContent($event)">
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Update contemt items</h2>
+      <form [formGroup]="updateContentForm">
+        <label for="text">Content:<span class="required">*</span></label>
+        <input type="text" id="text" formControlName="content" />
+        @if (updateContentForm.get('content')?.invalid &&
+        updateContentForm.get('content')?.touched) {
+        <div>
+          <small class="error">Content is required</small>
+        </div>
+        }
+        <div class="button-group ">
+          <button
+            type="button"
+            class="status-button"
+            [ngClass]="{ 'active': updateContentForm.get('done')?.value === true }"
+            (click)="setDoneStatus(true)"
+          >
+            <i class="bi bi-check-circle-fill text-success"></i> True
+          </button>
+          <button
+            type="button"
+            class="status-button"
+            [ngClass]="{ 'active': updateContentForm.get('done')?.value === false }"
+            (click)="setDoneStatus(false)"
+          >
+            <i class="bi bi-alarm text-danger"></i> False
+          </button>
+        </div>
+        @if(bucketItemsbyId){
+        <div class="mt-4">
+          <p ><strong>Created At:</strong> {{ bucketItemsbyId.createdAt }}</p>
+          <p>
+            <strong>Updated At:</strong>
+            {{ bucketItemsbyId.updatedAt }}
+          </p>
+        </div>
+        }
+        <div class="modal-footer">
+          <button (click)="deleteItem()" >Delete Content</button>
+          <button (click)="updateItem()">Update Content</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

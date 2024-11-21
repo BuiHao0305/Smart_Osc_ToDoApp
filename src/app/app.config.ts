@@ -6,10 +6,8 @@ import { AuthServiceService } from './services/auth-service.service';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
-  withFetch,
 } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token-interceptor.interceptor';
-import { AuthTokenInterceptor } from './core/interceptors/auth-interceptor.interceptor';
 import { provideStore } from '@ngrx/store';
 import { authReducer } from './core/store/auth/auth.reducer';
 import { provideEffects } from '@ngrx/effects';
@@ -23,17 +21,13 @@ export const appConfig: ApplicationConfig = {
     AuthServiceService,
     provideRouter(appRoutes),
     provideClientHydration(),
-    provideHttpClient(withFetch()),  
+    provideHttpClient(),  
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
-      multi: true,
-    },
+    
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,

@@ -12,10 +12,10 @@ export class BucketItemsService {
     private http: HttpClient,
     private authService: AuthServiceService
   ) {}
-  getBucketItems(
+  getContentItems(
     bucketId: number,
     page: number = 1,
-    limit: number = 10
+    limit: number = 99
   ): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -25,5 +25,31 @@ export class BucketItemsService {
 
     const url = `${this.apiUrl}/${bucketId}/items`;
     return this.http.get(url, { headers, params });
+  }
+  addContentItems(
+    bucketId: number,
+    contentData: { content: string }
+  ): Observable<any> {
+    const token = this.authService.getToken();
+    const url = `${this.apiUrl}/${bucketId}/items`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(url, contentData, { headers });
+  }
+
+  updateItem(
+    bucketId: number,
+    itemId: number,
+    data: { content: string; done: boolean }
+  ): Observable<any> {
+    const token = this.authService.getToken();
+    const url = `${this.apiUrl}/${bucketId}/items/${itemId}`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch(url, data, { headers });
+  }
+  deleteItem(bucketId: number, itemId: number): Observable<any> {
+    const token = this.authService.getToken();
+    const url = `${this.apiUrl}/${bucketId}/items/${itemId}`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(url, { headers });
   }
 }

@@ -13,34 +13,64 @@
   </div>
   <ul class="task-list">
     @for (task of bucketItemlist; track $index) {
-    <li class="task-item d-flex align-items-center mt-2">
+    <li
+      class="task-item d-flex align-items-center mt-2"
+      tabindex="0"
+      (click)="toggleChildUpdateContent()"
+      (keydown)="toggleChildUpdateContent()"
+      (click)="onSelectItem(task.id)"
+    >
       <div class="content flex-grow-1">
-        @if (task.done == true) {
-        <span class="task-title alert alert-success">
+        @if (task.done === true) {
+        <p class="task-title p-success">
           {{ task.content }}
-        </span>
-        } @if (task.done == false) {
-        <span class="task-title alert alert-danger">
+        </p>
+        } @if (task.done === false) {
+        <p class="task-title p-danger">
           {{ task.content }}
-        </span>
+        </p>
         }
       </div>
       <div class="status">
-        @if (task.done == true) {
+        @if (task.done === true) {
         <button class="status-button">
           <i class="bi bi-check-circle-fill text-success"></i>
         </button>
-        } @if (task.done == false) {
+        } @if (task.done === false) {
         <button class="status-button">
-          <i class="bi bi-x-circle-fill text-danger"></i>
+          <i class="bi-alarm text-danger"></i>
         </button>
         }
       </div>
     </li>
     }
   </ul>
+  <mat-paginator
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    (page)="onPageEvent($event)"
+  >
+  </mat-paginator>
   <div class="footer">
     <button routerLink="/layout/bucket" class="me-5">Cancel</button>
-    <button>Add Content</button>
+    <button
+      tabindex="0"
+      (click)="toggleChildAddContent()"
+      (keydown)="toggleChildAddContent()"
+    >
+      Add Content
+    </button>
+    @if(showChildAdd){
+    <app-add-content-items
+      (previewVisible)="showChildClickAddContent($event)" (reloadData)="ngOnInit()"
+    ></app-add-content-items>
+    }
   </div>
+  @if(showChildUpdate){
+  <app-update-items
+    [bucketItemsbyId]="bucketItemsbyId"
+    (reloadData)="ngOnInit()"
+    (previewVisible)="showChildClickUpdateContent($event)"
+  ></app-update-items>
+  }
 </div>
