@@ -16,14 +16,12 @@ export class guardGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> {
     const token = this.authService.getToken();
-
     if (state.url === '/sign-in') {
       return of(true); 
     }
     if (!token || !this.authService.isTokenValid(token)) {
       return of(false);
     }
-
     return of(true);
   }
 }

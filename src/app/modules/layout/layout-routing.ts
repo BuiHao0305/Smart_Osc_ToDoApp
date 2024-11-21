@@ -4,9 +4,9 @@ import { BucketComponent } from '../pages/bucket/bucket.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { MyProfileComponent } from '../pages/my-profile/my-profile.component';
 import { guardGuard } from 'src/app/core/guard/guard.guard';
-import { AddBucketComponent } from 'src/app/shared/component/add-bucket/add-bucket.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
+import { UpdateItemsComponent } from 'src/app/shared/component/update-items/update-items.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -32,6 +32,11 @@ export const layoutRoutes: Route[] = [
       {
         path: 'bucket-items/:bucketId',
         component: BucketItemsComponent,
+        canActivate: [guardGuard],
+      },
+      {
+        path: 'bucket/:bucketId/items/:itemId',
+        component: UpdateItemsComponent,
         canActivate: [guardGuard],
       },
     ],

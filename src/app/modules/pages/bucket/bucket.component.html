@@ -1,6 +1,6 @@
 <div class="body">
   <div class="search-bar">
-    <input type="text" placeholder="Search templates..." />
+    <input matInput type="text" placeholder="Search templates..." [formControl]="searchControl" />
     <button><i class="bi bi-filter"></i> Use cases</button>
     <select>
       <option>Tags</option>
@@ -20,20 +20,21 @@
     @for (items of listBucket; track $index) {
     <div
       class="template-card"
-      
     >
       <div class="icon">
-        <span class="list"><i (keydown)="onBucketClick(items.id)"
-          (click)="onBucketClick(items.id)" class="bi bi-list-check">TITLE</i></span>
-        @if (items.public === true) {<span class="setting"
-          ><i class="bi bi-lock"></i></span
-        >}
+        <span class="list">
+          <i tabindex="0" (keydown)="onBucketClick(items.id)" (click)="onBucketClick(items.id)" class="bi bi-list-check">TITLE</i>
+        </span>
+        @if (items.public === true) {
+          <span class="setting">
+            <i tabindex="0" class="bi bi-lock"></i>
+          </span>
+        }
       </div>
       <div class="action">
         <h3>{{ items.title }}</h3>
         <div class="action-button">
-          <i (keydown)="onBucketItemsClick(items.id)"
-          (click)="onBucketItemsClick(items.id)" class="bi bi-pencil"></i>
+          <i tabindex="0" (keydown)="onBucketItemsClick(items.id)" (click)="onBucketItemsClick(items.id)" class="bi bi-pencil"></i>
         </div>
       </div>
     </div>
@@ -45,5 +46,4 @@
     (page)="onPageEvent($event)"
   >
   </mat-paginator>
-  
 </div>

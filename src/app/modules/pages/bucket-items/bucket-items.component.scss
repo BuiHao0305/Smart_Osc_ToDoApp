@@ -6,8 +6,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Times New Roman', Times, serif;
   padding: 20px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+
 }
 
 .header {
@@ -18,7 +17,7 @@
 }
 
 .header span {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
 }
 
@@ -40,6 +39,9 @@
   white-space: normal;
   word-break: break-word;
 }
+.task-item p{
+  font-size: 18px;
+}
 
 .task-list .status button {
   border: none;
@@ -47,7 +49,7 @@
 }
 
 .task-list .status button i {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .task-item {
@@ -57,7 +59,17 @@
   padding: 10px 0;
   border-bottom: 1px solid #e9ecef;
 }
+.task-list .p-success{
+  color: #28a745;
+  cursor: pointer;
+  text-decoration: line-through
 
+}
+.task-list .p-danger{
+  color: #dc3545;
+  cursor: pointer;
+
+}
 .task-actions {
   display: flex;
   align-items: center;

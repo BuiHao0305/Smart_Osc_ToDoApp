@@ -1,0 +1,25 @@
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button class="close cancel" (click)="changeVisibleAddContent()">X</button>
+    </div>
+    <div class="modal-body">
+      <h2>Create a new contemt items</h2>
+      <form [formGroup]="addcontentForm" (ngSubmit)="onSubmit()">
+        <label for="text">Content:<span class="required">*</span></label>
+        <input type="text" id="text" formControlName="content" />
+        @if (addcontentForm.get('content')?.invalid &&
+        addcontentForm.get('content')?.touched) {
+        <div>
+          <small class="error">Content is required</small>
+        </div>
+        }
+
+        <div class="modal-footer">
+          <button type="submit">Add Content</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
