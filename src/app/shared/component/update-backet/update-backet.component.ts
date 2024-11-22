@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {
   ListBucket,
-  ListBucketResponse,
 } from 'src/app/core/store/interface/bucket.interface';
 
 @Component({
@@ -27,7 +26,7 @@ export class UpdateBacketComponent implements OnInit {
   bucketForm!: FormGroup;
   bucketData!: ListBucket;
   showChild = false;
-
+  loading = false;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -66,15 +65,18 @@ export class UpdateBacketComponent implements OnInit {
         title: this.bucketForm.get('title')?.value,
         public: this.bucketForm.get('public')?.value,
       };
+      this.loading = true
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       if (bucketId) {
         this.bucketService.updateBucket(+bucketId, updatedBucket).subscribe(
           (response) => {
             this.snackBar.show('Bucket updated ' + response);
             this.router.navigate(['layout/bucket']);
+            this.loading = false;
           },
           (error) => {
             this.snackBar.show('Error ' + error);
+            this.loading = false;
           }
         );
       }
@@ -82,14 +84,17 @@ export class UpdateBacketComponent implements OnInit {
   }
   onDelete(): void {
     const bucketId = this.route.snapshot.paramMap.get('bucketId');
+    this.loading = true;
     if (bucketId) {
       this.bucketService.deleteBucket(+bucketId).subscribe(
         (response) => {
           this.snackBar.show('Bucket deleted ' + response);
           this.router.navigate(['layout/bucket']);
+          this.loading = false;
         },
         (error) => {
           this.snackBar.show('Error deleting bucket ' + error);
+          this.loading = false;
         }
       );
     }

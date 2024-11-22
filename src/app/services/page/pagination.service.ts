@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environments } from 'src/app/core/environments/environment';
-import { AuthServiceService } from '../auth-service.service';
 import { ListBucketResponse } from 'src/app/core/store/interface/bucket.interface';
 
 @Injectable()

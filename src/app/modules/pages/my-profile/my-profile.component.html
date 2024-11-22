@@ -7,14 +7,14 @@
           <label for="avatar">Avatar:</label>
           <div class="avatar-image">
             <img alt="Avatar" [src]="avatarUrl" *ngIf="avatarUrl" />
-            <span *ngIf="!avatarUrl">Chưa có ảnh</span> <!-- Hiển thị nếu không có avatar -->
+            <span *ngIf="!avatarUrl">Chưa có ảnh</span> 
           </div>
           <input class="avatar-input" type="file" (change)="onFileChange($event)" />
         </div>
 
         <div class="form-group">
           <label for="email">Email:</label>
-          <input formControlName="email" type="email" id="email" name="email"  />
+          <input formControlName="email" type="email" id="email" name="email" />
         </div>
 
         <div class="form-group">
@@ -29,7 +29,7 @@
 
         <div id="button" class="form-group">
           <button type="button" routerLink="/layout/dashboard">Hủy</button>
-          <button type="submit" >Cập nhật</button>
+          <button type="submit">Cập nhật</button>
         </div>
       </form>
     </div>

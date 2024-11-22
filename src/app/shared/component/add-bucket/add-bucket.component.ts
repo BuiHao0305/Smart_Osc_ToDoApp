@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BucketService } from 'src/app/services/page/bucket.service';
+import { SnackbarService } from '../../snackbar/snackbar.service';
 
 @Component({
   selector: 'app-add-bucket',
@@ -19,9 +20,9 @@ import { BucketService } from 'src/app/services/page/bucket.service';
 })
 export class AddBucketComponent implements OnInit {
   bucketForm!: FormGroup;
-
+  loading= false;
   showChild = false;
-  constructor(private fb: FormBuilder, private bucketService: BucketService) {}
+  constructor(private fb: FormBuilder, private bucketService: BucketService,private snackBar: SnackbarService) {}
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();
   ngOnInit() {
@@ -34,15 +35,18 @@ export class AddBucketComponent implements OnInit {
     if (this.bucketForm.valid) {
       const formData = this.bucketForm.value;
       formData.public = Boolean(this.bucketForm.get('public')?.value)
+      this.loading = true;
       this.bucketService.addBucket(formData).subscribe({
         next: (response) => {
           console.log('Bucket added successfully', response);
           this.reloadData.emit();
           this.changeVisible();
           this.previewVisible.emit(false);
+          this.loading = false;
         },
         error: (error) => {
-          console.error('Error adding bucket', error);
+          this.snackBar.show(error)
+          this.loading = false
         },
       });
     } else {

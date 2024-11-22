@@ -151,7 +151,7 @@ export class BucketItemsComponent implements OnInit {
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       const searchQuery = this.searchControl.value || '';
   
-      // Truyền giá trị '' nếu chọn "All", không đổi thành null
+      // Nếu giá trị là chuỗi rỗng (All), truyền giá trị là ''
       if (bucketId) {
         this.loadBucketItems(+bucketId, 1, this.pageSize, searchQuery, done === '' ? '' : done);
       }

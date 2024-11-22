@@ -49,9 +49,21 @@
           </p>
         </div>
         }
+        <button class="btn btn-lg loading-btn" *ngIf="loading">
+          <span class="spinner-border spinner-border-sm"></span>
+          waiting....
+        </button>
         <div class="modal-footer">
-          <button (click)="deleteItem()"> <i class="bi bi-trash3 me-1"></i>Delete Content</button>
-          <button (click)="updateItem()">
+          <button
+            (click)="deleteItem()"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
+            <i class="bi bi-trash3 me-1"></i>Delete Content
+          </button>
+          <button
+            (click)="updateItem()"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
             <i class="bi bi-arrow-clockwise me-1"></i>Update Content
           </button>
         </div>

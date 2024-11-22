@@ -2,7 +2,9 @@
   <div class="content">
     <div class="modal-header">
       <span></span>
-      <button class="close cancel" (click)="changeVisibleAddContent()">X</button>
+      <button class="close cancel" (click)="changeVisibleAddContent()">
+        X
+      </button>
     </div>
     <div class="modal-body">
       <h2>Create a new contemt items</h2>
@@ -15,9 +17,20 @@
           <small class="error">Content is required</small>
         </div>
         }
-
+       @if(loading){
+        <button class="btn btn-lg loading-btn">
+          <span class="spinner-border spinner-border-sm"></span>
+          waiting....
+        </button>
+       }
         <div class="modal-footer">
-          <button type="submit">Add Content</button>
+          <button
+            type="submit"
+            [disabled]="addcontentForm.invalid || loading"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
+            Add Content
+          </button>
         </div>
       </form>
     </div>

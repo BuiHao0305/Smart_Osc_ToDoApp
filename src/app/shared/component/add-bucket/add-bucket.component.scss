@@ -53,6 +53,17 @@
     display: flex;
     justify-content: space-around;
 }
+.loading-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    font-size: 16px;
+  }
 .status-button {
 
     border: 1px solid #ccc;

@@ -21,9 +21,9 @@
             type="button"
             class="status-button"
             [ngClass]="{
-              active: bucketForm.get('public')?.value === true
+              active: bucketForm.get('public')?.value === false
             }"
-            (click)="setDoneStatus(true)"
+            (click)="setDoneStatus(false)"
           >
             <i class="bi bi-check-circle-fill text-success"></i> Public
           </button>
@@ -31,14 +31,14 @@
             type="button"
             class="status-button"
             [ngClass]="{
-              active: bucketForm.get('public')?.value === false
+              active: bucketForm.get('public')?.value === true
             }"
-            (click)="setDoneStatus(false)"
+            (click)="setDoneStatus(true)"
           >
             <i class="bi bi-alarm text-danger"></i> Private
           </button>
-        </div >
-         @if(bucketData){
+        </div>
+        @if(bucketData){
         <div class="mt-4">
           <p><strong>Created At:</strong> {{ bucketData.createdAt }}</p>
           <p>
@@ -47,11 +47,24 @@
           </p>
         </div>
         }
+        <button class="btn btn-lg loading-btn" *ngIf="loading">
+          <span class="spinner-border spinner-border-sm"></span>
+          waiting....
+        </button>
         <div class="modal-footer">
           <button type="button" (click)="onDelete()">
-            <i class="bi bi-trash3"></i>
-            Delete Bucket</button>
-          <button type="submit" [disabled]="bucketForm.invalid">
+            <i
+              class="bi bi-trash3"
+              [ngClass]="{ 'disabled-button': loading }"
+              [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+            ></i>
+            Delete Bucket
+          </button>
+          <button
+            type="submit"
+            [disabled]="bucketForm.invalid || loading"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
             <i class="bi bi-arrow-clockwise"></i>
             Update Bucket
           </button>

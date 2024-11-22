@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,14 +12,21 @@ import { UserService } from 'src/app/services/page/user.service';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule,HttpClientModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
 })
-export class MyProfileComponent {
+export class MyProfileComponent implements OnInit {
   profileForm: FormGroup;
   userInfo$: Observable<User | null>;
   avatarUrl = '';
@@ -41,12 +48,32 @@ export class MyProfileComponent {
     this.userInfo$ = this.store.select(selectUserInfo);
   }
 
+  ngOnInit(): void {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      this.userInfoFromLocalStorage = JSON.parse(userInfo);
+      this.setFormData();
+    }
+  }
+  setFormData(): void {
+    if (this.userInfoFromLocalStorage) {
+      this.profileForm.patchValue({
+        email: this.userInfoFromLocalStorage.email,
+        username: this.userInfoFromLocalStorage.username,
+        password: '',
+      });
+
+      // if (this.userInfoFromLocalStorage.avatar) {
+      //   this.avatarUrl = this.userInfoFromLocalStorage.avatar;
+      // }
+    }
+  }
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.avatarUrl = URL.createObjectURL(file); 
-      this.avatarFile = file; 
+      this.avatarFile = file;
+      this.avatarUrl = URL.createObjectURL(file);
     }
   }
 
@@ -63,8 +90,8 @@ export class MyProfileComponent {
 
       this.userService.updateUser(formData).subscribe(
         (response) => {
-          this.snackbar.show('Cập nhật thông tin thành công');
-          console.log('Cập nhật thông tin thành công', response);
+          this.snackbar.show('Cập nhật thông tin thành công'+response);
+          // this.store.dispatch(authActions.loginSuccess({ user: signInResponse }));
         },
         (error) => {
           console.error('Cập nhật thất bại', error);

@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 
-
 @Component({
   selector: 'app-add-content-items',
   templateUrl: './add-content-items.component.html',
@@ -21,6 +20,7 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
 export class AddContentItemsComponent implements OnInit {
   addcontentForm!: FormGroup;
   showChildAdd = false;
+  loading = false;
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();
 
@@ -46,18 +46,19 @@ export class AddContentItemsComponent implements OnInit {
       const contentData = {
         content: this.addcontentForm.get('content')?.value,
       };
+      this.loading = true;
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       if (bucketId) {
         this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
           (response) => {
-            this.snackBar.show(
-              'Content added successfully: ' + response
-            );
+            this.snackBar.show('Content added successfully: ' + response);
             this.reloadData.emit();
             this.previewVisible.emit(false);
+            this.loading = false
           },
           (error) => {
             this.snackBar.show('Error adding content: ' + error.message);
+            this.loading = false
           }
         );
       }

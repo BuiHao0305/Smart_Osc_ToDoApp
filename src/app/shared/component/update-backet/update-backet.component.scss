@@ -37,7 +37,20 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.loading-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    font-size: 16px;
+  }
+.disabled-button {
+    pointer-events: none; 
+}
 .modal-header .close {
     background: none;
     border: none;

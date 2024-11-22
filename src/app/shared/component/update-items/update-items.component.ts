@@ -34,7 +34,7 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
 
   bucketId: number | null = null;
   itemId: number | null = null;
-
+  loading = false;
   updateContentForm!: FormGroup;
 
   constructor(
@@ -81,7 +81,7 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
       this.snackbar.show('Bucket ID or Item ID is missing!');
       return;
     }
-
+    this.loading = true;
     const { content, done } = this.updateContentForm.value;
     this.bucketItemsService
       .updateItem(this.bucketId, this.itemId, { content, done })
@@ -90,9 +90,11 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
           this.snackbar.show('Item updated successfully!');
           this.reloadData.emit();
           this.previewVisible.emit(false);
+          this.loading = false
         },
         error: (err) => {
           this.snackbar.show(`Error updating item: ${err.message}`);
+          this.loading = false;
         },
       });
   }
@@ -101,14 +103,17 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
       this.snackbar.show('Bucket ID or Item ID is missing!');
       return;
     }
+    this.loading = true
     this.bucketItemsService.deleteItem(this.bucketId, this.itemId).subscribe({
       next: () => {
         this.snackbar.show('Item deleted successfully!');
         this.reloadData.emit();
         this.previewVisible.emit(false);
+        this.loading = false
       },
       error: (err) => {
         this.snackbar.show(`Error deleting item: ${err.message}`);
+        this.loading = false
       },
     });
   }
