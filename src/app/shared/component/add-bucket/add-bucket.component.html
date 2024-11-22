@@ -15,20 +15,42 @@
           <small class="error">Title is required</small>
         </div>
         }
-        <label for="public">Public:</label>
-        <select formControlName="public" id="public" class="email">
-          <option [value]="false">False</option>
-          <option [value]="true">True</option>
-        </select>
-        @if(bucketForm.get('public')?.invalid &&
-        bucketForm.get('public')?.touched){
-        <div>
-          <small class="error">Please select public status</small>
+        <label for="public">Status:</label>
+        <div class="button-group">
+          <button
+            type="button"
+            class="status-button"
+            [ngClass]="{
+              active: bucketForm.get('public')?.value === true
+            }"
+            (click)="setDoneStatus(true)"
+          >
+            <i class="bi bi-check-circle-fill text-success"></i> Public
+          </button>
+          <button
+            type="button"
+            class="status-button"
+            [ngClass]="{
+              active: bucketForm.get('public')?.value === false
+            }"
+            (click)="setDoneStatus(false)"
+          >
+            <i class="bi bi-alarm text-danger"></i> Private
+          </button>
         </div>
-        }
 
+        <button class="btn btn-lg loading-btn" *ngIf="loading">
+          <span class="spinner-border spinner-border-sm"></span>
+          waiting....
+        </button>
         <div class="modal-footer">
-          <button type="submit" [disabled]="bucketForm.invalid">
+          <button
+            type="submit"
+            
+            [disabled]="bucketForm.invalid || loading"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
+            <i class="bi bi-plus"></i>
             Add Bucket
           </button>
         </div>

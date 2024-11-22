@@ -7,14 +7,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-
-interface ListBucket {
-  id: number;
-  userId: string;
-  title: string;
-  public: boolean;
-  total: number;
-}
+import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 
 @Component({
   selector: 'app-bucket',

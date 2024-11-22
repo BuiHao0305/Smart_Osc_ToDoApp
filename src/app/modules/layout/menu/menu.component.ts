@@ -33,10 +33,10 @@ export class MenuComponent  {
     },
     { id: 3, name: 'To do list', icon: 'bi bi-list-check', route: '/layout/bucket' },
    
-    // { id: 5, name: 'Add Subject', icon: 'bi bi-plus' },
-    // { id: 6, name: 'Chat', icon: 'bi bi-chat' },
-    // { id: 7, name: 'Budget', icon: 'bi-wallet' },
-    // { id: 9, name: 'Logout', icon: 'bi bi-box-arrow-in-right' },
+    { id: 5, name: 'Add Subject', icon: 'bi bi-plus' },
+    { id: 6, name: 'Chat', icon: 'bi bi-chat' },
+    { id: 7, name: 'Budget', icon: 'bi-wallet' },
+    { id: 9, name: 'Logout', icon: 'bi bi-box-arrow-in-right' },
   ];
   constructor(private router: Router,) { }
 

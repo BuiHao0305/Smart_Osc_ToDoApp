@@ -1,55 +1,57 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environments } from 'src/app/core/environments/environment';
-import { AuthServiceService } from '../auth-service.service';
 import { Observable } from 'rxjs';
+import {
+  BucketItem,
+  BucketItemsResponse,
+} from 'src/app/core/store/interface/bucket-items.interface';
 
 @Injectable()
 export class BucketItemsService {
   private apiUrl = `${environments.API_URL}/${environments.ENDPOINT_METHOD.BUCKET}`;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthServiceService
-  ) {}
+  constructor(private http: HttpClient) {}
   getContentItems(
     bucketId: number,
-    page: number = 1,
-    limit: number = 99
-  ): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const params = new HttpParams()
+    page = 1,
+    limit = 99,
+    query = '',
+    done: string | null = null
+  ): Observable<BucketItemsResponse> {
+    let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
-
+  
+    if (query) {
+      params = params.set('query', query); 
+    }
+    if (done !== null && done !== '') {
+      params = params.set('done', done); 
+    }
+  
     const url = `${this.apiUrl}/${bucketId}/items`;
-    return this.http.get(url, { headers, params });
+    return this.http.get<BucketItemsResponse>(url, { params });
   }
   addContentItems(
     bucketId: number,
     contentData: { content: string }
-  ): Observable<any> {
-    const token = this.authService.getToken();
+  ): Observable<BucketItem> {
     const url = `${this.apiUrl}/${bucketId}/items`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(url, contentData, { headers });
+
+    return this.http.post<BucketItem>(url, contentData);
   }
 
   updateItem(
     bucketId: number,
     itemId: number,
     data: { content: string; done: boolean }
-  ): Observable<any> {
-    const token = this.authService.getToken();
+  ): Observable<string> {
     const url = `${this.apiUrl}/${bucketId}/items/${itemId}`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.patch(url, data, { headers });
+    return this.http.patch<string>(url, data);
   }
-  deleteItem(bucketId: number, itemId: number): Observable<any> {
-    const token = this.authService.getToken();
+  deleteItem(bucketId: number, itemId: number): Observable<string> {
     const url = `${this.apiUrl}/${bucketId}/items/${itemId}`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete(url, { headers });
+    return this.http.delete<string>(url);
   }
 }

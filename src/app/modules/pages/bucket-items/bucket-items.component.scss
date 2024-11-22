@@ -9,6 +9,10 @@
 
 }
 
+.loading-spinner {
+  text-align: center;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -33,13 +37,34 @@
   margin-right: 10px;
 }
 
+.status #status-value {
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 7px;
+
+}
+
+.status #status-value select {
+  font-size: 16px;
+}
+
+.status #status-value option {
+  font-size: 16px;
+}
+
 .task-list {
   list-style: none;
   padding: 0;
   white-space: normal;
   word-break: break-word;
 }
-.task-item p{
+
+h3 {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.task-item p {
   font-size: 18px;
 }
 
@@ -59,17 +84,32 @@
   padding: 10px 0;
   border-bottom: 1px solid #e9ecef;
 }
-.task-list .p-success{
+
+.task-list .status button:hover{
+  background-color: #28a745;
+}
+.task-item:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.task-item:focus {
+  outline: none;
+  background-color: #f0f0f0;
+}
+
+.task-list .p-success {
   color: #28a745;
   cursor: pointer;
   text-decoration: line-through
-
 }
-.task-list .p-danger{
+
+.task-list .p-danger {
   color: #dc3545;
   cursor: pointer;
 
 }
+
 .task-actions {
   display: flex;
   align-items: center;

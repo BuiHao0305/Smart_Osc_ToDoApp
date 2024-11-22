@@ -61,15 +61,22 @@
             <a routerLink="/sign-in" style="cursor: pointer">{{ 'ALREADY_HAVE_ACCOUNT' | translate }}</a>
           </div>
 
+          <button class="btn btn-primary" *ngIf="loading ">
+            <span class="spinner-border spinner-border-sm"></span>
+            waiting....
+          </button>
+
           <!-- Submit button -->
           <button
             (click)="onRegister()"
             type="button"
             class="btn btn-primary btn-lg btn-block"
-            [disabled]="registerForm.invalid"
+            [disabled]="registerForm.invalid || loading"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'" 
           >
             {{ 'REGISTER_BUTTON' | translate }}
           </button>
+         
         </form>
       </div>
     </div>

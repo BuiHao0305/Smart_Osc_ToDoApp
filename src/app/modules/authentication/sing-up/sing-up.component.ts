@@ -9,6 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { first } from 'rxjs';
 import { AppLang } from 'src/app/core/enum/languages.enum';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
@@ -37,6 +38,7 @@ export class SingUpComponent implements OnInit, OnDestroy {
   emailError: string[] = [];
   passwordError: string[] = [];
   userNameError: string[] = [];
+  loading = false;
   signUpLoading$ = this.store.select(selectSignUpLoading);
   signUpError$ = this.store.select(selectSignUpError);
 
@@ -46,7 +48,7 @@ export class SingUpComponent implements OnInit, OnDestroy {
     private appLangService: AppLangService,
     private store: Store,
     private router: Router,
-    private snackbar :SnackbarService
+    private snackbar: SnackbarService
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -70,15 +72,37 @@ export class SingUpComponent implements OnInit, OnDestroy {
   }
 
   onRegister() {
-    if (this.registerForm.valid) {
-      const signUpData = this.registerForm.value;
-      this.store.dispatch(authActions.signUp({ signUpData }));
-      console.log(signUpData);
-      this.router.navigate(['/sign-in']);
-      this.snackbar.show('SignUp Success');
-    } else {
-      this.validationRegister();
+    if (this.registerForm.invalid) {
+      return;
     }
+
+    const { email, password, username } = this.registerForm.value;
+    this.loading = true;
+
+    this.store.dispatch(
+      authActions.signUp({ signUpData: { email, password, username } })
+    );
+
+    this.store
+      .select(selectSignUpError)
+      .pipe(first())
+      .subscribe((error) => {
+        if (error) {
+          this.snackbar.show(error);
+          this.loading = false;
+        }
+      });
+
+    this.store
+      .select(selectSignUpLoading)
+      .pipe(first())
+      .subscribe((loading) => {
+        if (!loading) {
+          this.router.navigate(['/sign-in']);
+          this.snackbar.show('SignUp Success');
+          this.loading = false;
+        }
+      });
   }
 
   validationRegister() {
