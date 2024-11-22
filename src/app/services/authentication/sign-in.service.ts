@@ -19,7 +19,6 @@ export class SignInServiceService {
   ) {}
 
   login(loginData: SignIn): Observable<SignInResponse> {
-    // const url = `${environments.API_URL}/${environments.ENDPOINT_METHOD.LOGIN}`;
     console.log(loginData);
     return this.http.post<SignInResponse>(
       `${environments.API_URL}/${environments.ENDPOINT_METHOD.LOGIN}`,

@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 
+
 @Component({
   selector: 'app-add-content-items',
   templateUrl: './add-content-items.component.html',
@@ -50,7 +51,7 @@ export class AddContentItemsComponent implements OnInit {
         this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
           (response) => {
             this.snackBar.show(
-              'Content added successfully: ' + response.content
+              'Content added successfully: ' + response
             );
             this.reloadData.emit();
             this.previewVisible.emit(false);

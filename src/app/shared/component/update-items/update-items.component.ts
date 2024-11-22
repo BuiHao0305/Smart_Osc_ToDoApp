@@ -14,20 +14,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { SnackbarService } from '../../snackbar/snackbar.service';
-import { BucketItems } from 'src/app/modules/pages/bucket-items/bucket-items.component';
 import { CommonModule } from '@angular/common';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BucketItem} from 'src/app/core/store/interface/bucket-items.interface';
 
 @Component({
   selector: 'app-update-items',
   templateUrl: './update-items.component.html',
   styleUrls: ['./update-items.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,HttpClientModule],
   providers: [],
 })
 export class UpdateItemsComponent implements OnInit, OnChanges {
-  @Input() bucketItemsbyId: BucketItems | null = null;
+  @Input() bucketItemsbyId: BucketItem| null = null;
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();
 

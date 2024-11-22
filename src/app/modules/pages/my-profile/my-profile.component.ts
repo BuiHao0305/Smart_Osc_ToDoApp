@@ -10,18 +10,19 @@ import { User } from 'src/app/core/store/type/auth.type';
 import { selectUserInfo } from 'src/app/core/store/auth/auth.selectors';
 import { UserService } from 'src/app/services/page/user.service';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule,HttpClientModule],
 })
 export class MyProfileComponent {
   profileForm: FormGroup;
   userInfo$: Observable<User | null>;
-  avatarUrl: string = '';
+  avatarUrl = '';
   avatarFile: File | null = null;
   userInfoFromLocalStorage: User | null = null;
 

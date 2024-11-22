@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environments } from 'src/app/core/environments/environment';
 import { AuthServiceService } from '../auth-service.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
+
+
+
+
 
 @Injectable()
 export class BucketService {
@@ -12,26 +17,19 @@ export class BucketService {
     private http: HttpClient,
     private authService: AuthServiceService
   ) {}
-  addBucket(bucketData: { title: string; public: boolean }): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(this.apiUrl, bucketData, { headers });
+  addBucket(bucketData: { title: string; public: boolean }): Observable<string> {
+    return this.http.post<string>(this.apiUrl, bucketData);
   }
-  getBucketById(bucketId: number): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`${this.apiUrl}/${bucketId}`, { headers });
+  getBucketById(bucketId: number): Observable<{ data: ListBucket }> {
+    return this.http.get<{ data: ListBucket }>(`${this.apiUrl}/${bucketId}`);
   }
-  updateBucket(bucketId: number, bucketData: { title: string; public: boolean }): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.patch(`${this.apiUrl}/${bucketId}`, bucketData, { headers });
+  updateBucket(
+    bucketId: number,
+    bucketData: { title: string; public: boolean }
+  ): Observable<string> {
+    return this.http.patch<string>(`${this.apiUrl}/${bucketId}`, bucketData);
   }
-  deleteBucket(bucketId: number): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.delete(`${this.apiUrl}/${bucketId}`, { headers });
+  deleteBucket(bucketId: number): Observable<string> {
+    return this.http.delete<string>(`${this.apiUrl}/${bucketId}`);
   }
 }

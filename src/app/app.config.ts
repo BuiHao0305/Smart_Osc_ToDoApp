@@ -6,6 +6,7 @@ import { AuthServiceService } from './services/auth-service.service';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
+  withFetch,
 } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token-interceptor.interceptor';
 import { provideStore } from '@ngrx/store';
@@ -21,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     AuthServiceService,
     provideRouter(appRoutes),
     provideClientHydration(),
-    provideHttpClient(),  
+    provideHttpClient(withFetch()),  
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

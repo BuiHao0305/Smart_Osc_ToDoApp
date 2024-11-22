@@ -24,7 +24,7 @@ export type ForgetPass = {
   email: string;
 };
 
-export type User = {
+export interface User {
   id: string;
   email: string;
   username: string;

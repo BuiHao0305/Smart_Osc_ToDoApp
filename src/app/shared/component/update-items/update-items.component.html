@@ -17,11 +17,14 @@
           <small class="error">Content is required</small>
         </div>
         }
-        <div class="button-group ">
+        <label for="public">Done Task:</label>
+        <div class="button-group">
           <button
             type="button"
             class="status-button"
-            [ngClass]="{ 'active': updateContentForm.get('done')?.value === true }"
+            [ngClass]="{
+              active: updateContentForm.get('done')?.value === true
+            }"
             (click)="setDoneStatus(true)"
           >
             <i class="bi bi-check-circle-fill text-success"></i> True
@@ -29,7 +32,9 @@
           <button
             type="button"
             class="status-button"
-            [ngClass]="{ 'active': updateContentForm.get('done')?.value === false }"
+            [ngClass]="{
+              active: updateContentForm.get('done')?.value === false
+            }"
             (click)="setDoneStatus(false)"
           >
             <i class="bi bi-alarm text-danger"></i> False
@@ -37,7 +42,7 @@
         </div>
         @if(bucketItemsbyId){
         <div class="mt-4">
-          <p ><strong>Created At:</strong> {{ bucketItemsbyId.createdAt }}</p>
+          <p><strong>Created At:</strong> {{ bucketItemsbyId.createdAt }}</p>
           <p>
             <strong>Updated At:</strong>
             {{ bucketItemsbyId.updatedAt }}
@@ -45,8 +50,10 @@
         </div>
         }
         <div class="modal-footer">
-          <button (click)="deleteItem()" >Delete Content</button>
-          <button (click)="updateItem()">Update Content</button>
+          <button (click)="deleteItem()"> <i class="bi bi-trash3 me-1"></i>Delete Content</button>
+          <button (click)="updateItem()">
+            <i class="bi bi-arrow-clockwise me-1"></i>Update Content
+          </button>
         </div>
       </form>
     </div>

@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -12,14 +14,13 @@ import { BucketService } from 'src/app/services/page/bucket.service';
   templateUrl: './add-bucket.component.html',
   styleUrls: ['./add-bucket.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule],
-  providers: [BucketService],
+  imports: [ReactiveFormsModule,CommonModule],
+  providers: [BucketService,HttpClientModule],
 })
 export class AddBucketComponent implements OnInit {
   bucketForm!: FormGroup;
 
   showChild = false;
-
   constructor(private fb: FormBuilder, private bucketService: BucketService) {}
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();
@@ -55,5 +56,10 @@ export class AddBucketComponent implements OnInit {
 
   blockFormClosing(event: MouseEvent) {
     event.stopPropagation();
+  }
+  setDoneStatus(status: boolean): void {
+    if (this.bucketForm) {
+      this.bucketForm.patchValue({ public: status });
+    }
   }
 }

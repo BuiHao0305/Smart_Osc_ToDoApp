@@ -8,25 +8,24 @@ import {
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
-
-export interface BucketbyID {
-  title: string;
-  public: boolean;
-  createdAt: Date | undefined;
-  updatedAt: Date | undefined;
-}
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import {
+  ListBucket,
+  ListBucketResponse,
+} from 'src/app/core/store/interface/bucket.interface';
 
 @Component({
   selector: 'app-update-backet',
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule, HttpClientModule, CommonModule],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit {
   bucketForm!: FormGroup;
-  bucketData!: BucketbyID;
+  bucketData!: ListBucket;
   showChild = false;
 
   constructor(
@@ -44,12 +43,12 @@ export class UpdateBacketComponent implements OnInit {
     }
     this.bucketForm = this.fb.group({
       title: ['', Validators.required],
-      public: [false], 
+      public: [false],
     });
   }
   getBucketById(bucketId: number): void {
     this.bucketService.getBucketById(bucketId).subscribe(
-      (response: { data: BucketbyID }) => {
+      (response: { data: ListBucket }) => {
         this.bucketData = response.data;
         this.bucketForm.patchValue({
           title: this.bucketData.title,
@@ -93,6 +92,11 @@ export class UpdateBacketComponent implements OnInit {
           this.snackBar.show('Error deleting bucket ' + error);
         }
       );
+    }
+  }
+  setDoneStatus(status: boolean): void {
+    if (this.bucketForm) {
+      this.bucketForm.patchValue({ public: status });
     }
   }
 }

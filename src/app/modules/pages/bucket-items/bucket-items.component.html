@@ -2,16 +2,31 @@
   <div class="header">
     <i class="fas fa-tasks"></i>
     <span>LIST ITEM</span>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-4 me-5">
       <input
         class="form-control rounded-0 py-2"
         type="search"
         placeholder="search items"
+        [formControl]="searchControl"
         id="example-search-input"
       />
     </div>
+    <div class="status">
+      <label for="">Status:</label>
+      <select [formControl]="doneControl" name="" id="status-value">
+        <option [value]="''">All</option>
+        <option [value]="1">Done</option>
+        <option [value]="0">False</option>
+      </select>
+    </div>
   </div>
-  <ul class="task-list">
+  @if(isLoading){
+  <div class="loading-spinner">
+    <span class="spinner-border spinner-border-sm"> </span>Loading....
+  </div>
+
+  }
+  <ul class="task-list" *ngIf="!isLoading">
     @for (task of bucketItemlist; track $index) {
     <li
       class="task-item d-flex align-items-center mt-2"
@@ -43,6 +58,8 @@
         }
       </div>
     </li>
+    } @empty {
+    <h3>No Task in Title</h3>
     }
   </ul>
   <mat-paginator
@@ -52,17 +69,21 @@
   >
   </mat-paginator>
   <div class="footer">
-    <button routerLink="/layout/bucket" class="me-5">Cancel</button>
+    <button routerLink="/layout/bucket" class="me-5">
+      <i class="bi bi-x-circle me-1"></i>Cancel
+    </button>
     <button
       tabindex="0"
       (click)="toggleChildAddContent()"
       (keydown)="toggleChildAddContent()"
     >
+      <i class="bi bi-plus-circle"></i>
       Add Content
     </button>
     @if(showChildAdd){
     <app-add-content-items
-      (previewVisible)="showChildClickAddContent($event)" (reloadData)="ngOnInit()"
+      (previewVisible)="showChildClickAddContent($event)"
+      (reloadData)="ngOnInit()"
     ></app-add-content-items>
     }
   </div>

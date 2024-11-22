@@ -69,14 +69,6 @@
   justify-content: space-between;
 }
 
-.icon .list {
-  cursor: pointer;
-}
-.icon .list i:hover{
-  background-color: #e64a19;
-  cursor: pointer;
-}
-
 .setting:hover i {
   color: #007bff;
   transform: scale(1.2);
@@ -118,7 +110,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.action h3{
+  cursor: pointer;
+}
 .action-button {
   margin-right: 10px;
   display: grid;
@@ -128,4 +122,7 @@
   cursor: pointer;
   padding: 3px 0 2px 0;
   font-size: 18px;
+}
+mat-paginator{
+  background-color: #f3f3f3;
 }

@@ -1,6 +1,6 @@
 <div class="body">
   <div class="search-bar">
-    <input matInput type="text" placeholder="Search templates..." [formControl]="searchControl" />
+    <input matInput type="text" placeholder="Search bucket..." [formControl]="searchControl" />
     <button><i class="bi bi-filter"></i> Use cases</button>
     <select>
       <option>Tags</option>
@@ -10,7 +10,8 @@
   <div class="header-bar">
     <h2>Checklist templates</h2>
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
-      Add bucket
+      <i class="bi bi-plus-circle"></i>
+      Add Bucket
     </button>
   </div>
   @if(showChild){
@@ -23,7 +24,7 @@
     >
       <div class="icon">
         <span class="list">
-          <i tabindex="0" (keydown)="onBucketClick(items.id)" (click)="onBucketClick(items.id)" class="bi bi-list-check">TITLE</i>
+          <i tabindex="0" class="bi bi-list-check">TITLE</i>
         </span>
         @if (items.public === true) {
           <span class="setting">
@@ -32,7 +33,7 @@
         }
       </div>
       <div class="action">
-        <h3>{{ items.title }}</h3>
+        <h3 tabindex="0" (keydown)="onBucketClick(items.id)" (click)="onBucketClick(items.id)" >{{ items.title }}</h3>
         <div class="action-button">
           <i tabindex="0" (keydown)="onBucketItemsClick(items.id)" (click)="onBucketItemsClick(items.id)" class="bi bi-pencil"></i>
         </div>

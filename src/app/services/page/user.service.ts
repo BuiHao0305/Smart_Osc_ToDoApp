@@ -7,12 +7,11 @@ import { environments } from 'src/app/core/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = `${environments.API_URL}/${environments.ENDPOINT_METHOD.UPDATE}`;
 
   constructor(private http: HttpClient) {}
   
-  updateUser(formData: FormData): Observable<any> {
+  updateUser(formData: FormData): Observable<string> {
     const url = `${environments.API_URL}/${environments.ENDPOINT_METHOD.UPDATE}`;
-    return this.http.put(url, formData);
+    return this.http.put<string>(url, formData);
   }
 }
