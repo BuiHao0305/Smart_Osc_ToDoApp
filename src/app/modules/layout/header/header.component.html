@@ -16,13 +16,18 @@
     <span class="btn btn-outline-light me-2">Hello, </span>
     <app-change-languages class="change-languages"></app-change-languages>
     <div class="profile-logo dropdown me-3 ms-2">
-      <button
+      <button (avatarUpdated)="updateAvatar()"
         class="btn btn-outline-light dropdown-toggle"
         data-bs-toggle="dropdown"
       >
-        Profile
-      </button>
-      <ul class="dropdown-menu dropdown-menu-dark ">
+        <img
+          [src]="avatarUrl ||'assets/img/profile/user.jpg'"
+          class="rounded-circle"
+          alt=""
+        /></button
+      >
+
+      <ul class="dropdown-menu dropdown-menu-dark">
         <li>
           <a
             class="dropdown-item bi bi-person-circle me-5"

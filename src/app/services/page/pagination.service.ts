@@ -8,11 +8,13 @@ import { ListBucketResponse } from 'src/app/core/store/interface/bucket.interfac
 export class PaginationService {
   private apiUrl = `${environments.API_URL}/${environments.ENDPOINT_METHOD.BUCKET}`;
 
-  constructor(
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  getPaginatedData(page = 1, limit = 99, query = ''): Observable<ListBucketResponse> {
+  getPaginatedData(
+    page = 1,
+    limit = 99,
+    query = ''
+  ): Observable<ListBucketResponse> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());

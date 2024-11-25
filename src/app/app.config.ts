@@ -7,6 +7,7 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token-interceptor.interceptor';
 import { provideStore } from '@ngrx/store';
@@ -28,7 +29,7 @@ export const appConfig: ApplicationConfig = {
       useClass: TokenInterceptor,
       multi: true,
     },
-    
+    provideHttpClient(withInterceptorsFromDi()),
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,

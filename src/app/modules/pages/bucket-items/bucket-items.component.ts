@@ -7,7 +7,7 @@ import { AddContentItemsComponent } from '../../../shared/component/add-content-
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PaginationService } from 'src/app/services/page/pagination.service';
 import { UpdateItemsComponent } from '../../../shared/component/update-items/update-items.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { BucketItem } from 'src/app/core/store/interface/bucket-items.interface';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
@@ -27,7 +27,7 @@ import { debounceTime, switchMap } from 'rxjs';
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers: [BucketItemsService, PaginationService, HttpClientModule],
+  providers: [BucketItemsService, PaginationService],
 })
 export class BucketItemsComponent implements OnInit {
   searchControl = new FormControl('');

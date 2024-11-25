@@ -26,16 +26,8 @@ export class SignInServiceService {
     );
   }
   getUserInfo(): Observable<User> {
-    const token = this.authService.getToken();
-    console.log(token);
-    
-    if (!token) {
-      throw new Error('Token not available');
-    }
-    const params = new HttpParams().set('access_token', token); 
     return this.http.get<User>(
-      `${environments.API_URL}/${environments.ENDPOINT_METHOD.GET_USER_INFOR}`,
-      { params }
+      `${environments.API_URL}/${environments.ENDPOINT_METHOD.GET_USER_INFOR}`
     );
   }
 }

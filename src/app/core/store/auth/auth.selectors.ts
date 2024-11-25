@@ -26,11 +26,11 @@ export const selectSignUpError = createSelector(
   selectAuthState,
   (state: AuthState) => (state.signupError ? state.signupError.message : null)
 );
-
-export const selectSignUpLoading = createSelector(
+export const selectSignUpSuccess = createSelector(
   selectAuthState,
-  (state: AuthState) => state.signupLoading
+  (state) => state.signUpSuccess
 );
+
 
 
 export const selectUserInfo = createSelector(

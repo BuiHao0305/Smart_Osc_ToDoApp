@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 import { LogoutDialogComponent } from 'src/app/shared/component/logout-dialog/logout-dialog.component';
@@ -8,6 +8,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { ChangeLanguagesComponent } from '../../../shared/component/change-languages/change-languages.component';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { UserService } from 'src/app/services/page/user.service';
 
 @Component({
   selector: 'app-header',
@@ -16,17 +17,21 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
   standalone: true,
   imports: [RouterModule, MyProfileComponent, ChangeLanguagesComponent],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   @Output() sideNavToggled = new EventEmitter<boolean>();
   menuStatus = false;
+  avatarUrl: string | null = null;
   constructor(
     private router: Router,
     private dialog: MatDialog,
     private snackbar: SnackbarService,
     private store: Store,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private userService: UserService
   ) {}
-
+  ngOnInit(): void {
+    this.updateAvatar()
+  }
   sideNavToggle() {
     this.menuStatus = !this.menuStatus;
     this.sideNavToggled.emit(this.menuStatus);
@@ -42,5 +47,15 @@ export class HeaderComponent {
         this.snackbar.show('Đăng xuất thành công');
       }
     });
+  }
+  updateAvatar() {
+    this.userService.getAvater().subscribe(
+      (response) => {
+        this.avatarUrl = response;
+      },
+      (error) => {
+        console.error('Không thể tải ảnh đại diện', error);
+      }
+    );
   }
 }

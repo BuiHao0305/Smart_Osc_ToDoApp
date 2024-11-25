@@ -6,7 +6,7 @@ import { SignInServiceService } from 'src/app/services/authentication/sign-in.se
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { authActions } from './auth.action';
 import { SignUpService } from 'src/app/services/authentication/sign-up.service';
-
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Injectable()
 export class AuthEffects {
@@ -14,7 +14,8 @@ export class AuthEffects {
     private actions$: Actions,
     private signInService: SignInServiceService,
     private authService: AuthServiceService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private snackbar: SnackbarService
   ) {}
 
   login$ = createEffect(() =>
@@ -25,7 +26,9 @@ export class AuthEffects {
           map((response) => {
             this.authService.saveToken(response.access_token);
             console.log(response);
-            
+            if (response.message) {
+              this.snackbar.show(response.message);
+            }
             return authActions.loginSuccess({ user: response });
           }),
           catchError((error) => {
@@ -41,6 +44,9 @@ export class AuthEffects {
       mergeMap(({ signUpData }) =>
         this.signUpService.signUp(signUpData).pipe(
           map((response) => {
+            if (response.message) {
+              this.snackbar.show(response.message);
+            }
             return authActions.signUpSuccess({ signup: response });
           }),
           catchError((error) => {
@@ -52,14 +58,15 @@ export class AuthEffects {
   );
   getUserInfo$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(authActions.loginSuccess),
-      mergeMap(() => 
-        this.signInService.getUserInfo().pipe( 
+      ofType(authActions.loginSuccess,authActions.updateUserSuccess),
+      mergeMap(() =>
+        this.signInService.getUserInfo().pipe(
           map((userInfo) => {
             console.log('Thông tin người dùng từ API:', userInfo);
             return authActions.user({ userInfo });
           }),
           tap((action) => {
+            console.log('user')
             localStorage.setItem('userInfo', JSON.stringify(action.userInfo));
           }),
           catchError((error) => {

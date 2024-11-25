@@ -9,9 +9,16 @@ import { User } from 'src/app/core/store/type/auth.type';
 })
 export class UserService {
   constructor(private http: HttpClient) {}
-
   updateUser(formData: FormData): Observable<User> {
-    const url = `${environments.API_URL}/${environments.ENDPOINT_METHOD.UPDATE}`;
-    return this.http.put<User>(url, formData);
+    return this.http.post<User>(
+      `${environments.API_URL}/${environments.ENDPOINT_METHOD.UPDATE}`,
+      formData
+    );
+  }
+  getAvater(): Observable<string> {
+    return this.http.get(
+      `${environments.API_URL}/${environments.ENDPOINT_METHOD.AVATAR}`,
+      { responseType: 'text'}
+    );
   }
 }

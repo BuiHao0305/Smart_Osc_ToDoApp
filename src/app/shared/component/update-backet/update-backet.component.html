@@ -52,12 +52,14 @@
           waiting....
         </button>
         <div class="modal-footer">
-          <button type="button" (click)="onDelete()">
-            <i
-              class="bi bi-trash3"
-              [ngClass]="{ 'disabled-button': loading }"
-              [style.cursor]="loading ? 'not-allowed' : 'pointer'"
-            ></i>
+          <button
+            type="button"
+            [disabled]="bucketForm.invalid || loading"
+            class="bi bi-trash3"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+            (click)="onDelete()"
+          >
+            <i></i>
             Delete Bucket
           </button>
           <button

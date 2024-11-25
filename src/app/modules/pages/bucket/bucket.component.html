@@ -1,6 +1,11 @@
 <div class="body">
   <div class="search-bar">
-    <input matInput type="text" placeholder="Search bucket..." [formControl]="searchControl" />
+    <input
+      matInput
+      type="text"
+      placeholder="Search bucket..."
+      [formControl]="searchControl"
+    />
     <button><i class="bi bi-filter"></i> Use cases</button>
     <select>
       <option>Tags</option>
@@ -8,7 +13,7 @@
     <button><i class="bi bi-person"></i> Created by:</button>
   </div>
   <div class="header-bar">
-    <h2>Checklist templates</h2>
+    <h2>Checklist</h2>
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
       <i class="bi bi-plus-circle"></i>
       Add Bucket
@@ -17,7 +22,7 @@
   @if(showChild){
   <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
   }
-  <div class="templates">
+  <!-- <div class="templates">
     @for (items of listBucket; track $index) {
     <div
       class="template-card"
@@ -42,6 +47,57 @@
     }@empty {
       <h3>No Title In Bucket</h3>
       }
+  </div> -->
+  <div class="container mt-3 mb-1">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        @if(loading){
+        <div class="loading-spinner fs-5 text-center mt-3">
+          <span class="spinner-border spinner-border-sm"> </span> Loading
+          Bucket....
+        </div>
+        } @if(!loading){
+        <div class="list-group">
+          @for (items of listBucket; track $index){
+          <div
+            class="list-group-item d-flex align-items-center justify-content-between"
+          >
+            <span class="flex-grow-1">{{ items.title }}</span>
+            <div class="status mr-3">
+              @if (items.public === true) {
+              <span class="setting">
+                <i tabindex="0" class="bi bi-lock"></i>
+              </span>
+              }
+            </div>
+            <div class="text-muted me-3 d-flex align-items-center">
+              <i class="bi bi-clock me-1"></i> {{ items.createdAt }}
+            </div>
+            <button
+              tabindex="0"
+              (keydown)="onBucketClick(items.id)"
+              (click)="onBucketClick(items.id)"
+              class="btn btn-link text-secondary p-0 me-3"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              tabindex="0"
+              (keydown)="onBucketItemsClick(items.id)"
+              (click)="onBucketItemsClick(items.id)"
+              class="btn btn-link text-secondary p-0 me-3"
+            >
+              <i class="bi bi-caret-right-fill"></i>
+            </button>
+            <div class="rounded-circle" style="width: 20px; height: 20px"></div>
+          </div>
+          } @empty {
+          <h3 class="fs-5 text-center">No Task in Title</h3>
+          }
+        </div>
+        }
+      </div>
+    </div>
   </div>
   <mat-paginator
     [length]="totalItems"

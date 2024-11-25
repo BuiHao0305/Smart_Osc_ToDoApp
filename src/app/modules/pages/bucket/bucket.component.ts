@@ -6,7 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
+
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 
 @Component({
@@ -20,7 +20,6 @@ import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
     MatPaginator,
     RouterModule,
     FormsModule,
-    HttpClientModule,
     MatInputModule,
   ],
   providers: [PaginationService],
@@ -32,6 +31,7 @@ export class BucketComponent implements OnInit {
   totalItems = 0;
   pageSize = 12;
   pageIndex = 0;
+  loading = false;
 
   constructor(
     private paginationService: PaginationService,
@@ -55,11 +55,13 @@ export class BucketComponent implements OnInit {
   }
 
   private loadBuckets(page: number, limit: number, searchQuery: string): void {
+    this.loading =true
     this.paginationService
       .getPaginatedData(page, limit, searchQuery)
       .subscribe((response) => {
         this.listBucket = response.data;
         this.totalItems = response.total;
+        this.loading =false;
       });
   }
 

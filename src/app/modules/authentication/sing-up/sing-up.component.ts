@@ -9,12 +9,11 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { first } from 'rxjs';
 import { AppLang } from 'src/app/core/enum/languages.enum';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
   selectSignUpError,
-  selectSignUpLoading,
+  selectSignUpSuccess,
 } from 'src/app/core/store/auth/auth.selectors';
 import { AppLangService } from 'src/app/services/app-lang.service';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
@@ -39,7 +38,6 @@ export class SingUpComponent implements OnInit, OnDestroy {
   passwordError: string[] = [];
   userNameError: string[] = [];
   loading = false;
-  signUpLoading$ = this.store.select(selectSignUpLoading);
   signUpError$ = this.store.select(selectSignUpError);
 
   constructor(
@@ -75,34 +73,26 @@ export class SingUpComponent implements OnInit, OnDestroy {
     if (this.registerForm.invalid) {
       return;
     }
-
+  
     const { email, password, username } = this.registerForm.value;
     this.loading = true;
-
+  
     this.store.dispatch(
       authActions.signUp({ signUpData: { email, password, username } })
     );
-
-    this.store
-      .select(selectSignUpError)
-      .pipe(first())
-      .subscribe((error) => {
-        if (error) {
-          this.snackbar.show(error);
-          this.loading = false;
-        }
-      });
-
-    this.store
-      .select(selectSignUpLoading)
-      .pipe(first())
-      .subscribe((loading) => {
-        if (!loading) {
-          this.router.navigate(['/sign-in']);
-          this.snackbar.show('SignUp Success');
-          this.loading = false;
-        }
-      });
+  
+    this.store.select(selectSignUpError).subscribe((error) => {
+      if (error) {
+        this.loading = false;
+      }
+    });
+  
+    this.store.select(selectSignUpSuccess).subscribe((success) => {
+      if (success) {
+        this.loading = false;
+        this.router.navigate(['/sign-in']);
+      }
+    });
   }
 
   validationRegister() {
