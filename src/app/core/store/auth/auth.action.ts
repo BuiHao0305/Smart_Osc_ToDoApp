@@ -21,7 +21,7 @@ export const authActions = createActionGroup({
     'SignUp Error': props<{ error: ErrorResponse }>(),
 
     User: props<{ userInfo: User }>(),
-  
+    'Update User Success': props<{ user: User}>,
     'User Error': props<{ error: ErrorResponse }>(),
 
     LogOut: props,

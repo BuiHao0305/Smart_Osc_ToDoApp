@@ -55,18 +55,23 @@ export class AuthServiceService {
     if (!token) {
       return false;
     }
-
+  
     const parts = token.split('.');
     if (parts.length !== 3) {
       return false;
     }
-    const header = parts[0];
-    const payload = parts[1];
-    const signature = parts[2];
-
-    if (!header || !payload || !signature) {
+  
+    try {
+      const payload = JSON.parse(atob(parts[1])); // Decode phần payload của token
+      const exp = payload.exp; // Hạn sử dụng của token (nếu có)
+      if (exp && Date.now() >= exp * 1000) { // Kiểm tra nếu token đã hết hạn
+        return false;
+      }
+    } catch (error) {
+      console.error('Invalid token payload', error);
       return false;
     }
+  
     return true;
   }
   private isBrowser(): boolean {

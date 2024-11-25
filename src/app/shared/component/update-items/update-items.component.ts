@@ -16,15 +16,17 @@ import {
 import { SnackbarService } from '../../snackbar/snackbar.service';
 import { CommonModule } from '@angular/common';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
-import { HttpClientModule } from '@angular/common/http';
+
 import { BucketItem} from 'src/app/core/store/interface/bucket-items.interface';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-items',
   templateUrl: './update-items.component.html',
   styleUrls: ['./update-items.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule],
   providers: [],
 })
 export class UpdateItemsComponent implements OnInit, OnChanges {
@@ -40,7 +42,8 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
   constructor(
     private fb: FormBuilder,
     private snackbar: SnackbarService,
-    private bucketItemsService: BucketItemsService
+    private bucketItemsService: BucketItemsService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -99,23 +102,30 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
       });
   }
   deleteItem(): void {
-    if (this.bucketId === null || this.itemId === null) {
-      this.snackbar.show('Bucket ID or Item ID is missing!');
-      return;
-    }
-    this.loading = true
-    this.bucketItemsService.deleteItem(this.bucketId, this.itemId).subscribe({
-      next: () => {
-        this.snackbar.show('Item deleted successfully!');
-        this.reloadData.emit();
-        this.previewVisible.emit(false);
-        this.loading = false
-      },
-      error: (err) => {
-        this.snackbar.show(`Error deleting item: ${err.message}`);
-        this.loading = false
-      },
-    });
+    
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) =>{
+      if(result){
+        if (this.bucketId === null || this.itemId === null) {
+          this.snackbar.show('Bucket ID or Item ID is missing!');
+          return;
+        }
+        this.loading = true
+        this.bucketItemsService.deleteItem(this.bucketId, this.itemId).subscribe({
+          next: () => {
+            this.snackbar.show('Item deleted successfully!');
+            this.reloadData.emit();
+            this.previewVisible.emit(false);
+            this.loading = false
+          },
+          error: (err) => {
+            this.snackbar.show(`Error deleting item: ${err.message}`);
+            this.loading = false
+          },
+        });
+      }
+    })
   }
 
   changeVisibleUpdateContent(event: MouseEvent): void {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -16,7 +16,7 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
   styleUrls: ['./add-bucket.component.scss'],
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule],
-  providers: [BucketService,HttpClientModule],
+  providers: [BucketService],
 })
 export class AddBucketComponent implements OnInit {
   bucketForm!: FormGroup;

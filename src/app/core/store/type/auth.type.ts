@@ -5,6 +5,7 @@ export type SignIn = {
 
 export type SignInResponse = {
   access_token: string;
+  message?: string;
 };
 
 
@@ -25,6 +26,7 @@ export type ForgetPass = {
 };
 
 export interface User {
+  message: any;
   id: string;
   email: string;
   username: string;

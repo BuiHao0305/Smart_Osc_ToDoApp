@@ -8,18 +8,20 @@ import {
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
-import { HttpClientModule } from '@angular/common/http';
+
 import { CommonModule } from '@angular/common';
 import {
   ListBucket,
 } from 'src/app/core/store/interface/bucket.interface';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-backet',
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, HttpClientModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit {
@@ -32,7 +34,8 @@ export class UpdateBacketComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private bucketService: BucketService,
-    private snackBar: SnackbarService
+    private snackBar: SnackbarService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -83,21 +86,27 @@ export class UpdateBacketComponent implements OnInit {
     }
   }
   onDelete(): void {
-    const bucketId = this.route.snapshot.paramMap.get('bucketId');
-    this.loading = true;
-    if (bucketId) {
-      this.bucketService.deleteBucket(+bucketId).subscribe(
-        (response) => {
-          this.snackBar.show('Bucket deleted ' + response);
-          this.router.navigate(['layout/bucket']);
-          this.loading = false;
-        },
-        (error) => {
-          this.snackBar.show('Error deleting bucket ' + error);
-          this.loading = false;
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) =>{
+      if(result){
+        const bucketId = this.route.snapshot.paramMap.get('bucketId');
+        this.loading = true;
+        if (bucketId) {
+          this.bucketService.deleteBucket(+bucketId).subscribe(
+            (response) => {
+              this.snackBar.show('Bucket deleted ' + response);
+              this.router.navigate(['layout/bucket']);
+              this.loading = false;
+            },
+            (error) => {
+              this.snackBar.show('Error deleting bucket ' + error);
+              this.loading = false;
+            }
+          );
         }
-      );
-    }
+      }
+    })
   }
   setDoneStatus(status: boolean): void {
     if (this.bucketForm) {
