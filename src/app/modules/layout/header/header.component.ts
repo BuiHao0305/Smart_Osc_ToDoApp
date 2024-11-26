@@ -23,7 +23,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   @Output() sideNavToggled = new EventEmitter<boolean>();
-  username: string = '';
+  username = '';
   menuStatus = false;
   avatarUrl: string | null = null;
   userInfo$: Observable<any>;
