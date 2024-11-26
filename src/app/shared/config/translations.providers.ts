@@ -1,27 +1,37 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+
+import {
+  IModuleTranslationOptions,
+  ModuleTranslateLoader,
+} from '@larscom/ngx-translate-module-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { AppLangService } from 'src/app/services/app-lang.service';
-import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CustomTranslateHttpLoader implements TranslateLoader {
-  constructor(
-    private http: HttpClient,
-    private appLangService: AppLangService
-  ) {}
+// export function HttpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http, './assets/i18n/sign-in/', '.json');
+// }
 
-  getTranslation(lang: string): Observable<any> {
-    const langContext = this.appLangService.getLangContext(); 
-    console.log('Current Lang Context:', langContext);
-    return this.http.get(`/assets/i18n/${langContext}/${lang}.json`); 
-  }
-}
+// export function HttpLoaderFactory(_httpBackend: HttpBackend) {
+//   return new MultiTranslateHttpLoader(_httpBackend, [
+//     '/assets/i18n/sign-in/',
+//     '/assets/i18n/sign-up/',
+//   ]);
+// }
 
-export function HttpLoaderFactory(http: HttpClient, appLangService: AppLangService) {
-  return new CustomTranslateHttpLoader(http, appLangService); 
+export function HttpLoaderFactory(http: HttpClient) {
+  const baseTranslateUrl = 'assets/i18n';
+
+  const options: IModuleTranslationOptions = {
+    modules: [
+      { baseTranslateUrl: `${baseTranslateUrl}/sign-in` },
+      { baseTranslateUrl: `${baseTranslateUrl}/sign-up` },
+      { baseTranslateUrl: `${baseTranslateUrl}/forgot-password` },
+      { baseTranslateUrl: `${baseTranslateUrl}/layout` },
+      { baseTranslateUrl: `${baseTranslateUrl}/bucket` },
+      { baseTranslateUrl: `${baseTranslateUrl}/dashboard` },
+    ],
+    lowercaseNamespace: true,
+  };
+  return new ModuleTranslateLoader(http, options);
 }
 
 export const translationProviders = [
@@ -29,9 +39,8 @@ export const translationProviders = [
     defaultLanguage: 'en',
     loader: {
       provide: TranslateLoader,
-      useFactory: (http: HttpClient, appLangService: AppLangService) =>
-        HttpLoaderFactory(http, appLangService),
-      deps: [HttpClient, AppLangService],
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient],
     },
   }).providers!,
 ];

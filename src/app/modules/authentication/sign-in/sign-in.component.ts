@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,11 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
-import { AppLang } from 'src/app/core/enum/languages.enum';
-import { AppLangService } from 'src/app/services/app-lang.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/store/auth/auth.action';
@@ -37,7 +35,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
     ForgotPasswordComponent,
   ],
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnInit {
   showChild = false;
   showOverlay = false;
 
@@ -52,8 +50,9 @@ export class SignInComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private store: Store<AuthState>,
-    private appLangService: AppLangService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,19 +65,12 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.appLangService.clearLangContext();
-    this.appLangService.setLangContext(AppLang.SIGN_IN);
     this.user$.subscribe((user) => {
       if (user) {
         this.router.navigate(['layout/dashboard']);
         this.snackbar.show('Đăng nhập thành công');
       }
     });
-  }
-
-  checkLangContext() {
-    const langContext = this.appLangService.getLangContext();
-    console.log('Current Lang Context:', langContext);
   }
 
   toggleChild() {
@@ -88,11 +80,6 @@ export class SignInComponent implements OnInit, OnDestroy {
   showChildClick(value: boolean) {
     this.showChild = value;
   }
-
-  ngOnDestroy(): void {
-    this.appLangService.clearLangContext();
-  }
-
   validateLogin() {
     if (this.loginForm.invalid) {
       return;

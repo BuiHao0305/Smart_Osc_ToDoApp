@@ -6,7 +6,7 @@
         <img src="assets/img/login.png" class="img-fluid" alt="Phone image" />
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <h2>{{ 'LOGIN' | translate }}</h2>
+        <h1>{{ 'LOGIN' | translate }}</h1>
         <form [formGroup]="loginForm">
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
@@ -14,7 +14,7 @@
               'EMAIL' | translate
             }}</label>
             <input
-              formControlName="email"
+              formControlName="email"S
               id="email"
               [ngClass]="{
                 'is-invalid':

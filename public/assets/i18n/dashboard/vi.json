@@ -1,0 +1,10 @@
+{
+    "DASHBOARD_TITLE": "ToDoApp",
+    "DASHBOARD_DESCRIPTION": "Chào mừng bạn đến với TodoApp, giải pháp hoàn hảo để quản lý công việc hàng ngày của bạn. Tạo, tổ chức và theo dõi các công việc của bạn một cách dễ dàng với TodoApp!",
+    "TO_DO_LIST_DASHBOARD": "Với TodoApp, bạn có thể:",
+    "CREATE_TASK": "Tạo công việc mới",
+    "MARK_COMPLETE": "Đánh dấu công việc đã hoàn thành",
+    "SET_DEADLINE": "Đặt hạn chót và nhắc nhở cho công việc",
+    "PRIORITIZE_TASKS": "Ưu tiên công việc theo mức độ quan trọng",
+    "START_ORGANIZING": "Hãy bắt đầu tổ chức công việc ngay hôm nay và nâng cao năng suất của bạn!"
+  }

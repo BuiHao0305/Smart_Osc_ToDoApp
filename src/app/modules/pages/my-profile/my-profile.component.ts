@@ -13,8 +13,6 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 
 
-
-
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -34,6 +32,7 @@ export class MyProfileComponent implements OnInit {
   avatarUrl: string | null = null; 
   userInfoFromLocalStorage: User | null = null;
   @Output() avatarUpdated = new EventEmitter<void>();
+
   constructor(
     private fb: FormBuilder,
     private store: Store<AuthState>,
@@ -56,7 +55,7 @@ export class MyProfileComponent implements OnInit {
       this.userInfoFromLocalStorage = JSON.parse(userInfo);
       this.setFormData();
     }
-    this.userService.getAvater().subscribe(
+    this.userService.getAvatar().subscribe(
       (response) => {
         this.avatarUrl = response; 
       },
@@ -82,7 +81,7 @@ export class MyProfileComponent implements OnInit {
     if (file) {
       this.avatarFile = file;
       this.avatarUrl = URL.createObjectURL(file);
-      this.avatarUpdated.emit();
+      this.userService.triggerAvatarUpdate(); 
     }
   }
 
@@ -97,10 +96,11 @@ export class MyProfileComponent implements OnInit {
       }
 
       this.userService.updateUser(formData).subscribe(
-        (response) => {
+        () => {
           this.snackbar.show('Cập nhật thông tin thành công');
           this.store.dispatch(authActions.updateUserSuccess());
           this.router.navigate(['layout/dashboard']);
+          this.userService.triggerAvatarUpdate(); 
         },
         (error) => {
           console.error('Cập nhật thất bại', error);
@@ -110,4 +110,4 @@ export class MyProfileComponent implements OnInit {
       console.log('Form không hợp lệ');
     }
   }
-}
+} 

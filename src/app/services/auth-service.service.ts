@@ -17,12 +17,10 @@ export class AuthServiceService {
     if (this.isBrowser()) {
       localStorage.setItem('access_token', token);
       this.currentToken = token;
-      console.log(token);
     }
   }
   getToken(): string | null {
     const token = this.isBrowser() ? localStorage.getItem('access_token') : null;
-    console.log('Retrieved Token:', token); 
     return token;
   }
 
@@ -30,7 +28,6 @@ export class AuthServiceService {
     if (this.isBrowser()) {
       localStorage.removeItem('access_token');
       this.currentToken = null;
-      console.log('Token cleared');
     }
   }
 

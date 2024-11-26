@@ -1,0 +1,10 @@
+{
+    "LOGIN": "Login",
+    "PASSWORD_RESET": "Password Reset",
+    "EMAIL_INPUT": "Email input",
+    "RESET_PASSWORD": "Reset password",
+    "SIGN_IN": "Sign In",
+    "SIGN_UP": "Sign Up",
+    "ENTER_YOUR_EMAIL": "Enter your email address and we'll send you an email with instructions to reset your password."
+  }
+  

@@ -15,7 +15,6 @@ import {
   selectSignUpError,
   selectSignUpSuccess,
 } from 'src/app/core/store/auth/auth.selectors';
-import { AppLangService } from 'src/app/services/app-lang.service';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
@@ -32,7 +31,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
     TranslateModule,
   ],
 })
-export class SingUpComponent implements OnInit, OnDestroy {
+export class SingUpComponent {
   registerForm: FormGroup;
   emailError: string[] = [];
   passwordError: string[] = [];
@@ -43,7 +42,6 @@ export class SingUpComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private translate: TranslateService,
-    private appLangService: AppLangService,
     private store: Store,
     private router: Router,
     private snackbar: SnackbarService
@@ -55,14 +53,8 @@ export class SingUpComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {
-    this.appLangService.clearLangContext();
-    this.appLangService.setLangContext(AppLang.SIGN_UP);
-  }
 
-  ngOnDestroy(): void {
-    this.appLangService.clearLangContext();
-  }
+
 
   loadLanguage(langPrefix: string) {
     this.translate.setDefaultLang('en');
