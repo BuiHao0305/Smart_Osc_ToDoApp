@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,6 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppLang } from 'src/app/core/enum/languages.enum';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
   selectSignUpError,
