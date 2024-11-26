@@ -23,6 +23,7 @@ export const appConfig: ApplicationConfig = {
     AuthServiceService,
     provideRouter(appRoutes),
     provideClientHydration(),
+    provideHttpClient(),
     provideHttpClient(withFetch()),  
     {
       provide: HTTP_INTERCEPTORS,

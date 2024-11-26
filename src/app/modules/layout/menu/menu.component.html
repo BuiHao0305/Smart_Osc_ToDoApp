@@ -9,7 +9,7 @@
       >
         <i [ngClass]="item.icon"></i>
         <span class="menu-text">
-          <a [routerLink]="item.route">{{ item.name }}</a>
+          <a [routerLink]="item.route">{{ item.name | translate }}</a>
         </span>
       </li>
     }

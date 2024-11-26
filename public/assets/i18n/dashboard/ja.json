@@ -1,0 +1,12 @@
+
+  {
+    "DASHBOARD_TITLE": "ToDoApp",
+    "DASHBOARD_DESCRIPTION": "TodoAppへようこそ。日々の仕事を簡単に管理できる完璧なソリューションです。TodoAppで仕事を作成、整理、追跡できます！",
+    "TO_DO_LIST_DASHBOARD": "TodoAppでは、次のことができます:",
+    "CREATE_TASK": "新しいタスクを作成する",
+    "MARK_COMPLETE": "完了したタスクにチェックを付ける",
+    "SET_DEADLINE": "タスクの期限とリマインダーを設定する",
+    "PRIORITIZE_TASKS": "タスクの重要度に基づいて優先順位を付ける",
+    "START_ORGANIZING": "今日から仕事を整理して、あなたの生産性を向上させましょう！"
+  }
+  

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
 
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bucket',
@@ -21,6 +22,7 @@ import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
     RouterModule,
     FormsModule,
     MatInputModule,
+    TranslateModule
   ],
   providers: [PaginationService],
 })

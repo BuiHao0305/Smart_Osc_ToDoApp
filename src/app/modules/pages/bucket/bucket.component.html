@@ -6,55 +6,29 @@
       placeholder="Search bucket..."
       [formControl]="searchControl"
     />
-    <button><i class="bi bi-filter"></i> Use cases</button>
+    <button><i class="bi bi-filter"></i> {{ 'USE_CASES' | translate }}</button>
     <select>
-      <option>Tags</option>
+      <option>{{ 'TAGS' | translate }}</option>
     </select>
-    <button><i class="bi bi-person"></i> Created by:</button>
+    <button><i class="bi bi-person"></i> {{ 'CREATED_BY' | translate }}</button>
   </div>
   <div class="header-bar">
-    <h2>Checklist</h2>
+    <h2>{{'CHECKLIST'|translate}}</h2>
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
       <i class="bi bi-plus-circle"></i>
-      Add Bucket
+      {{ 'ADD_BUCKET' | translate }}
     </button>
   </div>
   @if(showChild){
   <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
   }
-  <!-- <div class="templates">
-    @for (items of listBucket; track $index) {
-    <div
-      class="template-card"
-    >
-      <div class="icon">
-        <span class="list">
-          <i tabindex="0" class="bi bi-list-check">TITLE</i>
-        </span>
-        @if (items.public === true) {
-          <span class="setting">
-            <i tabindex="0" class="bi bi-lock"></i>
-          </span>
-        }
-      </div>
-      <div class="action">
-        <h3 tabindex="0" (keydown)="onBucketClick(items.id)" (click)="onBucketClick(items.id)" >{{ items.title }}</h3>
-        <div class="action-button">
-          <i tabindex="0" (keydown)="onBucketItemsClick(items.id)" (click)="onBucketItemsClick(items.id)" class="bi bi-pencil"></i>
-        </div>
-      </div>
-    </div>
-    }@empty {
-      <h3>No Title In Bucket</h3>
-      }
-  </div> -->
+
   <div class="container mt-3 mb-1">
     <div class="card shadow-sm">
       <div class="card-body">
         @if(loading){
         <div class="loading-spinner fs-5 text-center mt-3">
-          <span class="spinner-border spinner-border-sm"> </span> Loading
-          Bucket....
+          <span class="spinner-border spinner-border-sm"> </span>{{ 'LOADING_BUCKET' | translate }}
         </div>
         } @if(!loading){
         <div class="list-group">
@@ -92,7 +66,7 @@
             <div class="rounded-circle" style="width: 20px; height: 20px"></div>
           </div>
           } @empty {
-          <h3 class="fs-5 text-center">No Task in Title</h3>
+          <h3 class="fs-5 text-center">{{ 'NO_TASK_TITLE' | translate }}</h3>
           }
         </div>
         }
