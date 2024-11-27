@@ -27,15 +27,15 @@ export class HeaderComponent implements OnInit {
   menuStatus = false;
   avatarUrl: string | null = null;
   userInfo$: Observable<any>;
-  @Inject(PLATFORM_ID) private platformId: string | undefined
+  
   constructor(
     private router: Router,
     private dialog: MatDialog,
     private snackbar: SnackbarService,
     private store: Store,
     private authService: AuthServiceService,
-    private userService: UserService
-      
+    private userService: UserService,
+    @Inject(PLATFORM_ID) private platformId: string | undefined
   ) {
     this.userInfo$ = this.store.select(selectUserInfo);
   }
@@ -49,14 +49,15 @@ export class HeaderComponent implements OnInit {
     this.userInfo$.subscribe((userInfo) => {
       if (userInfo) {
         this.username = userInfo.username;
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
       }
     });
-
+  
     if (isPlatformBrowser(this.platformId!)) {
       const userInfo = localStorage.getItem('userInfo');
       if (userInfo) {
         const parsedUserInfo = JSON.parse(userInfo);
-        this.username = parsedUserInfo.username;
+        this.username = parsedUserInfo.username || '';
       }
     }
   }

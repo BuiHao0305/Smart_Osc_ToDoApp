@@ -26,7 +26,7 @@ export type ForgetPass = {
 };
 
 export interface User {
-  message: any;
+  message: string;
   id: string;
   email: string;
   username: string;

@@ -12,24 +12,18 @@ import { UserService } from 'src/app/services/page/user.service';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 
-
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-  ]
+  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule],
 })
 export class MyProfileComponent implements OnInit {
   profileForm: FormGroup;
   userInfo$: Observable<User | null>;
   avatarFile: File | null = null;
-  avatarUrl: string | null = null; 
+  avatarUrl: string | null = null;
   userInfoFromLocalStorage: User | null = null;
   @Output() avatarUpdated = new EventEmitter<void>();
 
@@ -40,7 +34,6 @@ export class MyProfileComponent implements OnInit {
     private snackbar: SnackbarService,
     private router: Router
   ) {
-
     this.profileForm = this.fb.group({
       email: [{ disabled: true }, [Validators.required, Validators.email]],
       username: ['', [Validators.required]],
@@ -57,7 +50,7 @@ export class MyProfileComponent implements OnInit {
     }
     this.userService.getAvatar().subscribe(
       (response) => {
-        this.avatarUrl = response; 
+        this.avatarUrl = response;
       },
       (error) => {
         console.error('Không thể tải ảnh đại diện', error);
@@ -71,8 +64,6 @@ export class MyProfileComponent implements OnInit {
         email: this.userInfoFromLocalStorage.email,
         username: this.userInfoFromLocalStorage.username,
       });
-      
-     
     }
   }
 
@@ -81,7 +72,7 @@ export class MyProfileComponent implements OnInit {
     if (file) {
       this.avatarFile = file;
       this.avatarUrl = URL.createObjectURL(file);
-      this.userService.triggerAvatarUpdate(); 
+      this.userService.triggerAvatarUpdate();
     }
   }
 
@@ -92,7 +83,7 @@ export class MyProfileComponent implements OnInit {
       formData.append('email', userData.email);
       formData.append('username', userData.username);
       if (this.avatarFile) {
-        formData.append('avatar', this.avatarFile); 
+        formData.append('avatar', this.avatarFile);
       }
 
       this.userService.updateUser(formData).subscribe(
@@ -100,7 +91,7 @@ export class MyProfileComponent implements OnInit {
           this.snackbar.show('Cập nhật thông tin thành công');
           this.store.dispatch(authActions.updateUserSuccess());
           this.router.navigate(['layout/dashboard']);
-          this.userService.triggerAvatarUpdate(); 
+          this.userService.triggerAvatarUpdate();
         },
         (error) => {
           console.error('Cập nhật thất bại', error);
@@ -110,4 +101,4 @@ export class MyProfileComponent implements OnInit {
       console.log('Form không hợp lệ');
     }
   }
-} 
+}
