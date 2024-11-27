@@ -1,0 +1,19 @@
+{
+  "BUCKET_ITEMS": {
+    "LIST_ITEM": "Danh sách công việc",
+    "SEARCH_ITEMS": "Tìm kiếm công việc",
+    "STATUS": "Trạng thái",
+    "ALL": "Tất cả",
+    "DONE": "Hoàn thành",
+    "FALSE": "Chưa hoàn thành",
+    "LOADING": "Đang tải...",
+    "NO_TASK_IN_TITLE": "Không có công việc nào",
+    "CANCEL": "Hủy",
+    "ADD_CONTENT": "Thêm công việc",
+    "UPDATE_TITLE": "Cập nhật công việc",
+    "CREATE_AT": "Ngày tạo",
+    "UPDATE_AT": "Ngày cập nhật",
+    "DELETE_BUCKETITEMS": "Xóa danh sách công việc",
+    "UPDATE_BUCKETITEMS": "Cập nhật danh sách công việc"
+  }
+}

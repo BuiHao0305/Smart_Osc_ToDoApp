@@ -1,0 +1,20 @@
+{
+    "BUCKET_TITLE_MODAL": {
+      "TITLE": "新しいコンテンツ項目を作成",
+      "TITLE_REQUIRED": "コンテンツは必須です",
+      "CONTENT": "コンテンツ",
+  
+      "STATUS": "タスクの状態",
+      "TRUE": "真",
+      "FALSE": "プライベート",
+      "WAITING": "待機中...",
+      "ADD_CONTENT": "コンテンツを追加",
+  
+      "UPDATE_TITLE_CONTENT": "コンテンツ項目を更新",
+      "CREATE_AT": "作成日",
+      "UPDATE_AT": "更新日",
+      "DELETE_CONTENT": "コンテンツを削除",
+      "UPDATE_CONTENT": "コンテンツを更新"
+    }
+  }
+  

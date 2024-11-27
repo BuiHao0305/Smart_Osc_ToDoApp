@@ -1,4 +1,5 @@
 {
+  "LAYOUT": {
     "SEARCH": "検索",
     "SEARCH_BUTTON": "検索",
     "HELLO": "こんにちは",
@@ -10,4 +11,5 @@
     "ADD_SUBJECT": "科目を追加",
     "CHAT": "チャット",
     "BUDGET": "予算"
+  }
 }

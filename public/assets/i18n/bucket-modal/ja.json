@@ -1,0 +1,18 @@
+{
+  "BUCKET_MODAL": {
+    "TITLE": "新しいTODOバケットを作成",
+    "TITLE_REQUIRED": "タイトルは必須です",
+    "CONTENT": "コンテンツ",
+    "STATUS": "ステータス:",
+    "PUBLIC": "公開",
+    "PRIVATE": "プライベート",
+    "WAITING": "待機中...",
+    "ADD_BUCKET": "バケットを追加",
+
+    "UPDATE_TITLE": "IDでTODOバケットを更新",
+    "CREATE_AT": "作成日",
+    "UPDATE_AT": "更新日",
+    "DELETE_BUCKET": "バケットを削除",
+    "UPDATE_BUCKET": "バケットを更新"
+  }
+}

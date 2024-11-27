@@ -7,20 +7,20 @@
       </button>
     </div>
     <div class="modal-body">
-      <h2>Create a new contemt items</h2>
+      <h2>{{ 'BUCKET_TITLE_MODAL.TITLE' | translate }}</h2>
       <form [formGroup]="addcontentForm" (ngSubmit)="onSubmit()">
-        <label for="text">Content:<span class="required">*</span></label>
+        <label for="text">{{ 'BUCKET_TITLE_MODAL.CONTENT' | translate }}:<span class="required">*</span></label>
         <input type="text" id="text" formControlName="content" />
         @if (addcontentForm.get('content')?.invalid &&
         addcontentForm.get('content')?.touched) {
         <div>
-          <small class="error">Content is required</small>
+          <small class="error">{{ 'BUCKET_TITLE_MODAL.TITLE_REQUIRED' | translate }}</small>
         </div>
         }
        @if(loading){
         <button class="btn btn-lg loading-btn">
           <span class="spinner-border spinner-border-sm"></span>
-          waiting....
+          {{ 'BUCKET_TITLE_MODAL.WAITING' | translate }}
         </button>
        }
         <div class="modal-footer">
@@ -29,7 +29,7 @@
             [disabled]="addcontentForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >
-            Add Content
+          {{ 'BUCKET_TITLE_MODAL.ADD_CONTENT' | translate }}
           </button>
         </div>
       </form>

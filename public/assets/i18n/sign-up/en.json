@@ -1,4 +1,5 @@
 {
+  "SIGN_UP": {
     "REGISTER": "Register with Your Account",
     "USER_NAME": "Username",
     "EMAIL": "Email address",
@@ -7,3 +8,4 @@
     "ALREADY_HAVE_ACCOUNT": "Already have an account?",
     "REGISTER_BUTTON": "Register"
   }
+}

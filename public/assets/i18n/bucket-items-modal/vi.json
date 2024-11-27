@@ -1,0 +1,19 @@
+{
+  "BUCKET_TITLE_MODAL": {
+    "TITLE": "Tạo mới mục nội dung",
+    "TITLE_REQUIRED": "Nội dung là bắt buộc",
+    "CONTENT": "Nội dung",
+
+    "STATUS": "Trạng thái công việc",
+    "TRUE": "Hoàn thành",
+    "FALSE": "Chưa hoàn thành",
+    "WAITING": "Đang chờ...",
+    "ADD_CONTENT": "Thêm nội dung",
+
+    "UPDATE_TITLE_CONTENT": "Cập nhật mục nội dung",
+    "CREATE_AT": "Ngày tạo",
+    "UPDATE_AT": "Ngày cập nhật",
+    "DELETE_CONTENT": "Xóa nội dung",
+    "UPDATE_CONTENT": "Cập nhật nội dung"
+  }
+}

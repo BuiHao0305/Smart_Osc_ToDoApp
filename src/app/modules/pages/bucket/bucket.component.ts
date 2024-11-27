@@ -9,6 +9,7 @@ import { debounceTime, switchMap } from 'rxjs';
 
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { TranslateModule } from '@ngx-translate/core';
+import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
 
 @Component({
   selector: 'app-bucket',
@@ -22,7 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     FormsModule,
     MatInputModule,
-    TranslateModule
+    TranslateModule,
+    RelativeTimePipe
   ],
   providers: [PaginationService],
 })

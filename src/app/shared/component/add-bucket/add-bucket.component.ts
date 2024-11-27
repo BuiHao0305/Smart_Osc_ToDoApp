@@ -9,13 +9,14 @@ import {
 } from '@angular/forms';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-bucket',
   templateUrl: './add-bucket.component.html',
   styleUrls: ['./add-bucket.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,TranslateModule],
   providers: [BucketService],
 })
 export class AddBucketComponent implements OnInit {

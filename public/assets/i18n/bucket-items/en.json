@@ -1,0 +1,19 @@
+{
+  "BUCKET_ITEMS": {
+    "LIST_ITEM": "List Item",
+    "SEARCH_ITEMS": "Search items",
+    "STATUS": "Status",
+    "ALL": "All",
+    "DONE": "Done",
+    "FALSE": "False",
+    "LOADING": "Loading...",
+    "NO_TASK_IN_TITLE": "No tasks found",
+    "CANCEL": "Cancel",
+    "ADD_CONTENT": "Add Content",
+    "UPDATE_TITLE": "Update todo bucket",
+    "CREATE_AT": "Created At",
+    "UPDATE_AT": "Updated At",
+    "DELETE_BUCKETITEMS": "Delete todo items",
+    "UPDATE_BUCKETITEMS": "Update todo items"
+  }
+}

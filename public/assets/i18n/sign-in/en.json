@@ -1,12 +1,13 @@
 {
+  "SIGN_IN": {
     "LOGIN": "Login With Your Account",
     "EMAIL": "Email address",
     "PASSWORD": "Password",
     "REMEMBER_ME": "Remember me",
     "NO_ACCOUNT": "You Don’t Have an Account?",
-    "FORGET_PASS":"Forgot password",
+    "FORGET_PASS": "Forgot password",
     "SIGN_IN": "Sign in",
     "WAITING": "Waiting..",
     "LOGIN_SUCCESS": "Login successful!"
   }
-  
+}

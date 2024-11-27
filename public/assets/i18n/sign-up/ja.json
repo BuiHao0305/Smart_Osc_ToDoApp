@@ -1,9 +1,11 @@
 {
-  "REGISTER": "アカウントで登録",
-  "USER_NAME": "ユーザー名",
-  "EMAIL": "メールアドレス",
-  "PASSWORD": "パスワード",
-  "CONFIRM_PASSWORD": "パスワードの確認",
-  "ALREADY_HAVE_ACCOUNT": "すでにアカウントをお持ちですか？",
-  "REGISTER_BUTTON": "登録"
+  "SIGN_UP": {
+    "REGISTER": "アカウントで登録",
+    "USER_NAME": "ユーザー名",
+    "EMAIL": "メールアドレス",
+    "PASSWORD": "パスワード",
+    "CONFIRM_PASSWORD": "パスワードの確認",
+    "ALREADY_HAVE_ACCOUNT": "すでにアカウントをお持ちですか？",
+    "REGISTER_BUTTON": "登録"
+  }
 }

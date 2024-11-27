@@ -1,0 +1,12 @@
+{
+    "PROFILE": {
+      "TITLE": "Thông tin cá nhân",
+      "AVATAR": "Ảnh đại diện",
+      "NO_AVATAR": "Chưa có ảnh",
+      "EMAIL": "Email",
+      "USERNAME": "Tên người dùng",
+      "CANCEL": "Hủy",
+      "UPDATE": "Cập nhật"
+    }
+  }
+  

@@ -1,4 +1,5 @@
 {
+  "BUCKET":{
     "SEARCH_BUCKET": "バケットを検索...",
     "USE_CASES": "使用ケース",
     "TAGS": "タグ",
@@ -9,3 +10,4 @@
     "CHECKLIST": "チェックリスト"
   }
   
+}

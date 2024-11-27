@@ -1,0 +1,19 @@
+{
+    "BUCKET_MODAL": {
+      "TITLE": "Create a new todo bucket",
+      "TITLE_REQUIRED": "Title is required",
+      "CONTENT":"Content",
+      "STATUS": "Status:",
+      "PUBLIC": "Public",
+      "PRIVATE": "Private",
+      "WAITING": "Waiting...",
+      "ADD_BUCKET": "Add Bucket",
+
+      "UPDATE_TITLE":"Update a todo bucket by ID",
+      "CREATE_AT":"Created At",
+      "UPDATE_AT":"Updated At",
+      "DELETE_BUCKET":"Delete Bucket",
+      "UPDATE_BUCKET":"Update Bucket"
+    }
+  }
+  

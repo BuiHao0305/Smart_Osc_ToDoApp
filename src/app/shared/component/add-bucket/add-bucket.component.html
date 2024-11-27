@@ -5,17 +5,23 @@
       <button class="close cancel" (click)="changeVisible()">X</button>
     </div>
     <div class="modal-body">
-      <h2>Create a new todo bucket</h2>
+      <h2>{{ 'BUCKET_MODAL.TITLE' | translate }}</h2>
       <form [formGroup]="bucketForm" (ngSubmit)="onSubmit()">
-        <label for="text">Title:<span class="required">*</span></label>
+        <label for="text"
+          >{{ 'BUCKET_MODAL.CONTENT' | translate }}:<span class="required"
+            >*</span
+          ></label
+        >
         <input type="text" id="text" formControlName="title" />
         @if (bucketForm.get('title')?.invalid &&
         bucketForm.get('title')?.touched) {
         <div>
-          <small class="error">Title is required</small>
+          <small class="error">{{
+            'BUCKET_MODAL.TITLE_REQUIRED' | translate
+          }}</small>
         </div>
         }
-        <label for="public">Status:</label>
+        <label for="public">{{ 'BUCKET_MODAL.STATUS' | translate }}:</label>
         <div class="button-group">
           <button
             type="button"
@@ -25,7 +31,8 @@
             }"
             (click)="setDoneStatus(true)"
           >
-            <i class="bi bi-check-circle-fill text-success"></i> Public
+            <i class="bi bi-check-circle-fill text-success"></i>
+            {{ 'BUCKET_MODAL.PUBLIC' | translate }}
           </button>
           <button
             type="button"
@@ -35,23 +42,23 @@
             }"
             (click)="setDoneStatus(false)"
           >
-            <i class="bi bi-alarm text-danger"></i> Private
+            <i class="bi bi-alarm text-danger"></i>
+            {{ 'BUCKET_MODAL.PRIVATE' | translate }}
           </button>
         </div>
 
         <button class="btn btn-lg loading-btn" *ngIf="loading">
           <span class="spinner-border spinner-border-sm"></span>
-          waiting....
+          {{ 'BUCKET_MODAL.WAITING' | translate }}
         </button>
         <div class="modal-footer">
           <button
             type="submit"
-            
             [disabled]="bucketForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >
             <i class="bi bi-plus"></i>
-            Add Bucket
+            {{ 'BUCKET_MODAL.ADD_BUCKET' | translate }}
           </button>
         </div>
       </form>

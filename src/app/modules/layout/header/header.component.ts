@@ -49,7 +49,6 @@ export class HeaderComponent implements OnInit {
     this.userInfo$.subscribe((userInfo) => {
       if (userInfo) {
         this.username = userInfo.username;
-        localStorage.setItem('userInfo', JSON.stringify(userInfo));
       }
     });
   
