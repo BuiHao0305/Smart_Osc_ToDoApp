@@ -1,0 +1,19 @@
+{
+  "BUCKET_ITEMS": {
+    "LIST_ITEM": "リスト項目",
+    "SEARCH_ITEMS": "アイテムを検索",
+    "STATUS": "ステータス",
+    "ALL": "すべて",
+    "DONE": "完了",
+    "FALSE": "未完了",
+    "LOADING": "読み込み中...",
+    "NO_TASK_IN_TITLE": "タスクがありません",
+    "CANCEL": "キャンセル",
+    "ADD_CONTENT": "コンテンツを追加",
+    "UPDATE_TITLE": "ToDoバケットを更新",
+    "CREATE_AT": "作成日",
+    "UPDATE_AT": "更新日",
+    "DELETE_BUCKETITEMS": "タスクリストを削除",
+    "UPDATE_BUCKETITEMS": "タスクリストを更新"
+  }
+}

@@ -6,15 +6,17 @@
         <img src="assets/img/login.png" class="img-fluid" alt="Phone image" />
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <h1>{{ 'LOGIN' | translate }}</h1>
+        <h1>{{ 'SIGN_IN.LOGIN' | translate }}</h1>
         <form [formGroup]="loginForm">
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="email">{{
-              'EMAIL' | translate
+              'SIGN_IN.EMAIL' | translate
             }}</label>
             <input
-              formControlName="email"S
+              tabindex="0"
+              formControlName="email"
+              S
               id="email"
               [ngClass]="{
                 'is-invalid':
@@ -36,9 +38,10 @@
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="password">{{
-              'PASSWORD' | translate
+              'SIGN_IN.PASSWORD' | translate
             }}</label>
             <input
+              tabindex="0"
               formControlName="password"
               id="password"
               type="password"
@@ -68,11 +71,11 @@
                 type="checkbox"
               />
               <label class="form-check-label" for="rememberMe">{{
-                'REMEMBER_ME' | translate
+                'SIGN_IN.REMEMBER_ME' | translate
               }}</label>
             </div>
             <a style="cursor: pointer" tabindex="0" routerLink="/sign-up">
-              {{ 'NO_ACCOUNT' | translate }}
+              {{ 'SIGN_IN.NO_ACCOUNT' | translate }}
             </a>
             <a
               style="cursor: pointer"
@@ -80,7 +83,7 @@
               (click)="toggleChild()"
               (keydown)="toggleChild()"
             >
-              {{ 'FORGET_PASS' | translate }}
+              {{ 'SIGN_IN.FORGET_PASS' | translate }}
             </a>
           </div>
 
@@ -91,17 +94,18 @@
           }
           <button class="btn btn-primary" *ngIf="loading$ | async">
             <span class="spinner-border spinner-border-sm"></span>
-            {{ 'WAITING' | translate }}
+            {{ 'SIGN_IN.WAITING' | translate }}
           </button>
 
           <!-- Submit button -->
           <button
+            tabindex="0"
             (click)="validateLogin()"
             type="button"
             class="btn btn-primary btn-lg btn-block mt-2"
             [disabled]="loginForm.invalid || (loading$ | async)"
           >
-            {{ 'SIGN_IN' | translate }}
+            {{ 'SIGN_IN.SIGN_IN' | translate }}
           </button>
           <!-- Show spinner if loading$ is true -->
 

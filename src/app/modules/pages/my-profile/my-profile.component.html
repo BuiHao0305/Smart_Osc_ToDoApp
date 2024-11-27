@@ -1,30 +1,30 @@
-<div class="div" >
+<div class="div">
   <div class="body">
     <div class="profile-edit-container">
-      <h2>Thông tin cá nhân</h2>
+      <h2>{{ 'PROFILE.TITLE' | translate }}</h2>
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div id="avatar-image" class="form-group">
-          <label for="avatar">Avatar:</label>
+          <label for="avatar">{{ 'PROFILE.AVATAR' | translate }}:</label>
           <div class="avatar-image">
             <img alt="Avatar" [src]="avatarUrl" *ngIf="avatarUrl" />
-            <span *ngIf="!avatarUrl">Chưa có ảnh</span> 
+            <span *ngIf="!avatarUrl">{{ 'NO_AVATAR' | translate }}</span>
           </div>
           <input class="avatar-input" type="file" (change)="onFileChange($event)" />
         </div>
 
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email">{{ 'PROFILE.EMAIL' | translate }}:</label>
           <input formControlName="email" type="email" id="email" name="email" readonly />
         </div>
 
         <div class="form-group">
-          <label for="username">UserName:</label>
+          <label for="username">{{ 'PROFILE.USERNAME' | translate }}:</label>
           <input formControlName="username" type="text" id="username" />
         </div>
 
         <div id="button" class="form-group">
-          <button type="button" routerLink="/layout/dashboard">Hủy</button>
-          <button type="submit">Cập nhật</button>
+          <button type="button" routerLink="/layout/dashboard">{{ 'PROFILE.CANCEL' | translate }}</button>
+          <button type="submit">{{ 'PROFILE.UPDATE' | translate }}</button>
         </div>
       </form>
     </div>

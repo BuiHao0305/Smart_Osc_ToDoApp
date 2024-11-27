@@ -1,13 +1,15 @@
 {
+  "LAYOUT": {
     "SEARCH": "Tìm kiếm",
     "SEARCH_BUTTON": "Tìm kiếm",
     "HELLO": "Xin chào",
     "SETTINGS": "Cài đặt",
     "DASHBOARD": "Bảng điều khiển",
     "PROFILE": "Hồ sơ",
-    "TO_DO_LIST": "Danh sách công việc",
+    "TO_DO_LIST": "Danh sách việc",
     "ADD_SUBJECT": "Thêm môn học",
     "CHAT": "Trò chuyện",
     "BUDGET": "Ngân sách",
     "LOGOUT": "Đăng xuất"
+  }
 }

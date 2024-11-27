@@ -6,11 +6,11 @@
         <img src="assets/img/login.png" class="img-fluid" alt="Phone image" />
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <h1>{{ 'REGISTER' | translate }}</h1>
+        <h1>{{ 'SIGN_UP.REGISTER' | translate }}</h1>
         <form [formGroup]="registerForm">
           <!-- UserName input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="username">{{ 'USER_NAME' | translate }}</label>
+            <label class="form-label" for="username">{{ 'SIGN_UP.USER_NAME' | translate }}</label>
             <input
               formControlName="username"
               id="username"
@@ -19,13 +19,13 @@
               required
             />
             <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
-              <small class="text-danger">{{ 'USERNAME_INVALID' | translate }}</small>
+              <small class="text-danger">{{ 'SIGN_UP.USERNAME_INVALID' | translate }}</small>
             </div>
           </div>
 
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="email">{{ 'EMAIL' | translate }}</label>
+            <label class="form-label" for="email">{{ 'SIGN_UP.EMAIL' | translate }}</label>
             <input
               formControlName="email"
               id="email"
@@ -34,13 +34,13 @@
               required
             />
             <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
-              <small class="text-danger">{{ 'EMAIL_INVALID' | translate }}</small>
+              <small class="text-danger">{{ 'SIGN_UP.EMAIL_INVALID' | translate }}</small>
             </div>
           </div>
 
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="password">{{ 'PASSWORD' | translate }}</label>
+            <label class="form-label" for="password">{{ 'SIGN_UP.PASSWORD' | translate }}</label>
             <input
               formControlName="password"
               id="password"
@@ -49,7 +49,7 @@
               required
             />
             <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
-              <small class="text-danger">{{ 'PASSWORD_INVALID' | translate }}</small>
+              <small class="text-danger">{{ 'SIGN_UP.PASSWORD_INVALID' | translate }}</small>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
 
           <!-- Account existing link -->
           <div class="d-flex justify-content-center align-items-center mb-3">
-            <a routerLink="/sign-in" style="cursor: pointer">{{ 'ALREADY_HAVE_ACCOUNT' | translate }}</a>
+            <a routerLink="/sign-in" style="cursor: pointer">{{ 'SIGN_UP.ALREADY_HAVE_ACCOUNT' | translate }}</a>
           </div>
 
           <button class="btn btn-primary mb-2" *ngIf="loading ">
@@ -74,7 +74,7 @@
             [disabled]="registerForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'" 
           >
-            {{ 'REGISTER_BUTTON' | translate }}
+            {{ 'SIGN_UP.REGISTER_BUTTON' | translate }}
           </button>
          
         </form>

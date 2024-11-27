@@ -20,13 +20,14 @@ import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { BucketItem} from 'src/app/core/store/interface/bucket-items.interface';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-items',
   templateUrl: './update-items.component.html',
   styleUrls: ['./update-items.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,TranslateModule],
   providers: [],
 })
 export class UpdateItemsComponent implements OnInit, OnChanges {

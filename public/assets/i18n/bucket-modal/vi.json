@@ -1,0 +1,18 @@
+{
+  "BUCKET_MODAL": {
+    "TITLE": "Tạo một bucket todo mới",
+    "TITLE_REQUIRED": "Tiêu đề là bắt buộc",
+    "CONTENT": "Nội dung",
+    "STATUS": "Trạng thái:",
+    "PUBLIC": "Công khai",
+    "PRIVATE": "Riêng tư",
+    "WAITING": "Vui lòng đợi...",
+    "ADD_BUCKET": "Thêm Bucket",
+
+    "UPDATE_TITLE": "Cập nhật bucket todo theo ID",
+    "CREATE_AT": "Ngày tạo",
+    "UPDATE_AT": "Ngày cập nhật",
+    "DELETE_BUCKET": "Xóa bucket",
+    "UPDATE_BUCKET": "Cập nhật bucket"
+  }
+}

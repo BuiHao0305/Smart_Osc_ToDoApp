@@ -1,0 +1,19 @@
+{
+  "BUCKET_TITLE_MODAL": {
+    "TITLE": "Create a new contemt items",
+    "TITLE_REQUIRED": "Content is required",
+    "CONTENT": "Content",
+
+    "STATUS": "Done task",
+    "TRUE": "Done",
+    "FALSE": "False",
+    "WAITING": "Waiting...",
+    "ADD_CONTENT": "Add Content",
+
+    "UPDATE_TITLE_CONTENT": "Update content items",
+    "CREATE_AT": "Created At",
+    "UPDATE_AT": "Updated At",
+    "DELETE_CONTENT": "Delete Content",
+    "UPDATE_CONTENT": "Update Content"
+  }
+}

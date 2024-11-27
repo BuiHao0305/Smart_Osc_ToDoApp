@@ -11,13 +11,14 @@ import { selectUserInfo } from 'src/app/core/store/auth/auth.selectors';
 import { UserService } from 'src/app/services/page/user.service';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { authActions } from 'src/app/core/store/auth/auth.action';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule,TranslateModule],
 })
 export class MyProfileComponent implements OnInit {
   profileForm: FormGroup;

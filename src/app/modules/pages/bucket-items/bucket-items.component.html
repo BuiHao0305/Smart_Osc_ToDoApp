@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <i class="fas fa-tasks"></i>
-    <span>LIST ITEM</span>
+    <span>{{ 'BUCKET_ITEMS.LIST_ITEM' | translate }}</span>
     <div class="form-group col-md-4 me-5">
       <input
         class="form-control rounded-0 py-2"
@@ -12,17 +12,17 @@
       />
     </div>
     <div class="status">
-      <label for="">Status:</label>
+      <label for="">{{ 'BUCKET_ITEMS.STATUS' | translate }}:</label>
       <select [formControl]="doneControl" name="" id="status-value">
-        <option [value]="''">All</option>
-        <option [value]="1">Done</option>
-        <option [value]="0">False</option>
+        <option [value]="''">{{ 'BUCKET_ITEMS.ALL' | translate }}</option>
+        <option [value]="1">{{ 'BUCKET_ITEMS.DONE' | translate }}</option>
+        <option [value]="0">{{ 'BUCKET_ITEMS.FALSE' | translate }}</option>
       </select>
     </div>
   </div>
   @if(isLoading){
   <div class="loading-spinner">
-    <span class="spinner-border spinner-border-sm"> </span>Loading....
+    <span class="spinner-border spinner-border-sm"> </span>{{ 'BUCKET_ITEMS.LOADING' | translate }}
   </div>
   }
   <ul class="task-list" *ngIf="!isLoading">
@@ -45,6 +45,9 @@
         </p>
         }
       </div>
+      <div class="text-muted me-3 d-flex align-items-center">
+        <i class="bi bi-clock me-1"></i> {{ task.createdAt  |relativeTime}}
+      </div>
       <div class="status">
         @if (task.done === true) {
         <button class="status-button">
@@ -58,7 +61,7 @@
       </div>
     </li>
     } @empty {
-    <h3>No Task in Title</h3>
+    <h3>{{ 'BUCKET_ITEMS.NO_TASK_IN_TITLE' | translate }}</h3>
     }
   </ul>
   <mat-paginator
@@ -69,7 +72,7 @@
   </mat-paginator>
   <div class="footer">
     <button routerLink="/layout/bucket" class="me-5">
-      <i class="bi bi-x-circle me-1"></i>Cancel
+      <i class="bi bi-x-circle me-1"></i>{{ 'BUCKET_ITEMS.CANCEL' | translate }}
     </button>
     <button
       tabindex="0"
@@ -77,7 +80,7 @@
       (keydown)="toggleChildAddContent()"
     >
       <i class="bi bi-plus-circle"></i>
-      Add Content
+      {{ 'BUCKET_ITEMS.ADD_CONTENT' | translate }}
     </button>
     @if(showChildAdd){
     <app-add-content-items

@@ -1,4 +1,5 @@
 {
+  "BUCKET": {
     "SEARCH_BUCKET": "Tìm kiếm bucket...",
     "USE_CASES": "Trường hợp sử dụng",
     "TAGS": "Thẻ",
@@ -7,6 +8,5 @@
     "NO_TASK_TITLE": "Không có công việc trong tiêu đề",
     "LOADING_BUCKET": "Đang tải Bucket....",
     "CHECKLIST": "Danh sách kiểm tra"
-    
   }
-  
+}

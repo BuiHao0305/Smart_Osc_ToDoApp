@@ -1,4 +1,5 @@
 {
+  "DASHBOARD":{
     "DASHBOARD_TITLE": "ToDoApp",
     "DASHBOARD_DESCRIPTION": "Welcome to TodoApp, the perfect solution for managing your daily tasks. Create, organize, and track your tasks easily with TodoApp!",
     "TO_DO_LIST_DASHBOARD": "With TodoApp, you can:",
@@ -8,4 +9,4 @@
     "PRIORITIZE_TASKS": "Prioritize tasks based on importance",
     "START_ORGANIZING": "Start organizing your tasks today and boost your productivity!"
   }
-  
+}

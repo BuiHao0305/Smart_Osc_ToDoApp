@@ -8,12 +8,13 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-content-items',
   templateUrl: './add-content-items.component.html',
   styleUrls: ['./add-content-items.component.scss'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,TranslateModule],
   providers: [BucketItemsService],
   standalone: true,
 })

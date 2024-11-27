@@ -28,6 +28,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       { baseTranslateUrl: `${baseTranslateUrl}/layout` },
       { baseTranslateUrl: `${baseTranslateUrl}/bucket` },
       { baseTranslateUrl: `${baseTranslateUrl}/dashboard` },
+      { baseTranslateUrl: `${baseTranslateUrl}/profile` },
+      { baseTranslateUrl: `${baseTranslateUrl}/bucket-modal` },
+      { baseTranslateUrl: `${baseTranslateUrl}/bucket-items` },
+      { baseTranslateUrl: `${baseTranslateUrl}/bucket-items-modal` }
     ],
     lowercaseNamespace: true,
   };
@@ -36,7 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const translationProviders = [
   TranslateModule.forRoot({
-    defaultLanguage: 'en',
+    defaultLanguage: 'vi',
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,

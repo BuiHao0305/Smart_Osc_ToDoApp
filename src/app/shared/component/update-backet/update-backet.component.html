@@ -5,17 +5,23 @@
       <button routerLink="/layout/bucket" class="close cancel">X</button>
     </div>
     <div class="modal-body">
-      <h2>Update a todo bucket by ID</h2>
+      <h2>{{ 'BUCKET_MODAL.UPDATE_TITLE' | translate }}</h2>
       <form [formGroup]="bucketForm" (ngSubmit)="onSubmit()">
-        <label for="text">Title:<span class="required">*</span></label>
+        <label for="text"
+          >{{ 'BUCKET_MODAL.CONTENT' | translate }}:<span class="required"
+            >*</span
+          ></label
+        >
         <input type="text" id="text" formControlName="title" />
         @if (bucketForm.get('title')?.invalid &&
         bucketForm.get('title')?.touched) {
         <div>
-          <small class="error">Title is required</small>
+          <small class="error">{{
+            'BUCKET_MODAL.TITLE_REQUIRED' | translate
+          }}</small>
         </div>
         }
-        <label for="public">Status:</label>
+        <label for="public">{{ 'BUCKET_MODAL.STATUS' | translate }}:</label>
         <div class="button-group">
           <button
             type="button"
@@ -25,7 +31,8 @@
             }"
             (click)="setDoneStatus(false)"
           >
-            <i class="bi bi-check-circle-fill text-success"></i> Public
+            <i class="bi bi-check-circle-fill text-success"></i>
+            {{ 'BUCKET_MODAL.PUBLIC' | translate }}
           </button>
           <button
             type="button"
@@ -35,21 +42,22 @@
             }"
             (click)="setDoneStatus(true)"
           >
-            <i class="bi bi-alarm text-danger"></i> Private
+            <i class="bi bi-alarm text-danger"></i>
+            {{ 'BUCKET_MODAL.PRIVATE' | translate }}
           </button>
         </div>
         @if(bucketData){
         <div class="mt-4">
-          <p><strong>Created At:</strong> {{ bucketData.createdAt }}</p>
+          <p><strong>{{ 'BUCKET_MODAL.CREATE_AT' | translate }}:</strong> {{ bucketData.createdAt }}</p>
           <p>
-            <strong>Updated At:</strong>
+            <strong>{{ 'BUCKET_MODAL.UPDATE_AT' | translate }}:</strong>
             {{ bucketData.updatedAt }}
           </p>
         </div>
         }
         <button class="btn btn-lg loading-btn" *ngIf="loading">
           <span class="spinner-border spinner-border-sm"></span>
-          waiting....
+          {{ 'BUCKET_MODAL.WAITING' | translate }}
         </button>
         <div class="modal-footer">
           <button
@@ -60,7 +68,7 @@
             (click)="onDelete()"
           >
             <i></i>
-            Delete Bucket
+            {{ 'BUCKET_MODAL.DELETE_BUCKET' | translate }}
           </button>
           <button
             type="submit"
@@ -68,7 +76,7 @@
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >
             <i class="bi bi-arrow-clockwise"></i>
-            Update Bucket
+            {{ 'BUCKET_MODAL.UPDATE_BUCKET' | translate }}
           </button>
         </div>
       </form>

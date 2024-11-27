@@ -15,13 +15,14 @@ import {
 } from 'src/app/core/store/interface/bucket.interface';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-backet',
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule,TranslateModule],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit {

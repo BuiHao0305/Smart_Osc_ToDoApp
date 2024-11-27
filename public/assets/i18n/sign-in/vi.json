@@ -1,4 +1,5 @@
 {
+  "SIGN_IN":{
     "LOGIN": "Đăng nhập bằng tài khoản của bạn",
     "EMAIL": "Địa chỉ email",
     "PASSWORD": "Mật khẩu",
@@ -9,4 +10,5 @@
     "WAITING": "Vui lòng đợi..",
     "LOGIN_SUCCESS": "Đăng nhập thành công!"
   }
+}
   

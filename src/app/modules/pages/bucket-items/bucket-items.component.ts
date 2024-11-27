@@ -11,6 +11,8 @@ import { UpdateItemsComponent } from '../../../shared/component/update-items/upd
 import { BucketItem } from 'src/app/core/store/interface/bucket-items.interface';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
+import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bucket-items',
@@ -25,7 +27,9 @@ import { debounceTime, switchMap } from 'rxjs';
     AddContentItemsComponent,
     UpdateItemsComponent,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    RelativeTimePipe
   ],
   providers: [BucketItemsService, PaginationService],
 })

@@ -1,4 +1,5 @@
 {
+  "LAYOUT": {
     "SEARCH": "Search",
     "SEARCH_BUTTON": "Search",
     "HELLO": "Hello",
@@ -10,4 +11,5 @@
     "CHAT": "Chat",
     "BUDGET": "Budget",
     "LOGOUT": "Logout"
+  }
 }

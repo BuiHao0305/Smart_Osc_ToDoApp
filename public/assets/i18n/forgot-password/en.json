@@ -1,4 +1,5 @@
 {
+  "FORGOTPASSWORD" :{
     "LOGIN": "Login",
     "PASSWORD_RESET": "Password Reset",
     "EMAIL_INPUT": "Email input",
@@ -8,3 +9,4 @@
     "ENTER_YOUR_EMAIL": "Enter your email address and we'll send you an email with instructions to reset your password."
   }
   
+}
