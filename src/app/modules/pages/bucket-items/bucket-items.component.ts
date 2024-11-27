@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
@@ -29,11 +29,12 @@ import { TranslateModule } from '@ngx-translate/core';
     MatInputModule,
     ReactiveFormsModule,
     TranslateModule,
-    RelativeTimePipe
+    RelativeTimePipe,
   ],
   providers: [BucketItemsService, PaginationService],
 })
 export class BucketItemsComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchControl = new FormControl('');
   doneControl = new FormControl('');
   showChildAdd = false;
@@ -104,8 +105,8 @@ export class BucketItemsComponent implements OnInit {
       this.pageSize = event.pageSize;
       const page = this.pageIndex + 1;
       const query = this.searchControl.value || '';
-      const done = this.doneControl.value || ''; 
-      this.loadBucketItems(+bucketId, page, this.pageSize, query,done);
+      const done = this.doneControl.value || '';
+      this.loadBucketItems(+bucketId, page, this.pageSize, query, done);
     }
   }
   onSelectItem(itemId: number) {
@@ -135,6 +136,10 @@ export class BucketItemsComponent implements OnInit {
           const searchQuery = query || '';
           const bucketId = this.route.snapshot.paramMap.get('bucketId');
           if (bucketId) {
+            this.pageIndex = 0;
+            if (this.paginator) {
+              this.paginator.pageIndex = 0;
+            }
             return this.bucketItemsService.getContentItems(
               +bucketId,
               1,
@@ -154,10 +159,18 @@ export class BucketItemsComponent implements OnInit {
     this.doneControl.valueChanges.subscribe((done) => {
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       const searchQuery = this.searchControl.value || '';
-  
-      // Nếu giá trị là chuỗi rỗng (All), truyền giá trị là ''
       if (bucketId) {
-        this.loadBucketItems(+bucketId, 1, this.pageSize, searchQuery, done === '' ? '' : done);
+        this.pageIndex = 0;
+        if (this.paginator) {
+          this.paginator.pageIndex = 0;
+        }
+        this.loadBucketItems(
+          +bucketId,
+          1,
+          this.pageSize,
+          searchQuery,
+          done === '' ? '' : done
+        );
       }
     });
   }
