@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PaginationService } from 'src/app/services/page/pagination.service';
 import { AddBucketComponent } from '../../../shared/component/add-bucket/add-bucket.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -24,11 +24,12 @@ import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
     FormsModule,
     MatInputModule,
     TranslateModule,
-    RelativeTimePipe
+    RelativeTimePipe,
   ],
   providers: [PaginationService],
 })
 export class BucketComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchControl = new FormControl('');
   showChild = false;
   listBucket: ListBucket[] = [];
@@ -59,13 +60,13 @@ export class BucketComponent implements OnInit {
   }
 
   private loadBuckets(page: number, limit: number, searchQuery: string): void {
-    this.loading =true
+    this.loading = true;
     this.paginationService
       .getPaginatedData(page, limit, searchQuery)
       .subscribe((response) => {
         this.listBucket = response.data;
         this.totalItems = response.total;
-        this.loading =false;
+        this.loading = false;
       });
   }
 
@@ -91,6 +92,10 @@ export class BucketComponent implements OnInit {
         debounceTime(500),
         switchMap((query) => {
           const searchQuery = query || '';
+          this.pageIndex = 0;
+          if (this.paginator) {
+            this.paginator.pageIndex = 0;
+          }
           return this.paginationService.getPaginatedData(
             1,
             this.pageSize,

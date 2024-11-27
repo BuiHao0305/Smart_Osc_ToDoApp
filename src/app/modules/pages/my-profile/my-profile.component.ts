@@ -1,8 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthState } from 'src/app/core/store/auth/auth.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -18,7 +23,13 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, ReactiveFormsModule,TranslateModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    TranslateModule,
+  ],
 })
 export class MyProfileComponent implements OnInit {
   profileForm: FormGroup;
@@ -36,7 +47,7 @@ export class MyProfileComponent implements OnInit {
     private router: Router
   ) {
     this.profileForm = this.fb.group({
-      email: [{ disabled: true }, [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required]],
     });
 
@@ -52,6 +63,7 @@ export class MyProfileComponent implements OnInit {
     this.userService.getAvatar().subscribe(
       (response) => {
         this.avatarUrl = response;
+        this.avatarFile = this.base64ToFile(response, 'avatar.jpg');
       },
       (error) => {
         console.error('Không thể tải ảnh đại diện', error);
@@ -83,6 +95,7 @@ export class MyProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append('email', userData.email);
       formData.append('username', userData.username);
+
       if (this.avatarFile) {
         formData.append('avatar', this.avatarFile);
       }
@@ -101,5 +114,17 @@ export class MyProfileComponent implements OnInit {
     } else {
       console.log('Form không hợp lệ');
     }
+  }
+  private base64ToFile(base64: string, filename: string): File {
+    const byteString = atob(base64.split(',')[1]);
+    const mimeString = base64.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new File([ab], filename, { type: mimeString });
   }
 }
