@@ -38,7 +38,7 @@
 // }
 
 // .display-area {
- 
+
 //   padding: 20px;
 //   height: calc(100vh - 4rem);
 //   overflow-y: auto;
@@ -63,13 +63,14 @@ app-menu {
   position: fixed;
   left: 0;
   z-index: 100;
-  transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển động khi ẩn/hiện menu */
+  transition: transform 0.3s ease-in-out;
 }
 
 .content {
   flex-grow: 1;
   padding: 20px;
 }
+
 app-header {
   position: fixed;
   top: 0;
@@ -84,7 +85,6 @@ app-header {
 .content .router {
   margin-top: 5%;
   margin-left: 250px;
-  height: calc(100vh - 6%);
+  height: calc(100vh - 15%);
   transition: margin-left 0.3s ease-in-out;
 }
-

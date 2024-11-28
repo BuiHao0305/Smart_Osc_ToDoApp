@@ -10,7 +10,9 @@
         <form [formGroup]="registerForm">
           <!-- UserName input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="username">{{ 'SIGN_UP.USER_NAME' | translate }}</label>
+            <label class="form-label" for="username">{{
+              'SIGN_UP.USER_NAME' | translate
+            }}</label>
             <input
               formControlName="username"
               id="username"
@@ -18,14 +20,24 @@
               class="form-control form-control-lg"
               required
             />
-            <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
-              <small class="text-danger">{{ 'SIGN_UP.USERNAME_INVALID' | translate }}</small>
+            <div
+              *ngIf="
+                registerForm.get('username')?.invalid &&
+                (registerForm.get('username')?.touched ||
+                  registerForm.get('username')?.dirty)
+              "
+            >
+              <small class="text-danger">{{
+                'SIGN_UP.USERNAME_INVALID' | translate
+              }}</small>
             </div>
           </div>
 
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="email">{{ 'SIGN_UP.EMAIL' | translate }}</label>
+            <label class="form-label" for="email">{{
+              'SIGN_UP.EMAIL' | translate
+            }}</label>
             <input
               formControlName="email"
               id="email"
@@ -33,14 +45,24 @@
               class="form-control form-control-lg"
               required
             />
-            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
-              <small class="text-danger">{{ 'SIGN_UP.EMAIL_INVALID' | translate }}</small>
+            <div
+              *ngIf="
+                registerForm.get('email')?.invalid &&
+                (registerForm.get('email')?.touched ||
+                  registerForm.get('email')?.dirty)
+              "
+            >
+              <small class="text-danger">{{
+                'SIGN_UP.EMAIL_INVALID' | translate
+              }}</small>
             </div>
           </div>
 
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="password">{{ 'SIGN_UP.PASSWORD' | translate }}</label>
+            <label class="form-label" for="password">{{
+              'SIGN_UP.PASSWORD' | translate
+            }}</label>
             <input
               formControlName="password"
               id="password"
@@ -48,35 +70,43 @@
               class="form-control form-control-lg"
               required
             />
-            <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
-              <small class="text-danger">{{ 'SIGN_UP.PASSWORD_INVALID' | translate }}</small>
+            <div
+              *ngIf="
+                registerForm.get('password')?.invalid &&
+                (registerForm.get('password')?.touched ||
+                  registerForm.get('password')?.dirty)
+              "
+            >
+              <small class="text-danger">{{
+                'SIGN_UP.PASSWORD_INVALID' | translate
+              }}</small>
             </div>
           </div>
 
           <!-- Confirm Password input -->
-         
 
           <!-- Account existing link -->
           <div class="d-flex justify-content-center align-items-center mb-3">
-            <a routerLink="/sign-in" style="cursor: pointer">{{ 'SIGN_UP.ALREADY_HAVE_ACCOUNT' | translate }}</a>
+            <a routerLink="/sign-in" style="cursor: pointer">{{
+              'SIGN_UP.ALREADY_HAVE_ACCOUNT' | translate
+            }}</a>
           </div>
 
-          <button class="btn btn-primary mb-2" *ngIf="loading ">
-            <span class="spinner-border spinner-border-sm"></span>
-            waiting....
-          </button>
-
-          <!-- Submit button -->
           <button
             (click)="onRegister()"
             type="button"
-            class="btn btn-primary btn-lg btn-block"
+            class="btn btn-primary btn-lg btn-block mb-2"
             [disabled]="registerForm.invalid || loading"
-            [style.cursor]="loading ? 'not-allowed' : 'pointer'" 
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >
-            {{ 'SIGN_UP.REGISTER_BUTTON' | translate }}
+            <ng-container *ngIf="loading; else registerButton">
+              <span class="spinner-border spinner-border-sm"></span>
+              {{ 'SIGN_UP.WAITING' | translate }}
+            </ng-container>
+            <ng-template #registerButton>
+              {{ 'SIGN_UP.REGISTER_BUTTON' | translate }}
+            </ng-template>
           </button>
-         
         </form>
       </div>
     </div>

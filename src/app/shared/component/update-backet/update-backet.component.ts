@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   SimpleChanges,
@@ -30,7 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
   providers: [BucketService],
 })
-export class UpdateBacketComponent implements OnInit {
+export class UpdateBacketComponent implements OnInit,OnChanges {
   @Input() bucketId!: number;
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();

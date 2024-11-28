@@ -4,6 +4,8 @@ import {
   Inject,
   Input,
 
+  OnInit,
+
   PLATFORM_ID,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +36,7 @@ interface MenuItem {
   standalone: true,
   imports: [FormsModule, CommonModule, RouterModule, TranslateModule, MyProfileComponent],
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
   @Input() sideNavStatus = false;
   menuItems: MenuItem[] = MENU_ITEMS;
   username = '';

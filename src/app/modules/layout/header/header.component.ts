@@ -18,8 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit{
   today: Date = new Date();
-  dayOfWeek: string = '';
-  formattedDate: string = '';
+  dayOfWeek = '';
+  formattedDate = '';
 
   ngOnInit(): void {
     this.formatDate();

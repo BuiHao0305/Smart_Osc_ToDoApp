@@ -6,6 +6,7 @@
     "PASSWORD": "パスワード",
     "CONFIRM_PASSWORD": "パスワードの確認",
     "ALREADY_HAVE_ACCOUNT": "すでにアカウントをお持ちですか？",
+    "WAITING": "お待ちください...",
     "REGISTER_BUTTON": "登録"
   }
 }
