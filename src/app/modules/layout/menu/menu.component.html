@@ -1,17 +1,44 @@
-<div class="side-nav-content">
-  <ul class="nav-list" [ngClass]="{ 'nav-list-open': sideNavStatus }">
-    @for (item of menuItems; track $index) {
+
+<div class="sidebar">
+  <div class="profile">
+    <img
+      alt="Profile picture of a person"
+      height="80"
+      [src]="avatarUrl || 'assets/img/profile/user.jpg'"
+      width="80"
+    />
+    <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
+      <i class="bi bi-pencil-fill"></i>
+    </button>
+    @if(showChild){
+      <app-my-profile
+        (previewVisible)="showChildClick($event)"
+      ></app-my-profile>}
+    <div class="profile-information">
+      <h5>{{ username }}</h5>
+      <p>{{ usergmail }}</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <ul>
       <li
-        class="nav-list-item"
+        class="nav-link"
+        *ngFor="let item of menuItems"
         (click)="navigate(item.route)"
-        (keydown)="navigate(item.route)"
         tabindex="0"
       >
-        <i [ngClass]="item.icon"></i>
-        <span class="menu-text">
-          <a [routerLink]="item.route">{{ item.name | translate }}</a>
-        </span>
+        <i [class]="item.icon"></i>
+        <a *ngIf="item.route" [routerLink]="item.route">{{
+          item.name | translate
+        }}</a>
+        <span *ngIf="!item.route">{{ item.name | translate }}</span>
       </li>
-    }
-  </ul>
+    </ul>
+    <ul class="nav">
+      <li class="nav-link" (click)="logoutUser()" tabindex="0">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>{{ 'LAYOUT.LOGOUT' | translate }}</span>
+      </li>
+    </ul>
+  </nav>
 </div>
