@@ -92,21 +92,21 @@
             (previewVisible)="showChildClick($event)"
           ></app-forgot-password>
           }
-          <button class="btn btn-primary" *ngIf="loading$ | async">
+          <button
+          tabindex="0"
+          (click)="validateLogin()"
+          type="button"
+          class="btn btn-primary btn-lg btn-block mt-2"
+          [disabled]="loginForm.invalid || (loading$ | async)"
+        >
+          <ng-container *ngIf="loading$ | async; else signInButton">
             <span class="spinner-border spinner-border-sm"></span>
             {{ 'SIGN_IN.WAITING' | translate }}
-          </button>
-
-          <!-- Submit button -->
-          <button
-            tabindex="0"
-            (click)="validateLogin()"
-            type="button"
-            class="btn btn-primary btn-lg btn-block mt-2"
-            [disabled]="loginForm.invalid || (loading$ | async)"
-          >
+          </ng-container>
+          <ng-template #signInButton>
             {{ 'SIGN_IN.SIGN_IN' | translate }}
-          </button>
+          </ng-template>
+        </button>
           <!-- Show spinner if loading$ is true -->
 
           <!-- Submit button with loading spinner -->

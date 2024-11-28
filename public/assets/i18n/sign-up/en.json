@@ -6,6 +6,7 @@
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password",
     "ALREADY_HAVE_ACCOUNT": "Already have an account?",
-    "REGISTER_BUTTON": "Register"
+    "REGISTER_BUTTON": "Register",
+    "WAITING": "Waiting..."
   }
 }
