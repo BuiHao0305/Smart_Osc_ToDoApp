@@ -3,32 +3,34 @@
     <input
       matInput
       type="text"
-      placeholder="{{ 'BUCKET.SEARCH_BUCKET' | translate}}"
+      placeholder="{{ 'BUCKET.SEARCH_BUCKET' | translate }}"
       [formControl]="searchControl"
     />
-    <button><i class="bi bi-filter"></i> {{ 'BUCKET.USE_CASES' | translate}}</button>
+    <button>
+      <i class="bi bi-filter"></i> {{ 'BUCKET.USE_CASES' | translate }}
+    </button>
     <select>
       <option>{{ 'TAGS' | translate }}</option>
     </select>
-    <button><i class="bi bi-person"></i> {{ 'BUCKET.CREATED_BY' | translate }}</button>
+    <button>
+      <i class="bi bi-person"></i> {{ 'BUCKET.CREATED_BY' | translate }}
+    </button>
   </div>
   <div class="header-bar">
-    <h2>{{'BUCKET.CHECKLIST'|translate}}</h2>
+    <h2>{{ 'BUCKET.CHECKLIST' | translate }}</h2>
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
       <i class="bi bi-plus-circle"></i>
       {{ 'BUCKET.ADD_BUCKET' | translate }}
     </button>
   </div>
-  @if(showChild){
-  <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
-  }
 
   <div class="container mt-3 mb-1">
     <div class="card shadow-sm">
       <div class="card-body">
         @if(loading){
         <div class="loading-spinner fs-5 text-center mt-3">
-          <span class="spinner-border spinner-border-sm"> </span>{{ 'BUCKET.LOADING_BUCKET' | translate }}
+          <span class="spinner-border spinner-border-sm"> </span
+          >{{ 'BUCKET.LOADING_BUCKET' | translate }}
         </div>
         } @if(!loading){
         <div class="list-group">
@@ -45,10 +47,12 @@
               }
             </div>
             <div class="text-muted me-3 d-flex align-items-center">
-              <i class="bi bi-clock me-1"></i> {{ items.createdAt  |relativeTime}}
+              <i class="bi bi-clock me-1"></i>
+              {{ items.createdAt | relativeTime }}
             </div>
             <button
               tabindex="0"
+              (click)="toggleChildUpdateBucket()"
               (keydown)="onBucketClick(items.id)"
               (click)="onBucketClick(items.id)"
               class="btn btn-link text-secondary p-0 me-3"
@@ -66,13 +70,24 @@
             <div class="rounded-circle" style="width: 20px; height: 20px"></div>
           </div>
           } @empty {
-          <h3 class="fs-5 text-center">{{ 'BUCKET.NO_TASK_TITLE' | translate }}</h3>
+          <h3 class="fs-5 text-center">
+            {{ 'BUCKET.NO_TASK_TITLE' | translate }}
+          </h3>
           }
         </div>
         }
       </div>
     </div>
   </div>
+  @if(showChild){
+  <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
+  } @if(showChildUpdate){
+  <app-update-backet
+    [bucketId]="selectedBucketId"
+    (reloadData)="reloadData()"
+    (previewVisible)="showChildClickUpdateBucket($event)"
+  ></app-update-backet>
+  }
   <mat-paginator
     [length]="totalItems"
     [pageSize]="pageSize"

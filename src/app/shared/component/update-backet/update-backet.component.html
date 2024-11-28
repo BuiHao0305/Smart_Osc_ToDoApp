@@ -2,7 +2,7 @@
   <div class="content">
     <div class="modal-header">
       <span></span>
-      <button routerLink="/layout/bucket" class="close cancel">X</button>
+      <button (click)="changeVisibleUpdateBucket($event)" class="close cancel">X</button>
     </div>
     <div class="modal-body">
       <h2>{{ 'BUCKET_MODAL.UPDATE_TITLE' | translate }}</h2>

@@ -74,6 +74,15 @@ export class BucketItemsComponent implements OnInit {
 
   showChildClickUpdateContent(value: boolean) {
     this.showChildUpdate = value;
+    if (!value) {
+      const bucketId = this.route.snapshot.paramMap.get('bucketId');
+      if (bucketId) {
+        const query = this.searchControl.value || '';
+        const done = this.doneControl.value || '';
+        const page = this.pageIndex + 1;
+        this.loadBucketItems(+bucketId, page, this.pageSize, query, done);
+      }
+    }
   }
   private loadBucketItems(
     bucketId: number,
@@ -173,5 +182,14 @@ export class BucketItemsComponent implements OnInit {
         );
       }
     });
+  }
+  onReloadData(): void {
+    const bucketId = this.route.snapshot.paramMap.get('bucketId');
+    if (bucketId) {
+      const query = this.searchControl.value || '';
+      const done = this.doneControl.value || '';
+      const page = this.pageIndex + 1;
+      this.loadBucketItems(+bucketId, page, this.pageSize, query, done);
+    }
   }
 }
