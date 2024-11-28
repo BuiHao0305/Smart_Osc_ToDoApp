@@ -1,0 +1,9 @@
+{
+  "DIALOG": {
+    "TITLE": "Thông Báo",
+    "MESSAGE_LOGOUT": "Bạn có muốn đăng xuất không?",
+    "MESSAGE_DELETE": "Bạn có muốn xóa nội dung này?",
+    "CANCEL": "Hủy",
+    "CONFIRM": "Xác nhận"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "DIALOG": {
+    "TITLE": "通知",
+    "MESSAGE_LOGOUT": "ログアウトしてもよろしいですか？",
+    "MESSAGE_DELETE": "このコンテンツを削除してもよろしいですか？",
+    "CANCEL": "キャンセル",
+    "CONFIRM": "確認"
+  }
+}

@@ -67,10 +67,10 @@ export class BucketComponent implements OnInit {
   }
   showChildClickUpdateBucket(value: boolean) {
     this.showChildUpdate = value;
-    if (!value) {
-      const query = this.searchControl.value || '';
-      this.loadBuckets(this.pageIndex + 1, this.pageSize, query); 
-    }
+    // if (!value) {
+    //   const query = this.searchControl.value || '';
+    //   this.loadBuckets(this.pageIndex + 1, this.pageSize, query); 
+    // }
   }
 
   private loadBuckets(page: number, limit: number, searchQuery: string): void {
