@@ -1,0 +1,9 @@
+{
+  "DIALOG": {
+    "TITLE": "Notification",
+    "MESSAGE_LOGOUT": "Do you want to log out?",
+    "MESSAGE_DELETE": "Do you want to delete this content?",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm"
+  }
+}
