@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import {  RouterModule } from '@angular/router';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 
 import { CommonModule } from '@angular/common';
-import {
-  ListBucket,
-} from 'src/app/core/store/interface/bucket.interface';
+import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -22,33 +27,37 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule,TranslateModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit {
+  @Input() bucketId!: number;
+  @Output() previewVisible = new EventEmitter<boolean>();
+  @Output() reloadData = new EventEmitter<void>();
+
   bucketForm!: FormGroup;
   bucketData!: ListBucket;
   showChild = false;
   loading = false;
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
     private bucketService: BucketService,
     private snackBar: SnackbarService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    const bucketId = this.route.snapshot.paramMap.get('bucketId');
-    if (bucketId) {
-      this.getBucketById(+bucketId);
-    }
     this.bucketForm = this.fb.group({
       title: ['', Validators.required],
       public: [false],
     });
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['bucketId'] && changes['bucketId'].currentValue) {
+      this.getBucketById(this.bucketId);
+    }
+  }
+
   getBucketById(bucketId: number): void {
     this.bucketService.getBucketById(bucketId).subscribe(
       (response: { data: ListBucket }) => {
@@ -69,13 +78,13 @@ export class UpdateBacketComponent implements OnInit {
         title: this.bucketForm.get('title')?.value,
         public: this.bucketForm.get('public')?.value,
       };
-      this.loading = true
-      const bucketId = this.route.snapshot.paramMap.get('bucketId');
-      if (bucketId) {
-        this.bucketService.updateBucket(+bucketId, updatedBucket).subscribe(
+      this.loading = true;
+      if (this.bucketId) {
+        this.bucketService.updateBucket(this.bucketId, updatedBucket).subscribe(
           (response) => {
             this.snackBar.show('Bucket updated ' + response);
-            this.router.navigate(['layout/bucket']);
+            this.reloadData.emit();
+            this.previewVisible.emit(false);
             this.loading = false;
           },
           (error) => {
@@ -86,32 +95,37 @@ export class UpdateBacketComponent implements OnInit {
       }
     }
   }
+
   onDelete(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent);
-
-    dialogRef.afterClosed().subscribe((result) =>{
-      if(result){
-        const bucketId = this.route.snapshot.paramMap.get('bucketId');
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && this.bucketId) {
         this.loading = true;
-        if (bucketId) {
-          this.bucketService.deleteBucket(+bucketId).subscribe(
-            (response) => {
-              this.snackBar.show('Bucket deleted ' + response);
-              this.router.navigate(['layout/bucket']);
-              this.loading = false;
-            },
-            (error) => {
-              this.snackBar.show('Error deleting bucket ' + error);
-              this.loading = false;
-            }
-          );
-        }
+        this.bucketService.deleteBucket(this.bucketId).subscribe(
+          (response) => {
+            this.snackBar.show('Bucket deleted ' + response);
+            this.reloadData.emit();
+            this.previewVisible.emit(false);
+            this.loading = false;
+          },
+          (error) => {
+            this.snackBar.show('Error deleting bucket ' + error);
+            this.loading = false;
+          }
+        );
       }
-    })
+    });
   }
   setDoneStatus(status: boolean): void {
     if (this.bucketForm) {
       this.bucketForm.patchValue({ public: status });
     }
+  }
+  changeVisibleUpdateBucket(event: MouseEvent): void {
+    event.stopPropagation();
+    this.previewVisible.emit(false);
+  }
+  blockFormClosing(event: MouseEvent): void {
+    event.stopPropagation();
   }
 }

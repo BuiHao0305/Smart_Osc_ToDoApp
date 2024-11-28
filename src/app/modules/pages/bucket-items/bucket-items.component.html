@@ -85,14 +85,14 @@
     @if(showChildAdd){
     <app-add-content-items
       (previewVisible)="showChildClickAddContent($event)"
-      (reloadData)="ngOnInit()"
+      (reloadData)="onReloadData()"
     ></app-add-content-items>
     }
   </div>
   @if(showChildUpdate){
   <app-update-items
     [bucketItemsbyId]="bucketItemsbyId"
-    (reloadData)="ngOnInit()"
+    (reloadData)="onReloadData()"
     (previewVisible)="showChildClickUpdateContent($event)"
   ></app-update-items>
   }

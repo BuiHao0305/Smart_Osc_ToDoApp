@@ -10,6 +10,7 @@ import { debounceTime, switchMap } from 'rxjs';
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
+import { UpdateBacketComponent } from "../../../shared/component/update-backet/update-backet.component";
 
 @Component({
   selector: 'app-bucket',
@@ -25,13 +26,16 @@ import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
     MatInputModule,
     TranslateModule,
     RelativeTimePipe,
-  ],
+    UpdateBacketComponent
+],
   providers: [PaginationService],
 })
 export class BucketComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchControl = new FormControl('');
   showChild = false;
+  showChildUpdate = false;
+  selectedBucketId!: number;
   listBucket: ListBucket[] = [];
   totalItems = 0;
   pageSize = 12;
@@ -40,7 +44,7 @@ export class BucketComponent implements OnInit {
 
   constructor(
     private paginationService: PaginationService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +60,16 @@ export class BucketComponent implements OnInit {
     this.showChild = value;
     if (!value) {
       this.loadBuckets(1, this.pageSize, '');
+    }
+  }
+  toggleChildUpdateBucket() {
+    this.showChildUpdate = !this.showChildUpdate;
+  }
+  showChildClickUpdateBucket(value: boolean) {
+    this.showChildUpdate = value;
+    if (!value) {
+      const query = this.searchControl.value || '';
+      this.loadBuckets(this.pageIndex + 1, this.pageSize, query); 
     }
   }
 
@@ -79,7 +93,8 @@ export class BucketComponent implements OnInit {
   }
 
   onBucketClick(bucketId: number): void {
-    this.router.navigate([`layout/update-bucket/${bucketId}`]);
+    console.log('Selected Bucket ID:', bucketId);
+    this.selectedBucketId = bucketId; 
   }
 
   onBucketItemsClick(bucketId: number): void {
@@ -107,5 +122,9 @@ export class BucketComponent implements OnInit {
         this.listBucket = response.data;
         this.totalItems = response.total;
       });
+  }
+  reloadData(): void {
+    const query = this.searchControl.value || '';
+    this.loadBuckets(this.pageIndex + 1, this.pageSize, query);
   }
 }
