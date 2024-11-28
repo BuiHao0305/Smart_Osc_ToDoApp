@@ -1,17 +1,34 @@
-.body {
-  position: absolute;
-  margin-top: 5%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.div {
+  position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    z-index: 99;
+    background-color: rgba(83, 83, 83, 0.4);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.body{
+  position: fixed;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        width: 30%;
+        overflow-y: auto;
+        max-height: 95vh;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 }
 
 .profile-edit-container {
-  width: 100%;
+  
   max-width: 520px;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 10%;
+  margin: 10%;
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -22,10 +39,13 @@ h2 {
   text-align: center;
   padding: 20px 0;
   margin-top: 5%;
+  color: black;
 }
 
 .form-group {
   margin-bottom: 20px;
+  color: black;
+  text-align: start;
 }
 
 label {
@@ -46,7 +66,7 @@ select {
 button {
   padding: 10px 35px;
   background-color: #4CAF50;
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -129,7 +149,7 @@ button {
 
 #button button:hover {
   background-color: #007bff;
-  color: white;
+  color: rgb(3, 3, 3);
   border-color: #0056b3;
 }
 

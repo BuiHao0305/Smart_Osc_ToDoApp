@@ -32,12 +32,15 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class MyProfileComponent implements OnInit {
+ 
+  @Output() previewVisible = new EventEmitter<boolean>();
+  @Output() avatarUpdated = new EventEmitter<void>();
   profileForm: FormGroup;
   userInfo$: Observable<User | null>;
   avatarFile: File | null = null;
   avatarUrl: string | null = null;
   userInfoFromLocalStorage: User | null = null;
-  @Output() avatarUpdated = new EventEmitter<void>();
+  showChild = false;
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +73,13 @@ export class MyProfileComponent implements OnInit {
       }
     );
   }
+  changeVisible() {
+    this.previewVisible.emit(false);
+  }
 
+  blockFormClosing(event: MouseEvent) {
+    event.stopPropagation();
+  }
   setFormData(): void {
     if (this.userInfoFromLocalStorage) {
       this.profileForm.patchValue({
@@ -106,6 +115,8 @@ export class MyProfileComponent implements OnInit {
           this.store.dispatch(authActions.updateUserSuccess());
           this.router.navigate(['layout/dashboard']);
           this.userService.triggerAvatarUpdate();
+          this.changeVisible();
+         
         },
         (error) => {
           console.error('Cập nhật thất bại', error);

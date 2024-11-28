@@ -1,40 +1,112 @@
-.side-nav-content{
-    color: white;
-    width: 230px;
-    margin: 10px 10px 0px 10px;
-  }
-  .nav-list{
-    list-style: none;
-    height: 80%;
-    padding: 0%;
-    margin-bottom: 0%;
-  }
-  .nav-list-item{
-    display: flex;
-    align-items: center;
-    height: 50px;
-  }
-  .nav-list-open .nav-list-item:hover{
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 12px;
-  }
-  
-  .nav-list-item i{
-    font-size: 20px;
-    height: 25px;
-    width: 25px;
-    margin-right: 15px;
-    margin-left:10px ;
-    text-align: center;
-    line-height: 25px;
-  }
-  .nav-list-item span{
-    width: 170px;
-    text-transform: capitalize;
-    font-weight: 600;
-  }
-  a{
-    text-decoration: none;
-    color:white;
-    cursor: pointer;
-  }
+
+.sidebar {
+  border-radius: 0px 10px 10px 0;
+  background-color: #ff6b6b;
+  height: 100vh;
+  padding: 20px;
+  color: white;
+  height: 100vh;
+}
+
+.sidebar .nav-link {
+  color: white;
+  margin: 10px 0;
+}
+
+.sidebar .nav-link i {
+  margin-right: 10px;
+}
+
+.profile {
+  position: absolute;
+  top: -4.5%;
+ 
+  text-align: center;
+  left: 25%;
+  margin-bottom: 50px;
+}
+
+.profile button {
+  position: absolute;
+  bottom: -10px;
+  left: 63%;
+  transform: translate(-100%);
+  transform: translateY(-370%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.profile button:hover {
+  color: #ff6f61;
+  background-color: #ffffff;
+  border-radius: 50%;
+
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+.profile-information {
+  display: flex;
+  flex-direction: column;
+ 
+  margin-top: 10px; 
+}
+.profile-information h5,
+.profile-information p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+.profile h5 {
+  margin-top: 10px;
+  text-align: center;
+  align-items: center;
+}
+
+.profile p {
+  margin-top: 5px;
+  text-align: center;
+  align-items: center;
+}
+
+.nav {
+  margin-top: 100px;
+}
+
+.nav ul {
+  padding-left: 10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  color: #333;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.nav-link i {
+  margin-right: 10px;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav ul :hover {
+  background-color: white;
+  color: #ff6f61;
+  border-radius: 10px;
+  border: 0 10px;
+}
+
+
+.nav-link i:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}

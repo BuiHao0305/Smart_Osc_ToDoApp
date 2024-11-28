@@ -1,5 +1,15 @@
-<div class="div">
-  <div class="body">
+<div
+  class="div"
+  (click)="changeVisible()"
+  (keydown.enter)="changeVisible()"
+  tabindex="0"
+>
+  <div
+    class="body"
+    (click)="blockFormClosing($event)"
+    (keydown.enter)="changeVisible()"
+    tabindex="0"
+  >
     <div class="profile-edit-container">
       <h2>{{ 'PROFILE.TITLE' | translate }}</h2>
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
@@ -9,12 +19,22 @@
             <img alt="Avatar" [src]="avatarUrl" *ngIf="avatarUrl" />
             <span *ngIf="!avatarUrl">{{ 'NO_AVATAR' | translate }}</span>
           </div>
-          <input class="avatar-input" type="file" (change)="onFileChange($event)" />
+          <input
+            class="avatar-input"
+            type="file"
+            (change)="onFileChange($event)"
+          />
         </div>
 
         <div class="form-group">
           <label for="email">{{ 'PROFILE.EMAIL' | translate }}:</label>
-          <input formControlName="email" type="email" id="email" name="email" readonly />
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            name="email"
+            readonly
+          />
         </div>
 
         <div class="form-group">
@@ -23,7 +43,15 @@
         </div>
 
         <div id="button" class="form-group">
-          <button type="button" routerLink="/layout/dashboard">{{ 'PROFILE.CANCEL' | translate }}</button>
+          <button
+            type="button"
+            class="content"
+            (click)="changeVisible()"
+            (keydown.enter)="changeVisible()"
+            tabindex="0"
+          >
+            {{ 'PROFILE.CANCEL' | translate }}
+          </button>
           <button type="submit">{{ 'PROFILE.UPDATE' | translate }}</button>
         </div>
       </form>
