@@ -10,10 +10,7 @@
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
       <i class="bi bi-pencil-fill"></i>
     </button>
-    @if(showChild){
-      <app-my-profile
-        (previewVisible)="showChildClick($event)"
-      ></app-my-profile>}
+
     <div class="profile-information">
       <h5>{{ username }}</h5>
       <p>{{ usergmail }}</p>
@@ -42,4 +39,8 @@
       </li>
     </ul>
   </nav>
+  @if(showChild){
+    <app-my-profile
+      (previewVisible)="showChildClick($event)"
+    ></app-my-profile>}
 </div>
