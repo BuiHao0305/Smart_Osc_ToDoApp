@@ -1,41 +1,43 @@
 .div {
   position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-    z-index: 99;
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.body{
-  position: fixed;
-        background-color: white;
-        border-radius: 20px;
-        overflow: hidden;
-        width: 30%;
-        overflow-y: auto;
-        max-height: 95vh;
 
-        &::-webkit-scrollbar {
-            display: none;
-        }
+.body {
+  position: fixed;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 30%;
+  overflow-y: auto;
+  max-height: 95vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .profile-edit-container {
-  
+
 
   padding: 40px;
-  border: 3px solid #ccc;
+  border: 3px solid #aaaaaa;
   border-radius: 20px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 h2 {
   text-align: center;
+  font-size: 30px;
   padding: 20px 0;
   margin-top: 5%;
   color: black;
@@ -58,8 +60,8 @@ select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
+  background-color: #e6e6e6;
   border-radius: 5px;
-  background-color: #d1d3d3;
 }
 
 button {
@@ -98,8 +100,8 @@ button {
 .avatar-input {
   width: 18%;
   margin-left: 2.5%;
-  background-color: #f5f5f5;
   border: none;
+  background-color: #ffffff;
 }
 
 .avatar-image img {
@@ -132,7 +134,7 @@ button {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #d1d3d3;
+  background-color: #ececec;
 }
 
 #button {
@@ -141,14 +143,16 @@ button {
 }
 
 #button button {
-  background-color: #8a8b8a;
+  background-color: #ff6b6b;
+
   margin-top: 20px;
   border-radius: 15px;
 }
 
 #button button:hover {
-  background-color: #007bff;
-  color: rgb(3, 3, 3);
+  background-color:#007BFF;
+  color: white;
+  transform: scale(1.1);
   border-color: #0056b3;
 }
 
