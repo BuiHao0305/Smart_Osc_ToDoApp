@@ -8,6 +8,8 @@
     "FORGET_PASS": "Forgot password",
     "SIGN_IN": "Sign in",
     "WAITING": "Waiting...",
-    "LOGIN_SUCCESS": "Login successful!"
+    "LOGIN_SUCCESS": "Login successful!",
+    "EMAIL_INVALID": "Invalid email",
+    "PASSWORD_INVALID": "Invalid password"
   }
 }

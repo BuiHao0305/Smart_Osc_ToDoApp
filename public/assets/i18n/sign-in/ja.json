@@ -8,6 +8,8 @@
     "FORGET_PASS": "パスワードを忘れた",
     "SIGN_IN": "サインイン",
     "WAITING": "お待ちください...",
-    "LOGIN_SUCCESS": "ログイン成功！"
+    "LOGIN_SUCCESS": "ログイン成功！",
+    "EMAIL_INVALID": "無効なメールアドレス",
+    "PASSWORD_INVALID": "無効なパスワード"
   }
 }

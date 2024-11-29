@@ -139,7 +139,7 @@
 .header input {
   padding: 10px;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 10px;
 }
 
@@ -168,11 +168,13 @@
   align-items: center;
   justify-content: center;
 }
+
 .header .actions .add-btn button:hover {
   background-color: #ff6b6b;
   color: white;
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -195,12 +197,15 @@ table td i {
   color: #333;
   transition: color 0.3s, transform 0.3s;
 }
+
 table td button .bi-pencil:hover,
 table td button .bi-caret-right-fill:hover {
   color: #007bff;
-  transform: scale(1.5) !important;
+  transform: scale(1.9) !important;
   font-size: 22px;
+
 }
+
 table td i:hover {
   cursor: pointer;
 }

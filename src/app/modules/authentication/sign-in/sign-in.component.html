@@ -28,13 +28,15 @@
               type="email"
               required
             />
-            <div>
+            @if(loginForm.get('email')?.invalid &&
+            loginForm.get('email')?.touched){
+            <div class="mt-1">
               <small (ngModelChange)="clearEmailError()" class="text-danger">{{
-                emailError
+                'SIGN_IN.EMAIL_INVALID' | translate
               }}</small>
             </div>
+            }
           </div>
-
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="password">{{
@@ -44,6 +46,12 @@
               tabindex="0"
               formControlName="password"
               id="password"
+              [ngClass]="{
+                'is-invalid':
+                  loginForm.get('password')?.invalid &&
+                  (loginForm.get('password')?.touched ||
+                    loginForm.get('password')?.dirty)
+              }"
               type="password"
               class="form-control form-control-lg"
               required
@@ -51,11 +59,11 @@
             @if(loginForm.get('password')?.invalid &&
             (loginForm.get('password')?.touched ||
             loginForm.get('password')?.dirty)){
-            <div>
-              <small
-                (ngModelChange)="clearPasswordError()"
-                class="text-danger"
-                >{{ passwordError }}</small
+            <div class="mt-1">
+              <small (ngModelChange)="clearPasswordError()" class="text-danger"
+                >{{
+                  'SIGN_IN.PASSWORD_INVALID' | translate
+                }}</small
               >
             </div>
             }
@@ -93,20 +101,20 @@
           ></app-forgot-password>
           }
           <button
-          tabindex="0"
-          (click)="validateLogin()"
-          type="button"
-          class="btn btn-primary btn-lg btn-block mt-2"
-          [disabled]="loginForm.invalid || (loading$ | async)"
-        >
-          <ng-container *ngIf="loading$ | async; else signInButton">
-            <span class="spinner-border spinner-border-sm"></span>
-            {{ 'SIGN_IN.WAITING' | translate }}
-          </ng-container>
-          <ng-template #signInButton>
-            {{ 'SIGN_IN.SIGN_IN' | translate }}
-          </ng-template>
-        </button>
+            tabindex="0"
+            (click)="validateLogin()"
+            type="button"
+            class="btn btn-primary btn-lg btn-block mt-2"
+            [disabled]="loginForm.invalid || (loading$ | async)"
+          >
+            <ng-container *ngIf="loading$ | async; else signInButton">
+              <span class="spinner-border spinner-border-sm"></span>
+              {{ 'SIGN_IN.WAITING' | translate }}
+            </ng-container>
+            <ng-template #signInButton>
+              {{ 'SIGN_IN.SIGN_IN' | translate }}
+            </ng-template>
+          </button>
           <!-- Show spinner if loading$ is true -->
 
           <!-- Submit button with loading spinner -->

@@ -128,8 +128,8 @@
       </tr>
     </thead>
     @for(items of listBucket; track $index){
-    <tbody>
-      <tr>
+    <tbody >
+      <tr >
         <td class="content-title">{{ items.title }}</td>
         @if (items.public === true) {
 
@@ -137,7 +137,7 @@
 
         } @if (items.public === false) {
 
-        <td><i tabindex="0" class="bi bi-people"></i></td>
+        <td ><i tabindex="0" class="bi bi-people"></i></td>
 
         }
 

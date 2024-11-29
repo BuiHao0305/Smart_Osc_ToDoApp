@@ -16,6 +16,12 @@
             <input
               formControlName="username"
               id="username"
+              [ngClass]="{
+                'is-invalid':
+                  registerForm.get('username')?.invalid &&
+                  (registerForm.get('username')?.touched ||
+                    registerForm.get('username')?.dirty)
+              }"
               type="text"
               class="form-control form-control-lg"
               required
@@ -41,6 +47,12 @@
             <input
               formControlName="email"
               id="email"
+              [ngClass]="{
+                'is-invalid':
+                  registerForm.get('email')?.invalid &&
+                  (registerForm.get('email')?.touched ||
+                    registerForm.get('email')?.dirty)
+              }"
               type="email"
               class="form-control form-control-lg"
               required
@@ -66,6 +78,12 @@
             <input
               formControlName="password"
               id="password"
+              [ngClass]="{
+                'is-invalid':
+                  registerForm.get('password')?.invalid &&
+                  (registerForm.get('password')?.touched ||
+                    registerForm.get('password')?.dirty)
+              }"
               type="password"
               class="form-control form-control-lg"
               required
