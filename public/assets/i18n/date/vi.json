@@ -1,0 +1,10 @@
+{
+    "RELATIVE_TIME": {
+      "JUST_NOW": "vừa xong",
+      "SECONDS_AGO": "{{count}} giây trước",
+      "MINUTES_AGO": "{{count}} phút trước",
+      "HOURS_AGO": "{{count}} giờ trước",
+      "DAYS_AGO": "{{count}} ngày trước"
+    }
+  }
+  

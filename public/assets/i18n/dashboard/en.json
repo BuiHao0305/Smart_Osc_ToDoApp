@@ -1,12 +1,20 @@
 {
-  "DASHBOARD":{
+  "DASHBOARD": {
     "DASHBOARD_TITLE": "ToDoApp",
-    "DASHBOARD_DESCRIPTION": "Welcome to TodoApp, the perfect solution for managing your daily tasks. Create, organize, and track your tasks easily with TodoApp!",
+    "DASHBOARD_DESCRIPTION": "Welcome to TodoApp, your reliable companion for managing tasks. Start organizing your life scientifically and efficiently.",
     "TO_DO_LIST_DASHBOARD": "With TodoApp, you can:",
     "CREATE_TASK": "Create new tasks",
-    "MARK_COMPLETE": "Mark tasks as completed",
+    "CREATE_TASK_DESC": "Add new tasks to ensure you never miss anything important.",
+    "MARK_COMPLETE": "Mark tasks as complete",
+    "MARK_COMPLETE_DESC": "Update the status of tasks as soon as they're done to keep track of your progress.",
     "SET_DEADLINE": "Set deadlines and reminders for tasks",
+    "SET_DEADLINE_DESC": "Automate reminders to ensure you meet deadlines without stress.",
     "PRIORITIZE_TASKS": "Prioritize tasks based on importance",
-    "START_ORGANIZING": "Start organizing your tasks today and boost your productivity!"
+    "PRIORITIZE_TASKS_DESC": "Arrange tasks from most to least important to maximize productivity.",
+    "COLLABORATE_WITH_TEAM": "Collaborate with your team",
+    "COLLABORATE_WITH_TEAM_DESC": "Share tasks with colleagues and work together more effectively.",
+    "VISUALIZE_PROGRESS": "Visualize your progress",
+    "VISUALIZE_PROGRESS_DESC": "Track your achievements with intuitive charts to make informed decisions.",
+    "START_ORGANIZING": "Start organizing today to make your tomorrow more productive and successful!"
   }
 }

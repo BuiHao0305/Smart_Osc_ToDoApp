@@ -1,0 +1,10 @@
+{
+    "RELATIVE_TIME": {
+      "JUST_NOW": "just now",
+      "SECONDS_AGO": "{{count}} seconds ago",
+      "MINUTES_AGO": "{{count}} minutes ago",
+      "HOURS_AGO": "{{count}} hours ago",
+      "DAYS_AGO": "{{count}} days ago"
+    }
+  }
+  
