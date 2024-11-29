@@ -7,6 +7,11 @@
     "ADD_BUCKET": "Thêm Bucket",
     "NO_TASK_TITLE": "Không có công việc trong tiêu đề",
     "LOADING_BUCKET": "Đang tải Bucket....",
-    "CHECKLIST": "Danh sách kiểm tra"
+    "CHECKLIST": "Danh sách kiểm tra",
+    "NAME": "Tên Bucket",
+    "STATUS": "Trạng Thái",
+    "DATE": "Ngày",
+    "EDIT": "Chỉnh Sửa",
+    "DETAIL": "Chi Tiết"
   }
 }

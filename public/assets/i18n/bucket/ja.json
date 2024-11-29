@@ -7,7 +7,12 @@
     "ADD_BUCKET": "バケットを追加",
     "NO_TASK_TITLE": "タイトルにタスクがありません",
     "LOADING_BUCKET": "バケットを読み込み中....",
-    "CHECKLIST": "チェックリスト"
+    "CHECKLIST": "チェックリスト",
+    "NAME": "バケット名",
+    "STATUS": "ステータス",
+    "DATE": "日付",
+    "EDIT": "編集",
+    "DETAIL": "詳細"
   }
   
 }
