@@ -38,7 +38,7 @@ export class BucketComponent implements OnInit {
   selectedBucketId!: number;
   listBucket: ListBucket[] = [];
   totalItems = 0;
-  pageSize = 12;
+  pageSize = 10;
   pageIndex = 0;
   loading = false;
 

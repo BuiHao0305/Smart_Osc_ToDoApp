@@ -1,4 +1,4 @@
-<div class="body">
+<!-- <div class="body">
   <div class="search-bar">
     <input
       matInput
@@ -20,7 +20,6 @@
     <h2>{{ 'BUCKET.CHECKLIST' | translate }}</h2>
     <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
       <i class="bi bi-plus-circle"></i>
-      {{ 'BUCKET.ADD_BUCKET' | translate }}
     </button>
   </div>
 
@@ -94,4 +93,100 @@
     (page)="onPageEvent($event)"
   >
   </mat-paginator>
+</div> -->
+<div class="container">
+  <div class="header">
+    <input
+      matInput
+      type="text"
+      placeholder="{{ 'BUCKET.SEARCH_BUCKET' | translate }}"
+      [formControl]="searchControl"
+    />
+    <div class="actions">
+      <div class="add-btn">
+        <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
+          <i class="bi bi-plus"></i>
+          {{ 'BUCKET.ADD_BUCKET' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  @if(loading){
+  <div class="loading-spinner fs-5 text-center mt-3">
+    <span class="spinner-border spinner-border-sm"></span>
+    {{ 'BUCKET.LOADING_BUCKET' | translate }}
+  </div>
+  } @if(!loading) {
+  <table>
+    <thead>
+      <tr>
+        <th class="content-title">{{ 'BUCKET.NAME' | translate }}</th>
+        <th>{{ 'BUCKET.STATUS' | translate }}</th>
+        <th>{{ 'BUCKET.DATE' | translate }}</th>
+        <th>{{ 'BUCKET.EDIT' | translate }}</th>
+        <th>{{ 'BUCKET.DETAIL' | translate }}</th>
+      </tr>
+    </thead>
+    @for(items of listBucket; track $index){
+    <tbody>
+      <tr>
+        <td class="content-title">{{ items.title }}</td>
+        @if (items.public === true) {
+
+        <td><i tabindex="0" class="bi bi-lock"></i></td>
+
+        } @if (items.public === false) {
+
+        <td><i tabindex="0" class="bi bi-people"></i></td>
+
+        }
+
+        <td>{{ items.createdAt | relativeTime }}</td>
+        <td>
+          <button
+            tabindex="0"
+            (click)="toggleChildUpdateBucket()"
+            (keydown)="onBucketClick(items.id)"
+            (click)="onBucketClick(items.id)"
+            class="btn btn-link text-secondary p-0 me-3"
+          >
+            <i class="bi bi-pencil"></i>
+          </button>
+        </td>
+
+        <td>
+          <button
+            tabindex="0"
+            (keydown)="onBucketItemsClick(items.id)"
+            (click)="onBucketItemsClick(items.id)"
+            class="btn btn-link text-secondary p-0 me-3"
+          >
+            <i class="bi bi-caret-right-fill"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    }@empty {
+    <h3 class="fs-5 d-flex justify-content-center mt-5 ml-5">
+      {{ 'BUCKET.NO_TASK_TITLE' | translate }}
+    </h3>
+    }
+  </table>
+  }
+
+  <mat-paginator class="mt-2 mb-2"
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    (page)="onPageEvent($event)"
+  >
+  </mat-paginator>
+  @if(showChild){
+  <app-add-bucket (previewVisible)="showChildClick($event)"></app-add-bucket>
+  } @if(showChildUpdate){
+  <app-update-backet
+    [bucketId]="selectedBucketId"
+    (reloadData)="reloadData()"
+    (previewVisible)="showChildClickUpdateBucket($event)"
+  ></app-update-backet>
+  }
 </div>

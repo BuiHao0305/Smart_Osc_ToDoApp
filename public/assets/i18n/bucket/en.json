@@ -1,12 +1,17 @@
-{
-  "BUCKET":{
-    "SEARCH_BUCKET": "Search bucket...",
-    "USE_CASES": "Use cases",
-    "TAGS": "Tags",
-    "CREATED_BY": "Created by:",
-    "ADD_BUCKET": "Add Bucket",
-    "NO_TASK_TITLE": "No Task in Title",
-    "LOADING_BUCKET": "Loading Bucket....",
-    "CHECKLIST":"Check list"
+  {
+    "BUCKET":{
+      "SEARCH_BUCKET": "Search bucket...",
+      "USE_CASES": "Use cases",
+      "TAGS": "Tags",
+      "CREATED_BY": "Created by:",
+      "ADD_BUCKET": "Add Bucket",
+      "NO_TASK_TITLE": "No Task in Title",
+      "LOADING_BUCKET": "Loading Bucket....",
+      "CHECKLIST":"Check list",
+      "NAME": "Bucket Name",
+      "STATUS": "Status",
+      "DATE": "Date",
+      "EDIT": "Edit",
+      "DETAIL": "Detail"
+    }
   }
-}
