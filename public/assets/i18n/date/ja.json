@@ -1,0 +1,10 @@
+{
+    "RELATIVE_TIME": {
+      "JUST_NOW": "たった今",
+      "SECONDS_AGO": "{{count}}秒前",
+      "MINUTES_AGO": "{{count}}分前",
+      "HOURS_AGO": "{{count}}時間前",
+      "DAYS_AGO": "{{count}}日前"
+    }
+  }
+  

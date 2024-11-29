@@ -1,12 +1,20 @@
 {
   "DASHBOARD": {
     "DASHBOARD_TITLE": "ToDoApp",
-    "DASHBOARD_DESCRIPTION": "Chào mừng bạn đến với TodoApp, giải pháp hoàn hảo để quản lý công việc hàng ngày của bạn. Tạo, tổ chức và theo dõi các công việc của bạn một cách dễ dàng với TodoApp!",
+    "DASHBOARD_DESCRIPTION": "Chào mừng bạn đến với TodoApp - người bạn đồng hành đáng tin cậy trong việc quản lý công việc. Hãy bắt đầu tổ chức cuộc sống của bạn một cách khoa học và hiệu quả hơn.",
     "TO_DO_LIST_DASHBOARD": "Với TodoApp, bạn có thể:",
     "CREATE_TASK": "Tạo công việc mới",
+    "CREATE_TASK_DESC": "Thêm các công việc mới để đảm bảo bạn không bao giờ quên bất cứ việc gì quan trọng.",
     "MARK_COMPLETE": "Đánh dấu công việc đã hoàn thành",
+    "MARK_COMPLETE_DESC": "Cập nhật trạng thái công việc ngay khi hoàn thành để theo dõi tiến độ của bạn.",
     "SET_DEADLINE": "Đặt hạn chót và nhắc nhở cho công việc",
+    "SET_DEADLINE_DESC": "Tự động hóa việc nhắc nhở, đảm bảo bạn luôn hoàn thành công việc đúng hạn mà không cần lo lắng.",
     "PRIORITIZE_TASKS": "Ưu tiên công việc theo mức độ quan trọng",
-    "START_ORGANIZING": "Hãy bắt đầu tổ chức công việc ngay hôm nay và nâng cao năng suất của bạn!"
+    "PRIORITIZE_TASKS_DESC": "Sắp xếp công việc từ quan trọng nhất đến ít quan trọng để tối ưu hóa năng suất.",
+    "COLLABORATE_WITH_TEAM": "Cộng tác với đội nhóm",
+    "COLLABORATE_WITH_TEAM_DESC": "Chia sẻ công việc với đồng nghiệp và làm việc nhóm hiệu quả hơn bao giờ hết.",
+    "VISUALIZE_PROGRESS": "Theo dõi tiến độ qua biểu đồ",
+    "VISUALIZE_PROGRESS_DESC": "Xem tiến trình của bạn qua các biểu đồ trực quan, từ đó đưa ra các quyết định cải thiện.",
+    "START_ORGANIZING": "Bắt đầu tổ chức ngay hôm nay để biến ngày mai của bạn trở nên năng suất và thành công hơn!"
   }
 }

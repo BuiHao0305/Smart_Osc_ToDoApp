@@ -32,7 +32,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       { baseTranslateUrl: `${baseTranslateUrl}/bucket-modal` },
       { baseTranslateUrl: `${baseTranslateUrl}/bucket-items` },
       { baseTranslateUrl: `${baseTranslateUrl}/bucket-items-modal` },
-      { baseTranslateUrl: `${baseTranslateUrl}/dialog` }
+      { baseTranslateUrl: `${baseTranslateUrl}/dialog` },
+      { baseTranslateUrl: `${baseTranslateUrl}/date` }
     ],
     lowercaseNamespace: true,
   };

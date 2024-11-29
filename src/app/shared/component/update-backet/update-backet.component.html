@@ -31,7 +31,7 @@
             }"
             (click)="setDoneStatus(false)"
           >
-            <i class="bi bi-people text-success"></i>
+            <i class="bi bi-check-circle-fill text-success"></i>
             {{ 'BUCKET_MODAL.PUBLIC' | translate }}
           </button>
           <button
@@ -48,7 +48,7 @@
         </div>
         @if(bucketData){
         <div class="mt-4">
-          <p><strong>{{ 'BUCKET_MODAL.CREATE_AT' | translate }}:</strong> {{ bucketData.createdAt }}</p>
+          <p><strong>{{ 'BUCKET_MODAL.CREATE_AT' | translate }}:</strong> {{ bucketData.createdAt  }}</p>
           <p>
             <strong>{{ 'BUCKET_MODAL.UPDATE_AT' | translate }}:</strong>
             {{ bucketData.updatedAt }}

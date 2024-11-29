@@ -152,10 +152,9 @@
   align-items: center;
 }
 
-.header .actions i,
 .header .actions .add-btn {
-  margin-left: 10px;
   cursor: pointer;
+  padding: 0 12px;
 }
 
 .header .actions .add-btn button {
@@ -199,7 +198,7 @@ table td i {
 }
 
 table td button .bi-pencil:hover,
-table td button .bi-caret-right-fill:hover {
+table td button .bi-arrow-right-square-fill:hover {
   color: #007bff;
   transform: scale(1.9) !important;
   font-size: 22px;

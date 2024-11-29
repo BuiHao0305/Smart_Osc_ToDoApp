@@ -1,12 +1,20 @@
 {
   "DASHBOARD": {
     "DASHBOARD_TITLE": "ToDoApp",
-    "DASHBOARD_DESCRIPTION": "TodoAppへようこそ。日々の仕事を簡単に管理できる完璧なソリューションです。TodoAppで仕事を作成、整理、追跡できます！",
-    "TO_DO_LIST_DASHBOARD": "TodoAppでは、次のことができます:",
+    "DASHBOARD_DESCRIPTION": "タスク管理の信頼できるパートナー、TodoAppへようこそ。科学的かつ効率的に生活を整理しましょう。",
+    "TO_DO_LIST_DASHBOARD": "TodoAppでできること：",
     "CREATE_TASK": "新しいタスクを作成する",
-    "MARK_COMPLETE": "完了したタスクにチェックを付ける",
-    "SET_DEADLINE": "タスクの期限とリマインダーを設定する",
-    "PRIORITIZE_TASKS": "タスクの重要度に基づいて優先順位を付ける",
-    "START_ORGANIZING": "今日から仕事を整理して、あなたの生産性を向上させましょう！"
+    "CREATE_TASK_DESC": "新しいタスクを追加して、重要なことを忘れないようにします。",
+    "MARK_COMPLETE": "タスクを完了済みにマークする",
+    "MARK_COMPLETE_DESC": "タスクが完了次第、進捗状況を追跡するためにステータスを更新します。",
+    "SET_DEADLINE": "タスクの締切とリマインダーを設定する",
+    "SET_DEADLINE_DESC": "リマインダーを自動化して、締切をストレスなく達成します。",
+    "PRIORITIZE_TASKS": "重要度に基づいてタスクを優先順位付けする",
+    "PRIORITIZE_TASKS_DESC": "重要なタスクを優先して生産性を最大化します。",
+    "COLLABORATE_WITH_TEAM": "チームと協力する",
+    "COLLABORATE_WITH_TEAM_DESC": "タスクを共有し、より効率的に共同作業を行います。",
+    "VISUALIZE_PROGRESS": "進捗を視覚化する",
+    "VISUALIZE_PROGRESS_DESC": "直感的なチャートで成果を追跡し、適切な判断を行います。",
+    "START_ORGANIZING": "今日から整理を始め、明日をより生産的で成功に導きましょう！"
   }
 }
