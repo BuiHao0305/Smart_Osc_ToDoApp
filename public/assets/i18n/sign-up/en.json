@@ -7,6 +7,9 @@
     "CONFIRM_PASSWORD": "Confirm Password",
     "ALREADY_HAVE_ACCOUNT": "Already have an account?",
     "REGISTER_BUTTON": "Register",
-    "WAITING": "Waiting..."
+    "WAITING": "Waiting...",
+    "USERNAME_INVALID": "Invalid username",
+    "EMAIL_INVALID": "Invalid email",
+    "PASSWORD_INVALID": "Invalid password"
   }
 }

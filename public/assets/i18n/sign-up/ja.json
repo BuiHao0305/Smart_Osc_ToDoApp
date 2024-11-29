@@ -7,6 +7,9 @@
     "CONFIRM_PASSWORD": "パスワードの確認",
     "ALREADY_HAVE_ACCOUNT": "すでにアカウントをお持ちですか？",
     "WAITING": "お待ちください...",
-    "REGISTER_BUTTON": "登録"
+    "REGISTER_BUTTON": "登録",
+    "USERNAME_INVALID": "無効なユーザー名",
+    "EMAIL_INVALID": "無効なメールアドレス",
+    "PASSWORD_INVALID": "無効なパスワード"
   }
 }

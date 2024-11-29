@@ -16,6 +16,7 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
+import { gmailValidator } from 'src/app/shared/validator/gmail.validator';
 
 @Component({
   selector: 'app-sing-up',
@@ -46,7 +47,7 @@ export class SingUpComponent {
     private snackbar: SnackbarService
   ) {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,gmailValidator]],
       password: ['', [Validators.required, Validators.minLength(1)]],
       username: ['', Validators.required],
     });

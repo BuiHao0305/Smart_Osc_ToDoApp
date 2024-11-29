@@ -7,6 +7,9 @@
     "CONFIRM_PASSWORD": "Xác nhận mật khẩu",
     "ALREADY_HAVE_ACCOUNT": "Đã có tài khoản?",
     "REGISTER_BUTTON": "Đăng ký",
-    "WAITING": "Vui lòng đợi..."
+    "WAITING": "Vui lòng đợi...",
+    "USERNAME_INVALID": "Tên người dùng không hợp lệ",
+    "EMAIL_INVALID": "Email không hợp lệ",
+    "PASSWORD_INVALID": "Mật khẩu không hợp lệ"
   }
 }
