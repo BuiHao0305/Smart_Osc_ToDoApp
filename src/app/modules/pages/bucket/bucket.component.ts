@@ -10,7 +10,8 @@ import { debounceTime, switchMap } from 'rxjs';
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
-import { UpdateBacketComponent } from "../../../shared/component/update-backet/update-backet.component";
+import { UpdateBacketComponent } from '../../../shared/component/update-backet/update-backet.component';
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-bucket',
@@ -26,8 +27,8 @@ import { UpdateBacketComponent } from "../../../shared/component/update-backet/u
     MatInputModule,
     TranslateModule,
     RelativeTimePipe,
-    UpdateBacketComponent
-],
+    UpdateBacketComponent,
+  ],
   providers: [PaginationService],
 })
 export class BucketComponent implements OnInit {
@@ -45,6 +46,7 @@ export class BucketComponent implements OnInit {
   constructor(
     private paginationService: PaginationService,
     private router: Router,
+    private snackBar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +71,7 @@ export class BucketComponent implements OnInit {
     this.showChildUpdate = value;
     // if (!value) {
     //   const query = this.searchControl.value || '';
-    //   this.loadBuckets(this.pageIndex + 1, this.pageSize, query); 
+    //   this.loadBuckets(this.pageIndex + 1, this.pageSize, query);
     // }
   }
 
@@ -94,7 +96,7 @@ export class BucketComponent implements OnInit {
 
   onBucketClick(bucketId: number): void {
     console.log('Selected Bucket ID:', bucketId);
-    this.selectedBucketId = bucketId; 
+    this.selectedBucketId = bucketId;
   }
 
   onBucketItemsClick(bucketId: number): void {
@@ -106,21 +108,34 @@ export class BucketComponent implements OnInit {
       .pipe(
         debounceTime(500),
         switchMap((query) => {
-          const searchQuery = query || '';
-          this.pageIndex = 0;
-          if (this.paginator) {
-            this.paginator.pageIndex = 0;
+          if (query && query.length >= 2) {
+            const searchQuery = query || '';
+            this.pageIndex = 0;
+            if (this.paginator) {
+              this.paginator.pageIndex = 0;
+            }
+
+            return this.paginationService.getPaginatedData(
+              1,
+              this.pageSize,
+              searchQuery
+            );
+          } else {
+            this.snackBar.show(
+              'Search query must be at least 2 characters long '
+            );
+            return [];
           }
-          return this.paginationService.getPaginatedData(
-            1,
-            this.pageSize,
-            searchQuery
-          );
         })
       )
-      .subscribe((response) => {
-        this.listBucket = response.data;
-        this.totalItems = response.total;
+      .subscribe({
+        next: (response) => {
+          this.listBucket = response?.data ?? [];
+          this.totalItems = response?.total ?? 0;
+        },
+        error: (err) => {
+          this.snackBar.show('An error occurred while fetching data: ' + err);
+        },
       });
   }
   reloadData(): void {
