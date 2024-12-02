@@ -108,36 +108,26 @@ export class BucketComponent implements OnInit {
       .pipe(
         debounceTime(500),
         switchMap((query) => {
-          if (query && query.length >= 2) {
-            const searchQuery = query || '';
-            this.pageIndex = 0;
-            if (this.paginator) {
-              this.paginator.pageIndex = 0;
-            }
-
-            return this.paginationService.getPaginatedData(
-              1,
-              this.pageSize,
-              searchQuery
-            );
-          } else {
-            this.snackBar.show(
-              'Search query must be at least 2 characters long '
-            );
-            return [];
+          const searchQuery = query?.trim() || '';
+          this.pageIndex = 0;
+          if (this.paginator) {
+            this.paginator.pageIndex = 0;
           }
+          return this.paginationService.getPaginatedData(
+            1,
+            this.pageSize,
+            searchQuery.length > 1 ? searchQuery : ''
+          );
         })
       )
       .subscribe({
         next: (response) => {
-          this.listBucket = response?.data ?? [];
-          this.totalItems = response?.total ?? 0;
-        },
-        error: (err) => {
-          this.snackBar.show('An error occurred while fetching data: ' + err);
+          this.listBucket = response.data;
+          this.totalItems = response.total;
         },
       });
   }
+  
   reloadData(): void {
     const query = this.searchControl.value || '';
     this.loadBuckets(this.pageIndex + 1, this.pageSize, query);

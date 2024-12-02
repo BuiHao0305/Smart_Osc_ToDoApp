@@ -144,40 +144,26 @@ export class BucketItemsComponent implements OnInit {
       .pipe(
         debounceTime(500),
         switchMap((query) => {
-          if (query && query.length >= 2) {
-            const searchQuery = query || '';
-            const bucketId = this.route.snapshot.paramMap.get('bucketId');
-            if (bucketId) {
-              this.pageIndex = 0;
-              if (this.paginator) {
-                this.paginator.pageIndex = 0;
-              }
-
-              return this.bucketItemsService.getContentItems(
-                +bucketId,
-                1,
-                this.pageSize,
-                searchQuery
-              );
+          const searchQuery = query || '';
+          const bucketId = this.route.snapshot.paramMap.get('bucketId');
+          if (bucketId) {
+            this.pageIndex = 0;
+            if (this.paginator) {
+              this.paginator.pageIndex = 0;
             }
-          } else {
-            this.snackBar.show(
-              'Search query must be at least 2 characters long'
+            return this.bucketItemsService.getContentItems(
+              +bucketId,
+              1,
+              this.pageSize,
+              searchQuery.length > 1 ? searchQuery : ''
             );
-
-            return [];
           }
           return [];
         })
       )
-      .subscribe({
-        next: (response) => {
-          this.bucketItemlist = response?.data ?? [];
-          this.totalItems = response?.total ?? 0;
-        },
-        error: (err) => {
-          this.snackBar.show('An error occurred while fetching data: ' + err);
-        },
+      .subscribe((response) => {
+        this.bucketItemlist = response.data;
+        this.totalItems = response.total;
       });
   }
 
