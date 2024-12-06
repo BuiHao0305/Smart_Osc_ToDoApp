@@ -8,6 +8,7 @@ export interface ListBucket {
 }
 
 export interface ListBucketResponse {
+  type: string;
   data: ListBucket[];
   total: number;
 }

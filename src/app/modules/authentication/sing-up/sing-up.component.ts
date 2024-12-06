@@ -76,6 +76,7 @@ export class SingUpComponent {
     this.store.select(selectSignUpError).subscribe((error) => {
       if (error) {
         this.loading = false;
+        this.snackbar.show('User already exists');
       }
     });
   
