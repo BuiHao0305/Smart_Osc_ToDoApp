@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { Store } from '@ngrx/store';
@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
     private router: Router,
     private store: Store<AuthState>,
     private snackbar: SnackbarService,
-
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email,gmailValidator]],
@@ -65,19 +65,27 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$.subscribe((user) => {
-      if (user) {
-        this.router.navigate(['layout/dashboard']);
-     
-      }
-    });
-  
+    if (isPlatformBrowser(this.platformId)) {
+      const redirectUrl = localStorage.getItem('redirectUrl');
+      this.user$.subscribe((user) => {
+        if (user) {
+          if (redirectUrl) {
+            localStorage.removeItem('redirectUrl');
+            this.router.navigateByUrl(redirectUrl);
+          } else {
+            this.router.navigate(['layout/dashboard']);
+          }
+        }
+      });
+    }
+
     this.error$.subscribe((error) => {
       if (error) {
         this.snackbar.show(error);
       }
     });
   }
+  
   
 
   toggleChild() {

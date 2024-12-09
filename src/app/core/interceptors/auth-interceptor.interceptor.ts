@@ -21,6 +21,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
   private router = inject(Router);
   private snackbar = inject(SnackbarService);
   private store = inject(Store);
+
   intercept(
     request: HttpRequest<object>,
     next: HttpHandler
@@ -28,22 +29,27 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
 
     if (token && !this.authService.isTokenValid(token)) {
-      this.authService.clearToken();
-      this.store.dispatch(authActions.logOut());
-      this.router.navigate(['/sign-in']);
-      this.snackbar.show('Token không hợp lệ');
+      this.handleInvalidToken();
       return throwError(() => new Error('Token không hợp lệ'));
     }
+
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          this.authService.clearToken();
-          this.store.dispatch(authActions.logOut());
-          this.router.navigate(['/sign-in']);
-          this.snackbar.show('Unauthorized');
+          const currentUrl = this.router.url;
+          localStorage.setItem('redirectUrl', currentUrl);
+
+          this.handleInvalidToken();
         }
         return throwError(() => error);
       })
     );
+  }
+
+  private handleInvalidToken(): void {
+    this.authService.clearToken();
+    this.store.dispatch(authActions.logOut());
+    this.router.navigate(['/sign-in']);
+    this.snackbar.show('Token không hợp lệ hoặc đã hết hạn');
   }
 }
