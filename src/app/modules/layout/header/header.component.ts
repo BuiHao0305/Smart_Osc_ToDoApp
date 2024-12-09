@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
 import { ChangeLanguagesComponent } from '../../../shared/component/change-languages/change-languages.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [
     RouterModule,
-    MyProfileComponent,
+
     ChangeLanguagesComponent,
     TranslateModule,
   ],

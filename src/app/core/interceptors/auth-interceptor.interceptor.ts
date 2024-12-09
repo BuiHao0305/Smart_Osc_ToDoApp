@@ -1,76 +1,49 @@
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpErrorResponse,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError, Subject } from 'rxjs';
-import { catchError, switchMap, shareReplay } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { authActions } from '../store/auth/auth.action';
+import { Store } from '@ngrx/store';
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthTokenInterceptor implements HttpInterceptor {
-  private refreshTokenSubject: Subject<string> | null = null;
-
-  constructor(private authService: AuthServiceService) {}
-
+  private authService = inject(AuthServiceService);
+  private router = inject(Router);
+  private snackbar = inject(SnackbarService);
+  private store = inject(Store);
   intercept(
     request: HttpRequest<object>,
     next: HttpHandler
   ): Observable<HttpEvent<object>> {
+    const token = this.authService.getToken();
+
+    if (token && !this.authService.isTokenValid(token)) {
+      this.authService.clearToken();
+      this.store.dispatch(authActions.logOut());
+      this.router.navigate(['/sign-in']);
+      this.snackbar.show('Token không hợp lệ');
+      return throwError(() => new Error('Token không hợp lệ'));
+    }
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (this.isTokenRefreshNeeded(error)) {
-          return this.handle401Error(request, next);
+        if (error.status === 401) {
+          this.authService.clearToken();
+          this.store.dispatch(authActions.logOut());
+          this.router.navigate(['/sign-in']);
+          this.snackbar.show('Unauthorized');
         }
-        return throwError(error);
+        return throwError(() => error);
       })
     );
-  }
-
-  private isTokenRefreshNeeded(error: HttpErrorResponse): boolean {
-    return error.status === 401;
-  }
-
-  private handle401Error(
-    request: HttpRequest<object>,
-    next: HttpHandler
-  ): Observable<HttpEvent<object>> {
-    if (!this.refreshTokenSubject) {
-      this.refreshTokenSubject = new Subject<string>();
-
-      return this.authService.refreshToken().pipe(
-        switchMap((newToken: string) => {
-          if (this.refreshTokenSubject) {
-            this.refreshTokenSubject.next(newToken);
-            this.refreshTokenSubject.complete();
-          }
-          this.refreshTokenSubject = null;
-
-          const clonedRequest = request.clone({
-            headers: request.headers.set('Authorization', 'Bearer ' + newToken),
-          });
-          return next.handle(clonedRequest);
-        }),
-        catchError((refreshError: HttpErrorResponse) => {
-          this.refreshTokenSubject = null; 
-          return throwError(refreshError);
-        }),
-        shareReplay(1) 
-      );
-    } else {
-      return this.refreshTokenSubject.pipe(
-        switchMap((newToken: string) => {
-          const clonedRequest = request.clone({
-            headers: request.headers.set('Authorization', 'Bearer ' + newToken),
-          });
-          return next.handle(clonedRequest);
-        })
-      );
-    }
   }
 }

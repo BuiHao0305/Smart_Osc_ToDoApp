@@ -1,8 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import {  ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot,} from '@angular/router';
-import { Observable, of } from 'rxjs';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { SignInServiceService } from 'src/app/services/authentication/sign-in.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,18 +16,32 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 export class guardGuard implements CanActivate {
   private router = inject(Router);
   private authService = inject(AuthServiceService);
-
+  private signinService = inject(SignInServiceService);
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+  }
   canActivate(
-    next: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    const token = this.authService.getToken();
-    if (state.url === '/sign-in' || state.url === '/sign-up') {
-      return of(true); 
+    if (!this.isBrowser()) {
+      return of(false); 
     }
+    const token = localStorage.getItem('access_token');
+
     if (!token || !this.authService.isTokenValid(token)) {
+      this.authService.clearToken();
+      this.router.navigate(['/sign-in']);
       return of(false);
     }
-    return of(true);
+    return this.signinService.getUserInfo().pipe(
+      map(() => {
+        return true; 
+      }),
+      catchError(() => {
+        this.router.navigate(['/sign-in']);
+        return of(false);  
+      })
+    );
   }
 }

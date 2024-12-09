@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
+import { guardGuard } from './core/guard/guard.guard';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -15,7 +16,8 @@ export const appRoutes: Route[] = [
     loadChildren:()=>
       import('./modules/layout/layout-routing').then(
         (m) => m.layoutRoutes
-      )
+      ),
+      canActivate: [guardGuard]
   },
   {
     path: 'notfound',

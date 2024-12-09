@@ -68,10 +68,17 @@ export class SignInComponent implements OnInit {
     this.user$.subscribe((user) => {
       if (user) {
         this.router.navigate(['layout/dashboard']);
-        this.snackbar.show('Đăng nhập thành công');
+     
+      }
+    });
+  
+    this.error$.subscribe((error) => {
+      if (error) {
+        this.snackbar.show(error);
       }
     });
   }
+  
 
   toggleChild() {
     this.showChild = !this.showChild;

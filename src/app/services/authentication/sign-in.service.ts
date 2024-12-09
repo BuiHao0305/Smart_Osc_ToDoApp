@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environments } from 'src/app/core/environments/environment';
 import {
   SignIn,
@@ -13,9 +13,10 @@ import { AuthServiceService } from '../auth-service.service';
   providedIn: 'root',
 })
 export class SignInServiceService {
+  private userInfo: any = null; 
   constructor(
     private http: HttpClient,
-    private authService: AuthServiceService
+    
   ) {}
 
   login(loginData: SignIn): Observable<SignInResponse> {
@@ -26,6 +27,10 @@ export class SignInServiceService {
     );
   }
   getUserInfo(): Observable<User> {
+    if (this.userInfo) {
+    
+      return of(this.userInfo);
+    }
     return this.http.get<User>(
       `${environments.API_URL}/${environments.ENDPOINT_METHOD.GET_USER_INFOR}`
     );
