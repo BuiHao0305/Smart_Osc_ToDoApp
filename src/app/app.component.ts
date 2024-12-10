@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import {
   NavigationEnd,
-  NavigationStart,
   Router,
   RouterModule,
   RouterOutlet,
@@ -22,19 +21,18 @@ export class AppComponent implements OnInit {
   title = 'TodoApp';
   constructor(
     private router: Router,
-    private authService:AuthServiceService,
+    private authService: AuthServiceService,
     private urlService: UrlService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
   // ngOnInit(): void {
   //   if (isPlatformBrowser(this.platformId)) {
-    
+
   //     this.router.events.subscribe((event) => {
   //       if (event instanceof NavigationEnd) {
   //         localStorage.setItem('lastVisitedUrl', event.url);
   //         console.log('Saved lastVisitedUrl:', event.url);
-          
-       
+
   //         this.checktoken();
   //       }
   //     });

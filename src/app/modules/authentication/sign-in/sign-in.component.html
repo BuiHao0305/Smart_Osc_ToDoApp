@@ -18,24 +18,21 @@
               formControlName="email"
               S
               id="email"
-              [ngClass]="{
-                'is-invalid':
-                  loginForm.get('email')?.invalid &&
-                  (loginForm.get('email')?.touched ||
-                    loginForm.get('email')?.dirty)
-              }"
               class="form-control form-control-lg"
               type="email"
               required
             />
-            @if(loginForm.get('email')?.invalid &&
-            loginForm.get('email')?.touched){
-            <div class="mt-1">
-              <small (ngModelChange)="clearEmailError()" class="text-danger">{{
-                'SIGN_IN.EMAIL_INVALID' | translate
-              }}</small>
-            </div>
-            }
+            <div
+            *ngIf="
+              loginForm.get('email')?.invalid &&
+              (loginForm.get('email')?.touched ||
+                loginForm.get('email')?.dirty)
+            "
+          >
+            <small class="text-danger">{{
+              getErrorMessage('email')
+            }}</small>
+          </div>
           </div>
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
@@ -46,27 +43,21 @@
               tabindex="0"
               formControlName="password"
               id="password"
-              [ngClass]="{
-                'is-invalid':
-                  loginForm.get('password')?.invalid &&
-                  (loginForm.get('password')?.touched ||
-                    loginForm.get('password')?.dirty)
-              }"
               type="password"
               class="form-control form-control-lg"
               required
             />
-            @if(loginForm.get('password')?.invalid &&
-            (loginForm.get('password')?.touched ||
-            loginForm.get('password')?.dirty)){
-            <div class="mt-1">
-              <small (ngModelChange)="clearPasswordError()" class="text-danger"
-                >{{
-                  'SIGN_IN.PASSWORD_INVALID' | translate
-                }}</small
-              >
+            <div
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                (loginForm.get('password')?.touched ||
+                  loginForm.get('password')?.dirty)
+              "
+            >
+              <small class="text-danger">{{
+                getErrorMessage('password')
+              }}</small>
             </div>
-            }
           </div>
 
           <div class="d-flex justify-content-around align-items-center mb-4">
