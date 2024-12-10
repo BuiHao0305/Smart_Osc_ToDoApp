@@ -21,7 +21,6 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { gmailValidator } from 'src/app/shared/validator/gmail.validator';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -52,7 +51,6 @@ export class SignInComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private store: Store<AuthState>,
-    private authService: AuthServiceService,
     private snackbar: SnackbarService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {
@@ -67,7 +65,6 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checktoken();
     if (isPlatformBrowser(this.platformId)) {
       const redirectUrl = localStorage.getItem('redirectUrl');
       this.user$.subscribe((user) => {
@@ -117,16 +114,5 @@ export class SignInComponent implements OnInit {
 
   clearPasswordError() {
     this.passwordError = '';
-  }
-  checktoken(){
-    const token = localStorage.getItem('access_token');
-    if (token || this.authService.isTokenValid(token)) {
-      const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');  
-      if (lastVisitedUrl) {
-        this.router.navigateByUrl(lastVisitedUrl);
-      } else {
-        this.router.navigate(['layout/dashboard']);
-      }
-    }
   }
 }

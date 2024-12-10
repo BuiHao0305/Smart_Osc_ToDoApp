@@ -32,14 +32,16 @@ export class guardGuard implements CanActivate {
     }
 
     const token = localStorage.getItem('access_token');
+
     if (!token || !this.authService.isTokenValid(token)) {
       const redirectUrl = state.url;
       localStorage.setItem('redirectUrl', redirectUrl);
+
       this.authService.clearToken();
       this.router.navigate(['/sign-in']);
       return of(false);
     }
-   
+
     return this.signinService.getUserInfo().pipe(
       map(() => true),
       catchError(() => {
@@ -48,7 +50,6 @@ export class guardGuard implements CanActivate {
         this.router.navigate(['/sign-in']);
         return of(false);
       })
-      
     );
   }
 }
