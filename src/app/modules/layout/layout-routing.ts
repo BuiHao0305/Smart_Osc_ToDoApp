@@ -5,6 +5,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { MyProfileComponent } from '../pages/my-profile/my-profile.component';
 import { guardGuard } from 'src/app/core/guard/guard.guard';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
+import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -14,23 +15,24 @@ export const layoutRoutes: Route[] = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [guardGuard],
+       
       },
-      { path: 'bucket', component: BucketComponent, canActivate: [guardGuard] },
-      {
-        path: 'profile',
-        component: MyProfileComponent,
-        canActivate: [guardGuard],
-      },
+      { path: 'bucket', component: BucketComponent, },
       // {
-      //   path: 'update-bucket/:bucketId',
-      //   component: UpdateBacketComponent,
-      //   canActivate: [guardGuard],
+      //   path: 'profile',
+      //   component: MyProfileComponent,
+        
       // },
+      {
+        path: 'update-bucket/:bucketId',
+        component: UpdateBacketComponent,
+        canActivate: [guardGuard],
+      },
       {
         path: 'bucket-items/:bucketId',
         component: BucketItemsComponent,
         canActivate: [guardGuard],
+      
       },
       // {
       //   path: 'bucket/:bucketId/items/:itemId',

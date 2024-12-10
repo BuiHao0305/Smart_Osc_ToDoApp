@@ -22,5 +22,6 @@ export interface MenuItem {
     { id: 6, name: 'LAYOUT.CHAT', icon: 'bi bi-chat' },
     { id: 7, name: 'LAYOUT.BUDGET', icon: 'bi-wallet' },
   
+  
   ];
   

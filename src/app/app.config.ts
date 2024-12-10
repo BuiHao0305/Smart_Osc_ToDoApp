@@ -17,6 +17,7 @@ import { AuthEffects } from './core/store/auth/auth.effects';
 import { translationProviders } from './shared/config/translations.providers';
 import { animationsProviders } from './shared/config/animations.providers';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AuthTokenInterceptor } from './core/interceptors/auth-interceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,6 +29,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
       multi: true,
     },
     provideHttpClient(withInterceptorsFromDi()),

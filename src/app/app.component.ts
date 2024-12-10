@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import {
-  NavigationEnd,
+  NavigationStart,
   Router,
   RouterModule,
   RouterOutlet,
 } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { AuthServiceService } from './services/auth-service.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -19,30 +18,22 @@ import { isPlatformBrowser } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'TodoApp';
   constructor(
-    private authService: AuthServiceService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: string
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
+
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.checkTokenAndRedirect();
-      }
-    });
-  }
-  checkTokenAndRedirect(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('access_token');
-      if (token && this.authService.isTokenValid(token)) {
-        const currentUrl = this.router.url;
-        if (currentUrl === '/sign-in') {
-          this.router.navigate(['layout/dashboard']);
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          localStorage.setItem('lastVisitedUrl', event.url);
         }
+      });
+      const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
+      if (lastVisitedUrl) {
+        this.router.navigateByUrl(lastVisitedUrl);
       } else {
-        const currentUrl = this.router.url;
-        if (currentUrl !== '/sign-in' && currentUrl !== '/sign-up') {
-          this.router.navigate(['/sign-in']);
-        }
+        this.router.navigate(['layout/dashboard']);
       }
     }
   }
