@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import {
+  NavigationEnd,
   NavigationStart,
   Router,
   RouterModule,
@@ -7,6 +8,8 @@ import {
 } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { isPlatformBrowser } from '@angular/common';
+import { UrlService } from './core/service/urlService';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   standalone: true,
@@ -19,22 +22,22 @@ export class AppComponent implements OnInit {
   title = 'TodoApp';
   constructor(
     private router: Router,
+    private authService:AuthServiceService,
+    private urlService: UrlService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
-
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.subscribe((event) => {
-        if (event instanceof NavigationStart) {
+        if (event instanceof NavigationEnd) {
           localStorage.setItem('lastVisitedUrl', event.url);
+        
         }
       });
-      const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
-      if (lastVisitedUrl) {
-        this.router.navigateByUrl(lastVisitedUrl);
-      } else {
-        this.router.navigate(['layout/dashboard']);
-      }
     }
+    
+    
   }
+  
+  
 }

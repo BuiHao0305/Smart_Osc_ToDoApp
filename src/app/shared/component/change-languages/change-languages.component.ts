@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -9,14 +9,30 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   imports: [TranslateModule],
 })
 export class ChangeLanguagesComponent {
+  constructor(private translate: TranslateService, private cdr: ChangeDetectorRef) {}
 
-  constructor(private translate: TranslateService,private cdr: ChangeDetectorRef) {
-    
+  ngOnInit(): void {
+    const lang = this.getSessionStorageItem('lang') || 'vi';
+    this.translate.use(lang);
   }
 
   changeLanguage(lang: string) {
     console.log(`Changing language to: ${lang}`);
     this.translate.use(lang);
     this.cdr.detectChanges();
+    this.setSessionStorageItem('lang', lang);
+  }
+
+  private getSessionStorageItem(key: string): string | null {
+    if (typeof sessionStorage !== 'undefined') {
+      return sessionStorage.getItem(key);
+    }
+    return null;
+  }
+
+  private setSessionStorageItem(key: string, value: string): void {
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem(key, value);
+    }
   }
 }

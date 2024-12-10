@@ -177,6 +177,7 @@
   <mat-paginator class="mt-2 mb-2"
     [length]="totalItems"
     [pageSize]="pageSize"
+    [pageIndex]="pageIndex" 
     (page)="onPageEvent($event)"
   >
   </mat-paginator>

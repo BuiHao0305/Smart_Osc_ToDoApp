@@ -2,16 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PaginationService } from 'src/app/services/page/pagination.service';
 import { AddBucketComponent } from '../../../shared/component/add-bucket/add-bucket.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
-
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
 import { UpdateBacketComponent } from '../../../shared/component/update-backet/update-backet.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
+import { UrlService } from 'src/app/core/service/urlService';
 
 @Component({
   selector: 'app-bucket',
@@ -46,14 +46,31 @@ export class BucketComponent implements OnInit {
   constructor(
     private paginationService: PaginationService,
     private router: Router,
-    private snackBar: SnackbarService
+    private snackBar: SnackbarService,
+    private route: ActivatedRoute,
+    private urlService: UrlService,
   ) {}
-
   ngOnInit(): void {
-    this.loadBuckets(1, this.pageSize, '');
+    const queryParams = this.route.snapshot.queryParams;
+    console.log('Query Params:', queryParams); 
+    const page = queryParams['page'] || '1';
+    const pageSize = 10;
+    const searchQuery = queryParams['searchQuery'] || '';
+    
+    this.pageIndex = Number(page) - 1;
+    this.pageSize = Number(pageSize);
+  
+    if (this.paginator) {
+      this.paginator.pageIndex = this.pageIndex;
+      this.paginator.pageSize = this.pageSize;
+    }
+    this.loadBuckets(Number(page), this.pageSize, searchQuery);
+    this.searchControl.setValue(searchQuery);
+    this.urlService.loadQueryParams();
     this.searchQueryControl();
   }
-
+  
+  
   toggleChild() {
     this.showChild = !this.showChild;
   }
@@ -64,15 +81,13 @@ export class BucketComponent implements OnInit {
       this.loadBuckets(1, this.pageSize, '');
     }
   }
+
   toggleChildUpdateBucket() {
     this.showChildUpdate = !this.showChildUpdate;
   }
+
   showChildClickUpdateBucket(value: boolean) {
     this.showChildUpdate = value;
-    // if (!value) {
-    //   const query = this.searchControl.value || '';
-    //   this.loadBuckets(this.pageIndex + 1, this.pageSize, query);
-    // }
   }
 
   private loadBuckets(page: number, limit: number, searchQuery: string): void {
@@ -87,13 +102,21 @@ export class BucketComponent implements OnInit {
   }
 
   onPageEvent(event: PageEvent): void {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    const page = this.pageIndex + 1;
-    const query = this.searchControl.value || '';
+    this.pageIndex = event.pageIndex; 
+    this.pageSize = event.pageSize; 
+    const page = this.pageIndex + 1; 
+    const query = this.searchControl.value || ''; 
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page, pageSize: this.pageSize, searchQuery: query },
+      queryParamsHandling: 'merge',
+    });
+  
     this.loadBuckets(page, this.pageSize, query);
   }
-
+  
+  
   onBucketClick(bucketId: number): void {
     console.log('Selected Bucket ID:', bucketId);
     this.selectedBucketId = bucketId;
@@ -108,11 +131,18 @@ export class BucketComponent implements OnInit {
       .pipe(
         debounceTime(500),
         switchMap((query) => {
-          const searchQuery = query?.trim() || '';
-          this.pageIndex = 0;
+          const searchQuery = query?.trim() || ''; 
+          this.pageIndex = 0; 
           if (this.paginator) {
-            this.paginator.pageIndex = 0;
+            this.paginator.pageIndex = 0; 
           }
+  
+          this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { searchQuery },
+            queryParamsHandling: 'merge', 
+          });
+  
           return this.paginationService.getPaginatedData(
             1,
             this.pageSize,
@@ -127,6 +157,7 @@ export class BucketComponent implements OnInit {
         },
       });
   }
+  
   
   reloadData(): void {
     const query = this.searchControl.value || '';
