@@ -42,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const translationProviders = [
   TranslateModule.forRoot({
-    defaultLanguage: 'vi',
+   
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,

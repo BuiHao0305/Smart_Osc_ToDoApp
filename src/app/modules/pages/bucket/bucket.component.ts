@@ -109,7 +109,7 @@ export class BucketComponent implements OnInit {
 
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { page, pageSize: this.pageSize, searchQuery: query },
+      queryParams: { page,  searchQuery: query },
       queryParamsHandling: 'merge',
     });
   
