@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
-import { guardGuard } from 'src/app/core/guard/guard.guard';
 
 export const authenticationRoutes: Route[] = [
   { path: 'sign-in', component: SignInComponent },

@@ -9,7 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ErrorDirective } from 'src/app/core/direcive/Error.directive';
+import { AppErrorDirective } from 'src/app/core/direcive/error.directive';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
   selectSignUpError,
@@ -29,7 +29,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
     RouterModule,
     ChangeLanguagesComponent,
     TranslateModule,
-    ErrorDirective,
+    AppErrorDirective,
   ],
 })
 export class SingUpComponent {

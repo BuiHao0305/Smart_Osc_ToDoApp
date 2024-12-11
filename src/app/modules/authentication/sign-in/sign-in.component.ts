@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  Inject,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
@@ -26,7 +20,7 @@ import {
   selectUser,
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
-import { ErrorDirective } from 'src/app/core/direcive/Error.directive';
+import { AppErrorDirective } from 'src/app/core/direcive/error.directive';
 
 @Component({
   selector: 'app-sign-in',
@@ -40,7 +34,7 @@ import { ErrorDirective } from 'src/app/core/direcive/Error.directive';
     TranslateModule,
     ChangeLanguagesComponent,
     ForgotPasswordComponent,
-    ErrorDirective,
+    AppErrorDirective,
   ],
 })
 export class SignInComponent implements OnInit {
@@ -59,7 +53,7 @@ export class SignInComponent implements OnInit {
     private router: Router,
     private store: Store<AuthState>,
     private snackbar: SnackbarService,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: string
   ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.email],
