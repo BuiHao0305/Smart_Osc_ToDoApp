@@ -26,17 +26,15 @@
               class="form-control form-control-lg"
               required
             />
-            <div
-              *ngIf="
-                registerForm.get('username')?.invalid &&
-                (registerForm.get('username')?.touched ||
-                  registerForm.get('username')?.dirty)
+            <span
+              [error]="registerForm.get('username')?.errors"
+              [params]="{ fieldName: 'username' }"
+              [show]="
+                registerForm.get('username')?.dirty ||
+                (registerForm.get('username')?.touched ?? false)
               "
-            >
-              <small class="text-danger">{{
-                'SIGN_UP.USERNAME_INVALID' | translate
-              }}</small>
-            </div>
+              class="text-danger"
+            ></span>
           </div>
 
           <!-- Email input -->
@@ -57,19 +55,16 @@
               class="form-control form-control-lg"
               required
             />
-            <div
-              *ngIf="
-                registerForm.get('email')?.invalid &&
-                (registerForm.get('email')?.touched ||
-                  registerForm.get('email')?.dirty)
+            <span
+              [error]="registerForm.get('email')?.errors"
+              [params]="{ fieldName: 'email' }"
+              [show]="
+                registerForm.get('email')?.dirty ||
+                (registerForm.get('email')?.touched ?? false)
               "
-            >
-              <small class="text-danger">{{
-                'SIGN_UP.EMAIL_INVALID' | translate
-              }}</small>
-            </div>
+              class="text-danger"
+            ></span>
           </div>
-
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label" for="password">{{
@@ -88,17 +83,15 @@
               class="form-control form-control-lg"
               required
             />
-            <div
-              *ngIf="
-                registerForm.get('password')?.invalid &&
-                (registerForm.get('password')?.touched ||
-                  registerForm.get('password')?.dirty)
+            <span
+              [error]="registerForm.get('password')?.errors"
+              [params]="{ fieldName: 'Password' }"
+              [show]="
+                registerForm.get('password')?.dirty ||
+                (registerForm.get('password')?.touched ?? false)
               "
-            >
-              <small class="text-danger">{{
-                'SIGN_UP.PASSWORD_INVALID' | translate
-              }}</small>
-            </div>
+              class="text-danger"
+            ></span>
           </div>
 
           <!-- Confirm Password input -->

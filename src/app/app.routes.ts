@@ -12,15 +12,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path:'layout',
-    loadChildren:()=>
-      import('./modules/layout/layout-routing').then(
-        (m) => m.layoutRoutes
-      ),
-      canActivate: [guardGuard]
+    path: 'layout',
+    loadChildren: () =>
+      import('./modules/layout/layout-routing').then((m) => m.layoutRoutes),
+    canActivate: [guardGuard],
   },
   {
     path: 'notfound',
     component: NotFoundComponent,
   },
+  { path: '**', redirectTo: '/notfound' },
 ];
