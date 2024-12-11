@@ -9,6 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ErrorDirective } from 'src/app/core/direcive/Error.directive';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
   selectSignUpError,
@@ -16,7 +17,6 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
-import { gmailValidator } from 'src/app/shared/validator/gmail.validator';
 
 @Component({
   selector: 'app-sing-up',
@@ -29,6 +29,7 @@ import { gmailValidator } from 'src/app/shared/validator/gmail.validator';
     RouterModule,
     ChangeLanguagesComponent,
     TranslateModule,
+    ErrorDirective,
   ],
 })
 export class SingUpComponent {
@@ -47,50 +48,36 @@ export class SingUpComponent {
     private snackbar: SnackbarService
   ) {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email,gmailValidator]],
-      password: ['', [Validators.required, Validators.minLength(1)]],
-      username: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(2)]],
     });
-  }
-
-
-
-
-  loadLanguage(langPrefix: string) {
-    this.translate.setDefaultLang('en');
-    this.translate.use(langPrefix);
   }
 
   onRegister() {
     if (this.registerForm.invalid) {
       return;
     }
-  
+
     const { email, password, username } = this.registerForm.value;
     this.loading = true;
-  
+
     this.store.dispatch(
       authActions.signUp({ signUpData: { email, password, username } })
     );
-  
+
     this.store.select(selectSignUpError).subscribe((error) => {
       if (error) {
         this.loading = false;
         this.snackbar.show('User already exists');
       }
     });
-  
+
     this.store.select(selectSignUpSuccess).subscribe((success) => {
       if (success) {
         this.loading = false;
         this.router.navigate(['/sign-in']);
       }
     });
-  }
-
-  validationRegister() {
-    this.emailError = [];
-    this.passwordError = [];
-    this.userNameError = [];
   }
 }

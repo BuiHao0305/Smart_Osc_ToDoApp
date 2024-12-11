@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -20,8 +26,7 @@ import {
   selectUser,
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
-import { gmailValidator } from 'src/app/shared/validator/gmail.validator';
-import { FormValidationHelper } from 'src/app/shared/validator/form-validation';
+import { ErrorDirective } from 'src/app/core/direcive/Error.directive';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,6 +40,7 @@ import { FormValidationHelper } from 'src/app/shared/validator/form-validation';
     TranslateModule,
     ChangeLanguagesComponent,
     ForgotPasswordComponent,
+    ErrorDirective,
   ],
 })
 export class SignInComponent implements OnInit {
@@ -56,18 +62,16 @@ export class SignInComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.loginForm = this.fb.group({
-      email: ['',],
-      password: ['',],
+      email: ['', Validators.email],
+      password: ['', [Validators.required, Validators.minLength(2)]],
       rememberMe: [false],
     });
-    
+
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
     this.user$ = this.store.select(selectUser);
   }
-  getErrorMessage(controlName: string): string {
-    return FormValidationHelper.getErrorMessage(controlName, this.loginForm);
-  }
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       const redirectUrl = localStorage.getItem('redirectUrl');
@@ -89,8 +93,6 @@ export class SignInComponent implements OnInit {
       }
     });
   }
-  
-  
 
   toggleChild() {
     this.showChild = !this.showChild;
