@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           localStorage.setItem('lastVisitedUrl', event.url);

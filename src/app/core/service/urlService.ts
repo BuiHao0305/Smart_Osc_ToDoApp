@@ -13,10 +13,9 @@ export class UrlService {
 
   loadQueryParams(): void {
     const queryParams = this.route.snapshot.queryParams;
-    console.log('Loaded Query Params:', queryParams); 
+    console.log('Loaded Query Params:', queryParams);
     this.queryParamsSubject.next(queryParams);
   }
-
 
   updateQueryParams(params: any): void {
     this.router.navigate([], {

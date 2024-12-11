@@ -4,21 +4,20 @@ import {
   OnChanges,
   ElementRef,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
 
 @Directive({
   selector: '[error]',
   standalone: true,
 })
-export class ErrorDirective implements OnChanges {
+export class AppErrorDirective implements OnChanges {
   @Input() error: any;
   @Input() params: any;
-  @Input() show: boolean = false;
+  @Input() show = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.show && this.error) {
       const message = this.getErrorMessage(this.error, this.params);
       this.renderer.setProperty(this.el.nativeElement, 'innerHTML', message);

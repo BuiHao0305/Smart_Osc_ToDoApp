@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,8 +8,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
 })
-export class ChangeLanguagesComponent {
-  constructor(private translate: TranslateService, private cdr: ChangeDetectorRef) {}
+export class ChangeLanguagesComponent implements OnInit {
+  constructor(
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     const lang = this.getSessionStorageItem('lang') || 'vi';
