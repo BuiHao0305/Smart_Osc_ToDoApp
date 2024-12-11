@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthServiceService,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: string
   ) {}
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
