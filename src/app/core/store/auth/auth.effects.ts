@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
@@ -10,13 +10,11 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private signInService: SignInServiceService,
-    private authService: AuthServiceService,
-    private signUpService: SignUpService,
-    private snackbar: SnackbarService
-  ) {}
+  private actions$ = inject(Actions);
+  private signInService = inject(SignInServiceService);
+  private authService = inject(AuthServiceService);
+  private signUpService = inject(SignUpService);
+  private snackbar = inject(SnackbarService);
 
   login$ = createEffect(() =>
     this.actions$.pipe(

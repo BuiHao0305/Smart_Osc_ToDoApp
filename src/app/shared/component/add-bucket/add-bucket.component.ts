@@ -42,7 +42,7 @@ export class AddBucketComponent implements OnInit {
           console.log('Bucket added successfully', response);
           this.reloadData.emit();
           this.changeVisible();
-          this.previewVisible.emit(false);
+         
           this.loading = false;
         },
         error: (error) => {
