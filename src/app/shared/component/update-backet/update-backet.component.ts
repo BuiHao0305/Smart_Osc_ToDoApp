@@ -22,7 +22,6 @@ import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-import { RelativeTimePipe } from '../../pipe/relative-time.pipe';
 
 @Component({
   selector: 'app-update-backet',
