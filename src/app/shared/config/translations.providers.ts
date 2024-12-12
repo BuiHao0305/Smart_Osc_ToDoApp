@@ -33,7 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       { baseTranslateUrl: `${baseTranslateUrl}/bucket-items` },
       { baseTranslateUrl: `${baseTranslateUrl}/bucket-items-modal` },
       { baseTranslateUrl: `${baseTranslateUrl}/dialog` },
-      { baseTranslateUrl: `${baseTranslateUrl}/date` }
+      { baseTranslateUrl: `${baseTranslateUrl}/date` },
+      { baseTranslateUrl: `${baseTranslateUrl}/form-error` },
+      { baseTranslateUrl: `${baseTranslateUrl}/date-picker` },
     ],
     lowercaseNamespace: true,
   };
@@ -42,7 +44,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const translationProviders = [
   TranslateModule.forRoot({
-   
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,

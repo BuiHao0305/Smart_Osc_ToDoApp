@@ -14,6 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .content {
         position: fixed;
         background-color: white;
@@ -37,6 +38,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .loading-btn {
     display: flex;
     justify-content: center;
@@ -47,10 +49,12 @@
     border-radius: 4px;
     cursor: not-allowed;
     font-size: 16px;
-  }
-.disabled-button {
-    pointer-events: none; 
 }
+
+.disabled-button {
+    pointer-events: none;
+}
+
 .modal-header .close {
     background: none;
     border: none;
@@ -62,10 +66,12 @@
 .modal-body {
     padding: 20px;
 }
-.button-group{
+
+.button-group {
     display: flex;
     justify-content: space-around;
 }
+
 .status-button {
 
     border: 1px solid #ccc;
@@ -74,16 +80,16 @@
     margin: 5px;
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .status-button.active {
+}
+
+.status-button.active {
     border-color: #002fff;
     background-color: #e7f3ff;
-  }
-  
-  .status-button i {
+}
+
+.status-button i {
     margin-right: 5px;
-  }
+}
 
 .modal-body h2 {
     font-size: 16px;
@@ -142,7 +148,8 @@
 .modal-footer button:hover {
     background-color: #e64a19;
 }
+
 .error {
     color: red;
     font-size: 12px;
-  }
+}

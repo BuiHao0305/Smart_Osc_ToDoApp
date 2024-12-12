@@ -9,12 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { CustomDatepickerComponent } from '../custom-datepicker/custom-datepicker.component';
 
 @Component({
   selector: 'app-add-content-items',
   templateUrl: './add-content-items.component.html',
   styleUrls: ['./add-content-items.component.scss'],
-  imports: [ReactiveFormsModule,TranslateModule],
+  imports: [ReactiveFormsModule, TranslateModule, CustomDatepickerComponent],
   providers: [BucketItemsService],
   standalone: true,
 })
@@ -55,11 +56,11 @@ export class AddContentItemsComponent implements OnInit {
             this.snackBar.show('Content added successfully: ' + response);
             this.reloadData.emit();
             this.previewVisible.emit(false);
-            this.loading = false
+            this.loading = false;
           },
           (error) => {
             this.snackBar.show('Error adding content: ' + error.message);
-            this.loading = false
+            this.loading = false;
           }
         );
       }

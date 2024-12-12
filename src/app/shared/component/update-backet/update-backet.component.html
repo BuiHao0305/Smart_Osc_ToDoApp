@@ -2,7 +2,9 @@
   <div class="content">
     <div class="modal-header">
       <span></span>
-      <button (click)="changeVisibleUpdateBucket($event)" class="close cancel">X</button>
+      <button (click)="changeVisibleUpdateBucket($event)" class="close cancel">
+        X
+      </button>
     </div>
     <div class="modal-body">
       <h2>{{ 'BUCKET_MODAL.UPDATE_TITLE' | translate }}</h2>
@@ -48,7 +50,10 @@
         </div>
         @if(bucketData){
         <div class="mt-4">
-          <p><strong>{{ 'BUCKET_MODAL.CREATE_AT' | translate }}:</strong> {{ bucketData.createdAt  }}</p>
+          <p>
+            <strong>{{ 'BUCKET_MODAL.CREATE_AT' | translate }}:</strong>
+            {{ bucketData.createdAt }}
+          </p>
           <p>
             <strong>{{ 'BUCKET_MODAL.UPDATE_AT' | translate }}:</strong>
             {{ bucketData.updatedAt }}

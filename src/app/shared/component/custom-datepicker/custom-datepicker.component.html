@@ -1,0 +1,17 @@
+<div class="container1">
+  <mat-form-field class="datepicker">
+    <mat-label>{{ 'DATE.CHOOSE_DATE' | translate }}</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="circle-input">
+    <input
+      matInput
+      [ngxTimepicker]="timepicker"
+      placeholder="{{ 'DATE.SELECT_TIME' | translate }}"
+    />
+    <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+  </div>
+</div>

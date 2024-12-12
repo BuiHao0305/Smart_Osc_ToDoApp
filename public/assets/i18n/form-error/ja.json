@@ -1,0 +1,7 @@
+{
+  "ERROR": {
+    "REQUIRED": "{{fieldName}}は必須です。",
+    "MIN_LENGTH": "{{fieldName}}は最低{{requiredLength}}文字である必要があります。",
+    "INVALID_EMAIL": "{{fieldName}}のメール形式が無効です。"
+  }
+}

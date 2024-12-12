@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { AddContentItemsComponent } from '../../../shared/component/add-content-items/add-content-items.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -52,17 +52,34 @@ export class BucketItemsComponent implements OnInit {
   constructor(
     private bucketItemsService: BucketItemsService,
     private route: ActivatedRoute,
-    private snackBar: SnackbarService
+    private snackBar: SnackbarService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const bucketId = this.route.snapshot.paramMap.get('bucketId');
-    if (bucketId) {
-      this.loadBucketItems(+bucketId, 1, this.pageSize, '', '');
-    }
+    this.route.queryParams.subscribe((params) => {
+      this.pageIndex = params['page'] ? +params['page'] - 1 : 0;
+      const searchQuery = params['searchQuery'] || '';
+      const done = params['done'] || '';
+
+      this.searchControl.setValue(searchQuery, { emitEvent: false });
+      this.doneControl.setValue(done, { emitEvent: false });
+
+      if (bucketId) {
+        this.loadBucketItems(
+          +bucketId,
+          this.pageIndex + 1,
+          this.pageSize,
+          searchQuery,
+          done
+        );
+      }
+    });
     this.searchQueryControl();
     this.doneFilterControl();
   }
+
   toggleChildAddContent() {
     this.showChildAdd = !this.showChildAdd;
   }
@@ -76,7 +93,6 @@ export class BucketItemsComponent implements OnInit {
 
   showChildClickUpdateContent(value: boolean) {
     this.showChildUpdate = value;
-
   }
   private loadBucketItems(
     bucketId: number,
@@ -109,9 +125,11 @@ export class BucketItemsComponent implements OnInit {
       const page = this.pageIndex + 1;
       const query = this.searchControl.value || '';
       const done = this.doneControl.value || '';
+      this.updateQueryParams(page, query, done);
       this.loadBucketItems(+bucketId, page, this.pageSize, query, done);
     }
   }
+
   onSelectItem(itemId: number) {
     const selectedItem = this.getItemById(itemId);
     if (selectedItem) {
@@ -124,10 +142,8 @@ export class BucketItemsComponent implements OnInit {
   getItemById(itemId: number) {
     const item = this.bucketItemlist.find((item) => item.id === itemId);
     if (item) {
-      console.log('Found item:', item);
       return item;
     } else {
-      console.log('Item not found!');
       return null;
     }
   }
@@ -138,46 +154,80 @@ export class BucketItemsComponent implements OnInit {
         switchMap((query) => {
           const searchQuery = query || '';
           const bucketId = this.route.snapshot.paramMap.get('bucketId');
+          const done = this.doneControl.value || '';
+
           if (bucketId) {
             this.pageIndex = 0;
             if (this.paginator) {
               this.paginator.pageIndex = 0;
             }
+
+            this.router.navigate([], {
+              relativeTo: this.route,
+              queryParams: { searchQuery, done },
+              queryParamsHandling: 'merge',
+            });
+
             return this.bucketItemsService.getContentItems(
               +bucketId,
               1,
               this.pageSize,
-              searchQuery.length > 1 ? searchQuery : ''
+              searchQuery.length > 1 ? searchQuery : '',
+              done
             );
           }
           return [];
         })
       )
-      .subscribe((response) => {
-        this.bucketItemlist = response.data;
-        this.totalItems = response.total;
+      .subscribe({
+        next: (response) => {
+          this.bucketItemlist = response.data || [];
+          this.totalItems = response.total || 0;
+        },
+        error: (error) => {
+          console.error('Error fetching search results:', error);
+        },
       });
   }
+
+  // doneFilterControl(): void {
+  //   this.doneControl.valueChanges.subscribe((done) => {
+  //     const bucketId = this.route.snapshot.paramMap.get('bucketId');
+  //     const searchQuery = this.searchControl.value || '';
+  //     if (bucketId) {
+  //       const doneValue = done === null ? '' : done;
+
+  //       this.updateQueryParams(1, searchQuery, doneValue);
+
+  //       this.loadBucketItems(
+  //         +bucketId,
+  //         1,
+  //         this.pageSize,
+  //         searchQuery,
+  //         doneValue
+  //       );
+  //     }
+  //   });
+  // }
 
   doneFilterControl(): void {
     this.doneControl.valueChanges.subscribe((done) => {
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       const searchQuery = this.searchControl.value || '';
       if (bucketId) {
-        this.pageIndex = 0;
-        if (this.paginator) {
-          this.paginator.pageIndex = 0;
-        }
+        const doneValue = done === null ? '' : done;
+        this.updateQueryParams(1, searchQuery, doneValue);
         this.loadBucketItems(
           +bucketId,
           1,
           this.pageSize,
           searchQuery,
-          done === '' ? '' : done
+          doneValue
         );
       }
     });
   }
+
   onReloadData(): void {
     const bucketId = this.route.snapshot.paramMap.get('bucketId');
     if (bucketId) {
@@ -186,5 +236,18 @@ export class BucketItemsComponent implements OnInit {
       const page = this.pageIndex + 1;
       this.loadBucketItems(+bucketId, page, this.pageSize, query, done);
     }
+  }
+  updateQueryParams(page: number, searchQuery: string, done: string): void {
+    const queryParams = {
+      page: page.toString(),
+      searchQuery: searchQuery,
+      done: done,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 }

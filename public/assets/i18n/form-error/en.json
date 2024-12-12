@@ -1,0 +1,7 @@
+{
+  "ERROR": {
+    "REQUIRED": "{{fieldName}} is required.",
+    "MIN_LENGTH": "{{fieldName}} must be at least {{requiredLength}} characters long.",
+    "INVALID_EMAIL": "Invalid email format for {{fieldName}}."
+  }
+}
