@@ -56,7 +56,7 @@ export class AuthEffects {
   );
   getUserInfo$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(authActions.loginSuccess,authActions.updateUserSuccess),
+      ofType(authActions.loginSuccess, authActions.updateUserSuccess),
       mergeMap(() =>
         this.signInService.getUserInfo().pipe(
           map((userInfo) => {
@@ -64,7 +64,7 @@ export class AuthEffects {
             return authActions.user({ userInfo });
           }),
           tap((action) => {
-            console.log('user')
+            console.log('user');
             localStorage.setItem('userInfo', JSON.stringify(action.userInfo));
           }),
           catchError((error) => {

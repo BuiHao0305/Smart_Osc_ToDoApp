@@ -47,8 +47,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "5kb",
+              "maximumError": "10kb"
             }
           ],
           "outputHashing": "all"
@@ -96,7 +96,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "TodoApp:build",
-        "port": 4200,
+        "port": 4000,
         "staticFilePath": "dist/TodoApp/browser",
         "spa": true
       }

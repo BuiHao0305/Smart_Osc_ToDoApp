@@ -9,7 +9,8 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppErrorDirective } from 'src/app/core/direcive/error.directive';
+import { AppErrorDirective } from 'src/app/core/directive/error.directive';
+
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import {
   selectSignUpError,

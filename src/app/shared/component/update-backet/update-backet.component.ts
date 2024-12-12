@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {  RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { BucketService } from 'src/app/services/page/bucket.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 
@@ -22,17 +22,17 @@ import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-import { RelativeTimePipe } from "../../pipe/relative-time.pipe";
+import { RelativeTimePipe } from '../../pipe/relative-time.pipe';
 
 @Component({
   selector: 'app-update-backet',
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule, RelativeTimePipe],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
   providers: [BucketService],
 })
-export class UpdateBacketComponent implements OnInit,OnChanges {
+export class UpdateBacketComponent implements OnInit, OnChanges {
   @Input() bucketId!: number;
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();

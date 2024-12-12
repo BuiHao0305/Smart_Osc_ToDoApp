@@ -22,7 +22,8 @@
   </div>
   @if(isLoading){
   <div class="loading-spinner">
-    <span class="spinner-border spinner-border-sm"> </span>{{ 'BUCKET_ITEMS.LOADING' | translate }}
+    <span class="spinner-border spinner-border-sm"> </span
+    >{{ 'BUCKET_ITEMS.LOADING' | translate }}
   </div>
   }
   <ul class="task-list" *ngIf="!isLoading">
@@ -46,7 +47,7 @@
         }
       </div>
       <div class="text-muted me-3 d-flex align-items-center">
-        <i class="bi bi-clock me-1"></i> {{ task.createdAt  |relativeTime}}
+        <i class="bi bi-clock me-1"></i> {{ task.createdAt | relativeTime }}
       </div>
       <div class="status">
         @if (task.done === true) {
@@ -66,6 +67,7 @@
   </ul>
   <mat-paginator
     [length]="totalItems"
+    [pageIndex]="pageIndex"
     [pageSize]="pageSize"
     (page)="onPageEvent($event)"
   >

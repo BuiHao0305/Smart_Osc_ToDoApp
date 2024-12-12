@@ -20,7 +20,7 @@ import {
   selectUser,
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
-import { AppErrorDirective } from 'src/app/core/direcive/error.directive';
+import { AppErrorDirective } from 'src/app/core/directive/error.directive';
 
 @Component({
   selector: 'app-sign-in',

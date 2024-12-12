@@ -1,0 +1,60 @@
+.container1 {
+    display: flex;
+    justify-content: space-between;
+
+    .datepicker {
+        width: 180px;
+        border-radius: 5px;
+        margin-top: 15px;
+        padding: 0;
+    }
+
+    .circle-input {
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .circle-input .mat-form-field-appearance-fill .mat-form-field-flex {
+        border-radius: 50%;
+        padding: 10px;
+        height: 50px;
+        width: 50px;
+
+    }
+
+    .circle-input .mat-form-field-label {
+        display: none;
+
+    }
+
+    .circle-input i {
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 30px;
+        border: none;
+        text-align: center;
+        padding: 8px;
+        border-radius: 50%;
+        width: 35%;
+        height: 70%;
+    }
+
+    .circle-input input {
+        cursor: pointer;
+        border: 1px solid #dbdbdb;
+        text-align: center;
+        font-weight: 600px;
+        padding: 8px;
+        border-radius: 5px;
+        width: 100%;
+        right: 0;
+        height: 70%;
+    }
+
+    .circle-input input:hover {
+        background-color: white;
+        color: #f88b8b;
+        transform: scale(1.02);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}

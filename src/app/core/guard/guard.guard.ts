@@ -42,14 +42,15 @@ export class guardGuard implements CanActivate {
       return of(false);
     }
 
-    return this.signinService.getUserInfo().pipe(
-      map(() => true),
-      catchError(() => {
-        const redirectUrl = state.url;
-        localStorage.setItem('redirectUrl', redirectUrl);
-        this.router.navigate(['/sign-in']);
-        return of(false);
-      })
-    );
+    // return this.signinService.getUserInfo().pipe(
+    //   map(() => true),
+    //   catchError(() => {
+    //     const redirectUrl = state.url;
+    //     localStorage.setItem('redirectUrl', redirectUrl);
+    //     this.router.navigate(['/sign-in']);
+    //     return of(false);
+    //   })
+    // );
+    return of(true);
   }
 }

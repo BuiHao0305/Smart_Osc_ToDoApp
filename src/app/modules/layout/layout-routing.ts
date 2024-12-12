@@ -5,6 +5,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { guardGuard } from 'src/app/core/guard/guard.guard';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
+import { CustomDatepickerComponent } from 'src/app/shared/component/custom-datepicker/custom-datepicker.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -34,6 +35,11 @@ export const layoutRoutes: Route[] = [
       // {
       //   path: 'bucket/:bucketId/items/:itemId',
       //   component: UpdateItemsComponent,
+      //   canActivate: [guardGuard],
+      // },
+      // {
+      //   path: 'datepicker',
+      //   component: CustomDatepickerComponent,
       //   canActivate: [guardGuard],
       // },
     ],

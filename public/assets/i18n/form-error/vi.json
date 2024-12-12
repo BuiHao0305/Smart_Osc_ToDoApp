@@ -1,0 +1,7 @@
+{
+  "ERROR": {
+    "REQUIRED": "{{fieldName}} là bắt buộc.",
+    "MIN_LENGTH": "{{fieldName}} phải có ít nhất {{requiredLength}} ký tự.",
+    "INVALID_EMAIL": "Định dạng email không hợp lệ cho {{fieldName}}."
+  }
+}

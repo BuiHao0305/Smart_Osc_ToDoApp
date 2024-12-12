@@ -9,27 +9,34 @@
     <div class="modal-body">
       <h2>{{ 'BUCKET_TITLE_MODAL.TITLE' | translate }}</h2>
       <form [formGroup]="addcontentForm" (ngSubmit)="onSubmit()">
-        <label for="text">{{ 'BUCKET_TITLE_MODAL.CONTENT' | translate }}:<span class="required">*</span></label>
+        <label for="text"
+          >{{ 'BUCKET_TITLE_MODAL.CONTENT' | translate }}:<span class="required"
+            >*</span
+          ></label
+        >
         <input type="text" id="text" formControlName="content" />
         @if (addcontentForm.get('content')?.invalid &&
         addcontentForm.get('content')?.touched) {
         <div>
-          <small class="error">{{ 'BUCKET_TITLE_MODAL.TITLE_REQUIRED' | translate }}</small>
+          <small class="error">{{
+            'BUCKET_TITLE_MODAL.TITLE_REQUIRED' | translate
+          }}</small>
         </div>
         }
-       @if(loading){
+        <app-custom-datepicker class="mt-2"></app-custom-datepicker>
+        @if(loading){
         <button class="btn btn-lg loading-btn">
           <span class="spinner-border spinner-border-sm"></span>
           {{ 'BUCKET_TITLE_MODAL.WAITING' | translate }}
         </button>
-       }
+        }
         <div class="modal-footer">
           <button
             type="submit"
             [disabled]="addcontentForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >
-          {{ 'BUCKET_TITLE_MODAL.ADD_CONTENT' | translate }}
+            {{ 'BUCKET_TITLE_MODAL.ADD_CONTENT' | translate }}
           </button>
         </div>
       </form>
