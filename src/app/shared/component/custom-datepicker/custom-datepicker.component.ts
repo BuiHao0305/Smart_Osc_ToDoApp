@@ -1,9 +1,5 @@
 import { Component, forwardRef } from '@angular/core';
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  RangeValueAccessor,
-} from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';

@@ -5,8 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { catchError, map, Observable, of } from 'rxjs';
-
+import { Observable, of } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { SignInServiceService } from 'src/app/services/authentication/sign-in.service';
 
