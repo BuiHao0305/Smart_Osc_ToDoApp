@@ -16,31 +16,15 @@ export const layoutRoutes: Route[] = [
         component: DashboardComponent,
       },
       { path: 'bucket', component: BucketComponent },
-      // {
-      //   path: 'profile',
-      //   component: MyProfileComponent,
 
-      // },
       {
         path: 'update-bucket/:bucketId',
         component: UpdateBacketComponent,
-        canActivate: [guardGuard],
       },
       {
         path: 'bucket-items/:bucketId',
         component: BucketItemsComponent,
-        canActivate: [guardGuard],
       },
-      // {
-      //   path: 'bucket/:bucketId/items/:itemId',
-      //   component: UpdateItemsComponent,
-      //   canActivate: [guardGuard],
-      // },
-      // {
-      //   path: 'datepicker',
-      //   component: CustomDatepickerComponent,
-      //   canActivate: [guardGuard],
-      // },
     ],
   },
 ];
