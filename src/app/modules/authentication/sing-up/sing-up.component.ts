@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -48,11 +50,15 @@ export class SingUpComponent {
     private router: Router,
     private snackbar: SnackbarService
   ) {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(2)]],
-    });
+    this.registerForm = this.fb.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(2)]],
+        passwordconfirm: ['', [Validators.required, Validators.minLength(2)]],
+      },
+      { validators: this.passwordMatchValidator }
+    );
   }
 
   onRegister() {
@@ -80,5 +86,10 @@ export class SingUpComponent {
         this.router.navigate(['/sign-in']);
       }
     });
+  }
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const passwordConfirm = control.get('passwordconfirm')?.value;
+    return password === passwordConfirm ? null : { passwordMismatch: true };
   }
 }

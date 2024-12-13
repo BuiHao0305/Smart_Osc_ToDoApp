@@ -4,7 +4,7 @@
     "USER_NAME": "ユーザー名",
     "EMAIL": "メールアドレス",
     "PASSWORD": "パスワード",
-    "CONFIRM_PASSWORD": "パスワードの確認",
+    "PASSWORD_CONFIRM": "パスワードの確認",
     "ALREADY_HAVE_ACCOUNT": "すでにアカウントをお持ちですか？",
     "WAITING": "お待ちください...",
     "REGISTER_BUTTON": "登録",

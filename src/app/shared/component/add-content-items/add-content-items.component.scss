@@ -14,6 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .content {
         position: fixed;
         background-color: white;
@@ -27,6 +28,11 @@
             display: none;
         }
     }
+
+    .picker {
+        display: flex;
+        justify-content: space-between
+    }
 }
 
 .modal-header {
@@ -37,6 +43,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .loading-btn {
     display: flex;
     justify-content: center;
@@ -47,7 +54,8 @@
     border-radius: 4px;
     cursor: not-allowed;
     font-size: 16px;
-  }
+}
+
 .modal-header .close {
     background: none;
     border: none;
@@ -118,7 +126,8 @@
 .modal-footer button:hover {
     background-color: #e64a19;
 }
+
 .error {
     color: red;
     font-size: 12px;
-  }
+}

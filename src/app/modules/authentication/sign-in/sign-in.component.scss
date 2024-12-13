@@ -1,25 +1,27 @@
 .divider:after,
 .divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
-div label{
+
+div label {
     margin-top: 5px;
 }
-.btn{
+
+.btn {
     width: 100%;
 }
-.footer #twitter{
+
+.footer #twitter {
     margin-top: 2%;
 }
-h1{
+
+h1 {
     text-align: center;
 }
-.row{
-    margin-top: 10%;
-}
-app-forgot-password{
-    width: 20%;
+
+.row {
+    margin-top: 11%;
 }

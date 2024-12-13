@@ -2,25 +2,13 @@
     display: flex;
     justify-content: space-between;
 
-    .datepicker {
-        width: 180px;
-        border-radius: 5px;
-        margin-top: 15px;
-        padding: 0;
-    }
 
     .circle-input {
         margin-top: 15px;
 
     }
 
-    .circle-input .mat-form-field-appearance-fill .mat-form-field-flex {
-        border-radius: 50%;
-        padding: 10px;
-        height: 50px;
-        width: 50px;
 
-    }
 
     .circle-input .mat-form-field-label {
         display: none;
@@ -35,16 +23,17 @@
         text-align: center;
         padding: 8px;
         border-radius: 50%;
-        width: 35%;
+        width: 20%;
         height: 70%;
     }
 
     .circle-input input {
+        width: 100px;
         cursor: pointer;
         border: 1px solid #dbdbdb;
         text-align: center;
         font-weight: 600px;
-        padding: 8px;
+        padding: 28px;
         border-radius: 5px;
         width: 100%;
         right: 0;

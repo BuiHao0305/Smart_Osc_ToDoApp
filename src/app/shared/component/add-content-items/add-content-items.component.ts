@@ -10,12 +10,18 @@ import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomDatepickerComponent } from '../custom-datepicker/custom-datepicker.component';
+import { CustomTimepickerComponent } from '../custom-timepicker/custom-timepicker.component';
 
 @Component({
   selector: 'app-add-content-items',
   templateUrl: './add-content-items.component.html',
   styleUrls: ['./add-content-items.component.scss'],
-  imports: [ReactiveFormsModule, TranslateModule, CustomDatepickerComponent],
+  imports: [
+    ReactiveFormsModule,
+    TranslateModule,
+    CustomDatepickerComponent,
+    CustomTimepickerComponent,
+  ],
   providers: [BucketItemsService],
   standalone: true,
 })
@@ -35,6 +41,7 @@ export class AddContentItemsComponent implements OnInit {
   ngOnInit() {
     this.addcontentForm = this.fb.group({
       content: ['', [Validators.required]],
+      deadline: [null, Validators.required],
     });
   }
   changeVisibleAddContent() {
@@ -47,23 +54,27 @@ export class AddContentItemsComponent implements OnInit {
     if (this.addcontentForm.valid) {
       const contentData = {
         content: this.addcontentForm.get('content')?.value,
+        deadline: this.addcontentForm.get('deadline')?.value.date,
       };
+
       this.loading = true;
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       if (bucketId) {
-        this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
-          (response) => {
-            this.snackBar.show('Content added successfully: ' + response);
-            this.reloadData.emit();
-            this.previewVisible.emit(false);
-            this.loading = false;
-          },
-          (error) => {
-            this.snackBar.show('Error adding content: ' + error.message);
-            this.loading = false;
-          }
-        );
+        // this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
+        //   (response) => {
+        //     this.snackBar.show('Content added successfully: ' + response);
+        //     this.reloadData.emit();
+        //     this.previewVisible.emit(false);
+        //     this.loading = false;
+        //   },
+        //   (error) => {
+        //     this.snackBar.show('Error adding content: ' + error.message);
+        //     this.loading = false;
+        //   }
+        // );
       }
+      this.loading = false;
+      console.log(this.addcontentForm.value);
     }
   }
 }
