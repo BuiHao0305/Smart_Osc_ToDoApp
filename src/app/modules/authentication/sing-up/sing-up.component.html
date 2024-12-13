@@ -9,7 +9,7 @@
         <h1>{{ 'SIGN_UP.REGISTER' | translate }}</h1>
         <form [formGroup]="registerForm">
           <!-- UserName input -->
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-outline mb-3">
             <label class="form-label" for="username">{{
               'SIGN_UP.USER_NAME' | translate
             }}</label>
@@ -38,7 +38,7 @@
           </div>
 
           <!-- Email input -->
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-outline mb-3">
             <label class="form-label" for="email">{{
               'SIGN_UP.EMAIL' | translate
             }}</label>
@@ -66,7 +66,7 @@
             ></span>
           </div>
           <!-- Password input -->
-          <div data-mdb-input-init class="form-outline mb-4">
+          <div data-mdb-input-init class="form-outline mb-3">
             <label class="form-label" for="password">{{
               'SIGN_UP.PASSWORD' | translate
             }}</label>
@@ -95,6 +95,33 @@
           </div>
 
           <!-- Confirm Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <label class="form-label" for="password">{{
+              'SIGN_UP.PASSWORD_CONFIRM' | translate
+            }}</label>
+            <input
+              formControlName="passwordconfirm"
+              id="password"
+              [ngClass]="{
+                'is-invalid':
+                  registerForm.get('passwordconfirm')?.invalid &&
+                  (registerForm.get('passwordconfirm')?.touched ||
+                    registerForm.get('passwordconfirm')?.dirty)
+              }"
+              type="password"
+              class="form-control form-control-lg"
+              required
+            />
+            <span
+              [error]="registerForm.get('passwordconfirm')?.errors"
+              [params]="{ fieldName: 'passwordconfirm' }"
+              [show]="
+                registerForm.get('passwordconfirm')?.dirty ||
+                (registerForm.get('passwordconfirm')?.touched ?? false)
+              "
+              class="text-danger"
+            ></span>
+          </div>
 
           <!-- Account existing link -->
           <div class="d-flex justify-content-center align-items-center mb-3">
@@ -106,7 +133,7 @@
           <button
             (click)="onRegister()"
             type="button"
-            class="btn btn-primary btn-lg btn-block mb-2"
+            class="btn btn-primary btn-lg btn-block mb-3"
             [disabled]="registerForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
           >

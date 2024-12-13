@@ -22,20 +22,20 @@ export class BucketItemsService {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
-  
+
     if (query) {
-      params = params.set('query', query); 
+      params = params.set('query', query);
     }
     if (done !== null && done !== '') {
-      params = params.set('done', done); 
+      params = params.set('done', done);
     }
-  
+
     const url = `${this.apiUrl}/${bucketId}/items`;
     return this.http.get<BucketItemsResponse>(url, { params });
   }
   addContentItems(
     bucketId: number,
-    contentData: { content: string }
+    contentData: { content: string; deadline: Date }
   ): Observable<BucketItem> {
     const url = `${this.apiUrl}/${bucketId}/items`;
 

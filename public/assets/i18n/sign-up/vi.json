@@ -4,7 +4,7 @@
     "USER_NAME": "Tên người dùng",
     "EMAIL": "Địa chỉ email",
     "PASSWORD": "Mật khẩu",
-    "CONFIRM_PASSWORD": "Xác nhận mật khẩu",
+    "PASSWORD_CONFIRM": "Xác nhận mật khẩu",
     "ALREADY_HAVE_ACCOUNT": "Đã có tài khoản?",
     "REGISTER_BUTTON": "Đăng ký",
     "WAITING": "Vui lòng đợi...",
