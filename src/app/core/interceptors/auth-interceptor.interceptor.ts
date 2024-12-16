@@ -48,6 +48,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
 
   private handleInvalidToken(): void {
     this.authService.clearToken();
+    localStorage.removeItem('userInfo');
     this.store.dispatch(authActions.logOut());
     this.router.navigate(['/sign-in']);
     this.snackbar.show('Token không hợp lệ hoặc đã hết hạn');

@@ -1,10 +1,14 @@
 {
-    "RELATIVE_TIME": {
-      "JUST_NOW": "vừa xong",
-      "SECONDS_AGO": "{{count}} giây trước",
-      "MINUTES_AGO": "{{count}} phút trước",
-      "HOURS_AGO": "{{count}} giờ trước",
-      "DAYS_AGO": "{{count}} ngày trước"
-    }
+  "RELATIVE_TIME": {
+    "JUST_NOW": "vừa xong",
+    "SECONDS_AGO": "{{count}} giây trước",
+    "MINUTES_AGO": "{{count}} phút trước",
+    "HOURS_AGO": "{{count}} giờ trước",
+    "DAYS_AGO": "{{count}} ngày trước",
+    "PASSED": "Hạn chót đã qua",
+    "SECONDS_LEFT": "Còn {{count}} giây",
+    "MINUTES_LEFT": "Còn {{count}} phút",
+    "HOURS_LEFT": "Còn {{count}} giờ",
+    "DAYS_LEFT": "Còn {{count}} ngày"
   }
-  
+}

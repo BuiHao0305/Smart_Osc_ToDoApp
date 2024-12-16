@@ -1,7 +1,13 @@
 <div class="container1">
   <mat-form-field class="datepicker">
     <mat-label>{{ 'DATE.CHOOSE_DATE' | translate }}</mat-label>
-    <input matInput [matDatepicker]="picker" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="selectedDate"
+      (dateChange)="onDateChange($event.value)"
+      (blur)="onInputTouched()"
+    />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

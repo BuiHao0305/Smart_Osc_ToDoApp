@@ -1,5 +1,11 @@
-import { Component, forwardRef } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, OnInit } from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormControl,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -25,8 +31,48 @@ import { TranslateModule } from '@ngx-translate/core';
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
     TranslateModule,
+    ReactiveFormsModule,
   ],
 })
-export class CustomDatepickerComponent {
-  selectedTime: Date | null = null;
+export class CustomDatepickerComponent implements ControlValueAccessor, OnInit {
+  selectedDate: Date | null = null;
+
+  private onChange: (value: Date | null) => void = () => {};
+  private onTouched: () => void = () => {};
+  dateControl: FormControl = new FormControl();
+
+  ngOnInit(): void {
+    this.dateControl.valueChanges.subscribe((value) => {
+      this.onChange(value);
+    });
+  }
+
+  writeValue(value: any): void {
+    if (value) {
+      this.selectedDate = new Date(value);
+      this.dateControl.setValue(this.selectedDate);
+    } else {
+      this.selectedDate = null;
+      this.dateControl.setValue(null);
+    }
+  }
+
+  registerOnChange(fn: (value: Date | null) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {}
+
+  onDateChange(date: Date | null): void {
+    this.selectedDate = date;
+    this.onChange(date);
+  }
+
+  onInputTouched(): void {
+    this.onTouched();
+  }
 }

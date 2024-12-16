@@ -2,9 +2,9 @@ import { Route } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { BucketComponent } from '../pages/bucket/bucket.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { guardGuard } from 'src/app/core/guard/guard.guard';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
+import { CustomTimepickerComponent } from 'src/app/shared/component/custom-timepicker/custom-timepicker.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -24,6 +24,10 @@ export const layoutRoutes: Route[] = [
       {
         path: 'bucket-items/:bucketId',
         component: BucketItemsComponent,
+      },
+      {
+        path: 'timepicker',
+        component: CustomTimepickerComponent,
       },
     ],
   },

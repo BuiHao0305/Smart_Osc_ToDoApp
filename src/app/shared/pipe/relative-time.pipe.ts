@@ -24,23 +24,48 @@ export class RelativeTimePipe implements PipeTransform {
     const diff = moment(value).diff(moment(), 'seconds');
     let translatedText = '';
 
-    if (diff >= -60) {
-      translatedText = this.translate.instant('RELATIVE_TIME.JUST_NOW');
-    } else if (diff > -3600) {
-      const count = Math.abs(Math.floor(diff / 60));
-      translatedText = this.translate.instant('RELATIVE_TIME.MINUTES_AGO', {
-        count,
-      });
-    } else if (diff > -86400) {
-      const count = Math.abs(Math.floor(diff / 3600));
-      translatedText = this.translate.instant('RELATIVE_TIME.HOURS_AGO', {
-        count,
-      });
+    if (diff >= 0) {
+      // Thời gian còn lại
+      if (diff < 60) {
+        translatedText = this.translate.instant('RELATIVE_TIME.SECONDS_LEFT', {
+          count: diff,
+        });
+      } else if (diff < 3600) {
+        const count = Math.floor(diff / 60);
+        translatedText = this.translate.instant('RELATIVE_TIME.MINUTES_LEFT', {
+          count,
+        });
+      } else if (diff < 86400) {
+        const count = Math.floor(diff / 3600);
+        translatedText = this.translate.instant('RELATIVE_TIME.HOURS_LEFT', {
+          count,
+        });
+      } else {
+        const count = Math.floor(diff / 86400);
+        translatedText = this.translate.instant('RELATIVE_TIME.DAYS_LEFT', {
+          count,
+        });
+      }
     } else {
-      const count = Math.abs(Math.floor(diff / 86400));
-      translatedText = this.translate.instant('RELATIVE_TIME.DAYS_AGO', {
-        count,
-      });
+      // Thời gian đã qua
+      if (diff >= -60) {
+        translatedText = this.translate.instant('RELATIVE_TIME.JUST_NOW');
+      } else if (diff > -3600) {
+        const count = Math.abs(Math.floor(diff / 60));
+        translatedText = this.translate.instant('RELATIVE_TIME.MINUTES_AGO', {
+          count,
+        });
+      } else if (diff > -86400) {
+        const count = Math.abs(Math.floor(diff / 3600));
+        translatedText = this.translate.instant('RELATIVE_TIME.HOURS_AGO', {
+          count,
+        });
+      } else {
+        const count = Math.abs(Math.floor(diff / 86400));
+        translatedText = this.translate.instant('RELATIVE_TIME.DAYS_AGO', {
+          count,
+        });
+      }
     }
 
     return translatedText;

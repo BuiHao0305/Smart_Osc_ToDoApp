@@ -1,10 +1,14 @@
 {
-    "RELATIVE_TIME": {
-      "JUST_NOW": "たった今",
-      "SECONDS_AGO": "{{count}}秒前",
-      "MINUTES_AGO": "{{count}}分前",
-      "HOURS_AGO": "{{count}}時間前",
-      "DAYS_AGO": "{{count}}日前"
-    }
+  "RELATIVE_TIME": {
+    "JUST_NOW": "たった今",
+    "SECONDS_AGO": "{{count}}秒前",
+    "MINUTES_AGO": "{{count}}分前",
+    "HOURS_AGO": "{{count}}時間前",
+    "DAYS_AGO": "{{count}}日前",
+    "PASSED": "締め切りが過ぎました",
+    "SECONDS_LEFT": "{{count}} 秒残っています",
+    "MINUTES_LEFT": "{{count}} 分残っています",
+    "HOURS_LEFT": "{{count}} 時間残っています",
+    "DAYS_LEFT": "{{count}} 日残っています"
   }
-  
+}

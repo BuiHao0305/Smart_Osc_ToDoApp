@@ -35,7 +35,7 @@ export class BucketItemsService {
   }
   addContentItems(
     bucketId: number,
-    contentData: { content: string; deadline: Date }
+    contentData: { content: string; deadline: Date; time: Date }
   ): Observable<BucketItem> {
     const url = `${this.apiUrl}/${bucketId}/items`;
 
@@ -45,7 +45,7 @@ export class BucketItemsService {
   updateItem(
     bucketId: number,
     itemId: number,
-    data: { content: string; done: boolean }
+    data: { content: string; done: boolean; deadline: Date }
   ): Observable<string> {
     const url = `${this.apiUrl}/${bucketId}/items/${itemId}`;
     return this.http.patch<string>(url, data);

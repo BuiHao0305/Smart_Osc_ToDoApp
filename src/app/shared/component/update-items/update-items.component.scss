@@ -28,6 +28,11 @@
             display: none;
         }
     }
+
+    .picker {
+        display: flex;
+        justify-content: space-between
+    }
 }
 
 .modal-header {
