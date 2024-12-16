@@ -41,7 +41,8 @@ export class AddContentItemsComponent implements OnInit {
   ngOnInit() {
     this.addcontentForm = this.fb.group({
       content: ['', [Validators.required]],
-      deadline: [null, Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
     });
   }
   changeVisibleAddContent() {
@@ -54,27 +55,39 @@ export class AddContentItemsComponent implements OnInit {
     if (this.addcontentForm.valid) {
       const contentData = {
         content: this.addcontentForm.get('content')?.value,
-        deadline: this.addcontentForm.get('deadline')?.value.date,
+
+        deadline: this.combineDateAndTime(
+          this.addcontentForm.get('date')?.value,
+          this.addcontentForm.get('time')?.value
+        ),
+        time: this.addcontentForm.get('time')?.value,
       };
 
       this.loading = true;
       const bucketId = this.route.snapshot.paramMap.get('bucketId');
       if (bucketId) {
-        // this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
-        //   (response) => {
-        //     this.snackBar.show('Content added successfully: ' + response);
-        //     this.reloadData.emit();
-        //     this.previewVisible.emit(false);
-        //     this.loading = false;
-        //   },
-        //   (error) => {
-        //     this.snackBar.show('Error adding content: ' + error.message);
-        //     this.loading = false;
-        //   }
-        // );
+        this.addContentItem.addContentItems(+bucketId, contentData).subscribe(
+          () => {
+            this.snackBar.show('Content added successfully');
+            this.reloadData.emit();
+            this.previewVisible.emit(false);
+            this.loading = false;
+          },
+          (error) => {
+            this.snackBar.show('Error adding content: ' + error.message);
+            this.loading = false;
+          }
+        );
       }
       this.loading = false;
-      console.log(this.addcontentForm.value);
     }
+  }
+
+  combineDateAndTime(date: Date, time: Date): Date {
+    const combinedDate = new Date(date);
+    combinedDate.setHours(time.getHours());
+    combinedDate.setMinutes(time.getMinutes());
+    combinedDate.setSeconds(time.getSeconds());
+    return combinedDate;
   }
 }

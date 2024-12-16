@@ -14,6 +14,7 @@ import { debounceTime, switchMap } from 'rxjs';
 import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
+import { DeadlineWarningDirective } from 'src/app/core/directive/deadlinewarning.direcitve';
 
 @Component({
   selector: 'app-bucket-items',
@@ -31,6 +32,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
     ReactiveFormsModule,
     TranslateModule,
     RelativeTimePipe,
+    DeadlineWarningDirective,
   ],
   providers: [BucketItemsService, PaginationService],
 })

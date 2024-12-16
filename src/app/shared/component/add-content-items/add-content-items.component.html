@@ -23,12 +23,16 @@
           }}</small>
         </div>
         }
-
         <div class="picker">
-          <app-custom-datepicker class="mt-2"></app-custom-datepicker>
-          <app-custom-timepicker class="mt-2"></app-custom-timepicker>
+          <app-custom-datepicker
+            formControlName="date"
+            class="mt-2"
+          ></app-custom-datepicker>
+          <app-custom-timepicker
+            formControlName="time"
+            class="mt-2"
+          ></app-custom-timepicker>
         </div>
-
         @if(loading){
         <button class="btn btn-lg loading-btn">
           <span class="spinner-border spinner-border-sm"></span>

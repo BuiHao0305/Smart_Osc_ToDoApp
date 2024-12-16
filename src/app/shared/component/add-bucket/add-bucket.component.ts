@@ -16,14 +16,18 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './add-bucket.component.html',
   styleUrls: ['./add-bucket.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,TranslateModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslateModule],
   providers: [BucketService],
 })
 export class AddBucketComponent implements OnInit {
   bucketForm!: FormGroup;
-  loading= false;
+  loading = false;
   showChild = false;
-  constructor(private fb: FormBuilder, private bucketService: BucketService,private snackBar: SnackbarService) {}
+  constructor(
+    private fb: FormBuilder,
+    private bucketService: BucketService,
+    private snackBar: SnackbarService
+  ) {}
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() reloadData = new EventEmitter<void>();
   ngOnInit() {
@@ -35,19 +39,19 @@ export class AddBucketComponent implements OnInit {
   onSubmit() {
     if (this.bucketForm.valid) {
       const formData = this.bucketForm.value;
-      formData.public = Boolean(this.bucketForm.get('public')?.value)
+      formData.public = Boolean(this.bucketForm.get('public')?.value);
       this.loading = true;
       this.bucketService.addBucket(formData).subscribe({
-        next: (response) => {
-          console.log('Bucket added successfully', response);
+        next: () => {
+          this.snackBar.show('Bucket added successfully');
           this.reloadData.emit();
           this.changeVisible();
-         
+
           this.loading = false;
         },
         error: (error) => {
-          this.snackBar.show(error)
-          this.loading = false
+          this.snackBar.show(error);
+          this.loading = false;
         },
       });
     } else {

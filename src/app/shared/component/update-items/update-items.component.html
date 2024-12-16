@@ -50,6 +50,16 @@
             {{ 'BUCKET_TITLE_MODAL.FALSE' | translate }}
           </button>
         </div>
+        <div class="picker">
+          <app-custom-datepicker
+            formControlName="date"
+            class="mt-2"
+          ></app-custom-datepicker>
+          <app-custom-timepicker
+            formControlName="time"
+            class="mt-2"
+          ></app-custom-timepicker>
+        </div>
         @if(bucketItemsbyId){
         <div class="mt-4">
           <p>

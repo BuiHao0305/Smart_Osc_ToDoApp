@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { SignInServiceService } from 'src/app/services/authentication/sign-in.service';
 
@@ -41,15 +41,14 @@ export class guardGuard implements CanActivate {
       return of(false);
     }
 
-    // return this.signinService.getUserInfo().pipe(
-    //   map(() => true),
-    //   catchError(() => {
-    //     const redirectUrl = state.url;
-    //     localStorage.setItem('redirectUrl', redirectUrl);
-    //     this.router.navigate(['/sign-in']);
-    //     return of(false);
-    //   })
-    // );
-    return of(true);
+    return this.signinService.getUserInfo().pipe(
+      map(() => true),
+      catchError(() => {
+        const redirectUrl = state.url;
+        localStorage.setItem('redirectUrl', redirectUrl);
+        this.router.navigate(['/sign-in']);
+        return of(false);
+      })
+    );
   }
 }

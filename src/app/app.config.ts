@@ -18,6 +18,7 @@ import { translationProviders } from './shared/config/translations.providers';
 import { animationsProviders } from './shared/config/animations.providers';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthTokenInterceptor } from './core/interceptors/auth-interceptor.interceptor';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideClientHydration(),
     provideHttpClient(),
-    provideHttpClient(withFetch()),  
+    provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -36,11 +37,12 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthTokenInterceptor,
       multi: true,
     },
+    { provide: NZ_I18N, useValue: en_US },
     provideHttpClient(withInterceptorsFromDi()),
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,
     ...translationProviders,
-    provideAnimationsAsync(), 
+    provideAnimationsAsync(),
   ],
 };

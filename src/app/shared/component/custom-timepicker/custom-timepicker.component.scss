@@ -2,48 +2,15 @@
     display: flex;
     justify-content: space-between;
 
-
-    .circle-input {
-        margin-top: 15px;
-
-    }
-
-
-
-    .circle-input .mat-form-field-label {
-        display: none;
-
-    }
-
-    .circle-input i {
-        cursor: pointer;
-        margin-top: 10px;
-        font-size: 30px;
-        border: none;
-        text-align: center;
-        padding: 8px;
-        border-radius: 50%;
-        width: 20%;
-        height: 70%;
-    }
-
-    .circle-input input {
-        width: 100px;
-        cursor: pointer;
-        border: 1px solid #dbdbdb;
-        text-align: center;
-        font-weight: 600px;
-        padding: 28px;
+    nz-time-picker {
+        padding: 15px;
+        width: 180px;
         border-radius: 5px;
-        width: 100%;
-        right: 0;
-        height: 70%;
+        margin-top: 15px;
+        padding: 0;
     }
 
-    .circle-input input:hover {
-        background-color: white;
-        color: #f88b8b;
-        transform: scale(1.02);
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
+
+
+
 }

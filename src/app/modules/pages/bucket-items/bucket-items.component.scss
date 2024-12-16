@@ -85,9 +85,10 @@ h3 {
   border-bottom: 1px solid #e9ecef;
 }
 
-.task-list .status button:hover{
+.task-list .status button:hover {
   background-color: #28a745;
 }
+
 .task-item:hover {
   background-color: #f0f0f0;
   transform: scale(1.02);
@@ -143,4 +144,20 @@ h3 {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.deadline-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.deadline-passed {
+  color: red;
+  font-weight: bold;
+  text-decoration: line-through;
+}
+
+.deadline-far {
+  color: green;
+  font-weight: normal;
 }

@@ -49,6 +49,9 @@
       <div class="text-muted me-3 d-flex align-items-center">
         <i class="bi bi-clock me-1"></i> {{ task.createdAt | relativeTime }}
       </div>
+      <div class="status deadline me-2" [deadlineWarning]="task.deadline">
+        <i class="bi bi-alarm">{{ task.deadline | relativeTime }}</i>
+      </div>
       <div class="status">
         @if (task.done === true) {
         <button class="status-button">
@@ -56,7 +59,7 @@
         </button>
         } @if (task.done === false) {
         <button class="status-button">
-          <i class="bi-alarm text-danger"></i>
+          <i class="bi bi-ban-fill text-danger"></i>
         </button>
         }
       </div>
