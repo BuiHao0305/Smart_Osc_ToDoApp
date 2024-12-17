@@ -1,5 +1,5 @@
 .container {
-  width: 70%;
+  width: 80%;
   margin: 20px auto;
   background-color: #fff;
   border-radius: 5px;
@@ -25,17 +25,16 @@
   font-weight: 500;
 }
 
+
 .form-group {
-  margin-left: 5%;
+  margin-left: 2%;
 }
 
 .form-group input {
   border-radius: 7px !important;
 }
 
-.header i {
-  margin-right: 10px;
-}
+
 
 .status #status-value {
   padding: 3px;
@@ -62,6 +61,7 @@
 h3 {
   text-align: center;
   margin-top: 5%;
+  font-size: 15px;
 }
 
 .task-item p {
@@ -160,4 +160,26 @@ h3 {
 .deadline-far {
   color: green;
   font-weight: normal;
+}
+
+
+.deadline-warning::before {
+  content: "\26A0";
+  margin-right: 8px;
+  color: orange;
+
+}
+
+.deadline-passed::before {
+  content: "\2716";
+  margin-right: 8px;
+  color: red;
+
+}
+
+.deadline-far::before {
+  content: "\29D6";
+  margin-right: 8px;
+  color: green;
+
 }

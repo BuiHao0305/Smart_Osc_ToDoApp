@@ -32,27 +32,17 @@ export class DeadlineWarningDirective implements OnChanges {
     }
 
     // Trường hợp deadline còn dưới hoặc bằng 12 giờ
-    if (hoursLeft <= 12 && hoursLeft >= 0) {
+    if (hoursLeft <= 12 && hoursLeft >= -12) {
       this.renderer.addClass(this.el.nativeElement, 'deadline-warning');
     } else {
       this.renderer.removeClass(this.el.nativeElement, 'deadline-warning');
     }
 
     // Trường hợp deadline đã qua
-    if (hoursLeft < 0) {
+    if (hoursLeft < -6) {
       this.renderer.addClass(this.el.nativeElement, 'deadline-passed');
     } else {
       this.renderer.removeClass(this.el.nativeElement, 'deadline-passed');
-    }
-
-    if (minutesLeft <= 59 && minutesLeft > 0) {
-      this.renderer.setStyle(
-        this.el.nativeElement,
-        'border',
-        '1px dashed orange'
-      );
-    } else {
-      this.renderer.removeStyle(this.el.nativeElement, 'border');
     }
   }
 }

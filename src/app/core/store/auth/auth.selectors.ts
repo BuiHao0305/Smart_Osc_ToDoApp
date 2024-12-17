@@ -1,8 +1,11 @@
 import { createSelector } from '@ngrx/store';
 import { AuthState } from './auth.reducer';
 
-const selectAuthState = (state: any): AuthState => state.auth;
+export interface RootState {
+  auth: AuthState;
+}
 
+const selectAuthState = (state: any): AuthState => state.auth;
 
 export const selectUser = createSelector(
   selectAuthState,
@@ -15,7 +18,6 @@ export const selectLoading = createSelector(
   selectAuthState,
   (state: AuthState) => state.loading
 );
-
 
 export const selectSignUpUser = createSelector(
   selectAuthState,
@@ -30,8 +32,6 @@ export const selectSignUpSuccess = createSelector(
   selectAuthState,
   (state) => state.signUpSuccess
 );
-
-
 
 export const selectUserInfo = createSelector(
   selectAuthState,

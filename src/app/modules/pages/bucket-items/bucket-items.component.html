@@ -2,7 +2,7 @@
   <div class="header">
     <i class="fas fa-tasks"></i>
     <span>{{ 'BUCKET_ITEMS.LIST_ITEM' | translate }}</span>
-    <div class="form-group col-md-4 me-5">
+    <div class="form-group col-md-4 me-2">
       <input
         class="form-control rounded-0 py-2"
         type="search"
@@ -18,6 +18,18 @@
         <option [value]="1">{{ 'BUCKET_ITEMS.DONE' | translate }}</option>
         <option [value]="0">{{ 'BUCKET_ITEMS.FALSE' | translate }}</option>
       </select>
+    </div>
+    <div class="note">
+      <p class="text-success text-decoration-line-through">
+        <i class="bi bi-check-circle"></i> Hoan Thanh
+      </p>
+      <p class="text-success">
+        <i class="bi bi-hourglass"></i> Chua Hoan Thanh
+      </p>
+      <p class="text-warning">
+        <i class="bi bi-exclamation-triangle"></i> Canh Bao
+      </p>
+      <p class="text-danger"><i class="bi bi-x"></i> Qua Han</p>
     </div>
   </div>
   @if(isLoading){
@@ -37,21 +49,24 @@
     >
       <div class="content flex-grow-1">
         @if (task.done === true) {
+
         <p class="task-title p-success">
-          {{ task.content }}
+          <i class="bi bi-check-circle me-2"> </i>{{ task.content }}
+          <i class="bi bi-alarm ms-5">{{ task.deadline | relativeTime }}</i>
         </p>
-        } @if (task.done === false) {
-        <p class="task-title p-danger">
+
+        } @if (task.done === false ) {
+        <p class="task-title p-icon" [deadlineWarning]="task.deadline">
           {{ task.content }}
+          <i class="bi bi-alarm ms-5">{{ task.deadline | relativeTime }}</i>
         </p>
+
         }
       </div>
       <div class="text-muted me-3 d-flex align-items-center">
         <i class="bi bi-clock me-1"></i> {{ task.createdAt | relativeTime }}
       </div>
-      <div class="status deadline me-2" [deadlineWarning]="task.deadline">
-        <i class="bi bi-alarm">{{ task.deadline | relativeTime }}</i>
-      </div>
+
       <div class="status">
         @if (task.done === true) {
         <button class="status-button">
@@ -76,6 +91,7 @@
   >
   </mat-paginator>
   <div class="footer">
+    <button class="me-5">Select</button>
     <button routerLink="/layout/bucket" class="me-5">
       <i class="bi bi-x-circle me-1"></i>{{ 'BUCKET_ITEMS.CANCEL' | translate }}
     </button>
@@ -87,6 +103,7 @@
       <i class="bi bi-plus-circle"></i>
       {{ 'BUCKET_ITEMS.ADD_CONTENT' | translate }}
     </button>
+
     @if(showChildAdd){
     <app-add-content-items
       (previewVisible)="showChildClickAddContent($event)"
