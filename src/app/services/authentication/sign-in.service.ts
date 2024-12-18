@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class SignInServiceService {
-  private userInfo: any = null;
+  private userInfo: User | null = null;
   constructor(private http: HttpClient) {}
 
   login(loginData: SignIn): Observable<SignInResponse> {

@@ -21,6 +21,7 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
+import { CustomButtonComponent } from '../../../shared/component/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -40,7 +41,7 @@ import { AppErrorDirective } from 'src/app/core/directive/error.directive';
 export class SignInComponent implements OnInit {
   showChild = false;
   showOverlay = false;
-
+  useremail = '';
   loginForm: FormGroup;
   emailError = '';
   passwordError = '';
@@ -69,11 +70,21 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       const redirectUrl = localStorage.getItem('redirectUrl');
+      const email = localStorage.getItem('email');
+      console.log('email from :', email);
+
       this.user$.subscribe((user) => {
         if (user) {
-          if (redirectUrl) {
-            localStorage.removeItem('redirectUrl');
-            this.router.navigateByUrl(redirectUrl);
+          console.log('Logged in user:', this.useremail);
+          if (email === this.useremail) {
+            if (redirectUrl) {
+              localStorage.removeItem('redirectUrl');
+              this.router.navigateByUrl(redirectUrl).then(() => {
+                console.log('Redirecting to:', redirectUrl);
+              });
+            } else {
+              this.router.navigate(['layout/dashboard']);
+            }
           } else {
             this.router.navigate(['layout/dashboard']);
           }
@@ -100,6 +111,11 @@ export class SignInComponent implements OnInit {
       return;
     }
     const { email, password } = this.loginForm.value;
+    this.useremail = email;
+    console.log(this.useremail);
+    if (this.router.url !== '/sign-in') {
+      localStorage.setItem('redirectUrl', this.router.url);
+    }
     this.store.dispatch(authActions.login({ signInData: { email, password } }));
     this.error$.subscribe((error) => {
       if (error) {

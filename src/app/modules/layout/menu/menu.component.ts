@@ -1,13 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  Inject,
-  Input,
-
-  OnInit,
-
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,7 +13,8 @@ import { UserService } from 'src/app/services/page/user.service';
 import { selectUserInfo } from 'src/app/core/store/auth/auth.selectors';
 import { LogoutDialogComponent } from 'src/app/shared/component/logout-dialog/logout-dialog.component';
 import { authActions } from 'src/app/core/store/auth/auth.action';
-import { MyProfileComponent } from "../../pages/my-profile/my-profile.component";
+import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
+import { User } from 'src/app/core/store/type/auth.type';
 
 interface MenuItem {
   id: number;
@@ -34,15 +27,21 @@ interface MenuItem {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, TranslateModule, MyProfileComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    MyProfileComponent,
+  ],
 })
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit {
   @Input() sideNavStatus = false;
   menuItems: MenuItem[] = MENU_ITEMS;
   username = '';
-  usergmail ='';
+  usergmail = '';
   avatarUrl: string | null = null;
-  userInfo$: Observable<any>;
+  userInfo$: Observable<User | null>;
   showChild = false;
 
   constructor(

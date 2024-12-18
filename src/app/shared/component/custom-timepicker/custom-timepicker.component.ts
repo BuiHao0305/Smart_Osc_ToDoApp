@@ -1,5 +1,4 @@
-import { registerLocaleData } from '@angular/common';
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -29,11 +28,17 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
     ReactiveFormsModule,
   ],
 })
-export class CustomTimepickerComponent implements ControlValueAccessor {
+export class CustomTimepickerComponent implements ControlValueAccessor, OnInit {
   selectedTime: Date | null = null;
   timeControl: FormControl = new FormControl();
-  onChange: (value: any) => void = () => {};
-  onTouched: () => void = () => {};
+  // onChange: (value: any) => void = () => {};
+  // onTouched: () => void = () => {};
+
+  private onChange: (value: Date | null) => void = null as unknown as (
+    value: Date | null
+  ) => void;
+
+  private onTouched: () => void = null as unknown as () => void;
 
   ngOnInit(): void {
     this.timeControl.valueChanges.subscribe((value) => {
@@ -41,7 +46,7 @@ export class CustomTimepickerComponent implements ControlValueAccessor {
     });
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string | Date | null): void {
     if (value) {
       if (typeof value === 'string') {
         const [hours, minutes, seconds] = value.split(':');
@@ -63,10 +68,17 @@ export class CustomTimepickerComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn: (value: any) => void): void {
+  registerOnChange(fn: (value: Date | null) => void): void {
     this.onChange = fn;
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled) {
+      this.timeControl.disable({ emitEvent: false });
+    } else {
+      this.timeControl.enable({ emitEvent: false });
+    }
+  }
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }

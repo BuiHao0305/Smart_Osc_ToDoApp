@@ -1,0 +1,54 @@
+.custom-button-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.icon i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.button-text {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: orangered;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-text.hover {
+    background-color: #ffffff;
+    border: 1px solid orangered;
+
+}
+
+.button-text.pressed {
+    background-color: #b0b0b0;
+}
+
+.button-text.disabled {
+    background-color: #f0f0f0;
+    color: #d0d0d0;
+    cursor: not-allowed;
+}
+
+.button-text.loading {
+    color: #999;
+    pointer-events: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button.loading {
+    cursor: progress;
+}

@@ -37,8 +37,11 @@ import { TranslateModule } from '@ngx-translate/core';
 export class CustomDatepickerComponent implements ControlValueAccessor, OnInit {
   selectedDate: Date | null = null;
 
-  private onChange: (value: Date | null) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: Date | null) => void = null as unknown as (
+    value: Date | null
+  ) => void;
+  private onTouched: () => void = null as unknown as () => void;
+
   dateControl: FormControl = new FormControl();
 
   ngOnInit(): void {
@@ -47,7 +50,7 @@ export class CustomDatepickerComponent implements ControlValueAccessor, OnInit {
     });
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string | Date | null): void {
     if (value) {
       this.selectedDate = new Date(value);
       this.dateControl.setValue(this.selectedDate);
@@ -65,7 +68,13 @@ export class CustomDatepickerComponent implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled) {
+      this.dateControl.disable({ emitEvent: false });
+    } else {
+      this.dateControl.enable({ emitEvent: false });
+    }
+  }
 
   onDateChange(date: Date | null): void {
     this.selectedDate = date;

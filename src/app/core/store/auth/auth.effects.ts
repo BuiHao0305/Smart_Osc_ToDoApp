@@ -60,12 +60,14 @@ export class AuthEffects {
       mergeMap(() =>
         this.signInService.getUserInfo().pipe(
           map((userInfo) => {
-            console.log('Thông tin người dùng từ API:', userInfo);
             return authActions.user({ userInfo });
           }),
           tap((action) => {
             console.log('user');
             localStorage.setItem('userInfo', JSON.stringify(action.userInfo));
+            if (action.userInfo && action.userInfo.email) {
+              localStorage.setItem('email', action.userInfo.email);
+            }
           }),
           catchError((error) => {
             return of(authActions.userError({ error }));
