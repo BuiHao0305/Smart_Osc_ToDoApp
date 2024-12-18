@@ -1,0 +1,21 @@
+<div class="custom-button-container">
+  <button
+    class="button-text"
+    [class.hover]="isHovered"
+    [class.pressed]="isPressed"
+    [class.disabled]="isDisabled"
+    [class.loading]="isLoading"
+    (mouseenter)="onHover()"
+    (mouseleave)="onLeave()"
+    (mousedown)="onPress()"
+    (mouseup)="onRelease()"
+    [disabled]="isDisabled || isLoading"
+  >
+    <!-- icon 1 -->
+    <i [class]="icon1Name"></i>
+    <!-- button name -->
+    {{ isLoading ? 'Loading...' : buttonText }}
+    <!-- icon 2 -->
+    <i [class]="icon2Name"></i>
+  </button>
+</div>

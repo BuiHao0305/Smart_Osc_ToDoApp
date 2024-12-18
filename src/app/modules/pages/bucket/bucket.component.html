@@ -104,10 +104,17 @@
     />
     <div class="actions">
       <div class="add-btn">
-        <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
+        <!-- <button tabindex="0" (click)="toggleChild()" (keydown)="toggleChild()">
           <i class="bi bi-plus-lg"></i>
           {{ 'BUCKET.ADD_BUCKET' | translate }}
-        </button>
+        </button> -->
+        <app-button
+          [icon1Name]="'bi bi-plus-lg'"
+          [buttonText]="'BUCKET.ADD_BUCKET' | translate"
+          tabindex="0"
+          (click)="toggleChild()"
+          (keydown)="toggleChild()"
+        ></app-button>
       </div>
     </div>
   </div>
@@ -128,8 +135,8 @@
       </tr>
     </thead>
     @for(items of listBucket; track $index){
-    <tbody >
-      <tr >
+    <tbody>
+      <tr>
         <td class="content-title">{{ items.title }}</td>
         @if (items.public === true) {
 
@@ -137,7 +144,7 @@
 
         } @if (items.public === false) {
 
-        <td ><i tabindex="0" class="bi bi-people text-success"></i></td>
+        <td><i tabindex="0" class="bi bi-people text-success"></i></td>
 
         }
 
@@ -161,7 +168,7 @@
             (click)="onBucketItemsClick(items.id)"
             class="btn btn-link text-secondary p-0 me-3"
           >
-          <i class="bi bi-arrow-right-square-fill"></i>
+            <i class="bi bi-arrow-right-square-fill"></i>
           </button>
         </td>
       </tr>
@@ -174,10 +181,11 @@
   </table>
   }
 
-  <mat-paginator class="mt-2 mb-2"
+  <mat-paginator
+    class="mt-2 mb-2"
     [length]="totalItems"
     [pageSize]="pageSize"
-    [pageIndex]="pageIndex" 
+    [pageIndex]="pageIndex"
     (page)="onPageEvent($event)"
   >
   </mat-paginator>

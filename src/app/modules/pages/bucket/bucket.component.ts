@@ -12,6 +12,7 @@ import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
 import { UpdateBacketComponent } from '../../../shared/component/update-backet/update-backet.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { UrlService } from 'src/app/core/service/urlService';
+import { CustomButtonComponent } from '../../../shared/component/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-bucket',
@@ -28,6 +29,7 @@ import { UrlService } from 'src/app/core/service/urlService';
     TranslateModule,
     RelativeTimePipe,
     UpdateBacketComponent,
+    CustomButtonComponent,
   ],
   providers: [PaginationService],
 })

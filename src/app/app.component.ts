@@ -51,20 +51,17 @@ export class AppComponent implements OnInit {
   // }
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Lắng nghe sự kiện khi điều hướng kết thúc
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
-          // Lưu URL vào localStorage khi điều hướng kết thúc
           localStorage.setItem('lastVisitedUrl', event.urlAfterRedirects);
         }
       });
 
-      // Lấy URL đã lưu từ localStorage và điều hướng đến đó
       const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
       if (lastVisitedUrl) {
-        this.router.navigateByUrl(lastVisitedUrl); // Điều hướng đến URL đã lưu
+        this.router.navigateByUrl(lastVisitedUrl);
       } else {
-        this.router.navigate(['layout/dashboard']); // Nếu không có URL lưu, điều hướng đến trang mặc định
+        this.router.navigate(['layout/dashboard']);
       }
     }
   }

@@ -37,6 +37,9 @@ import { DeadlineWarningDirective } from 'src/app/core/directive/deadlinewarning
   providers: [BucketItemsService, PaginationService],
 })
 export class BucketItemsComponent implements OnInit {
+  isSelecting = false;
+  selectedItems: number[] = [];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchControl = new FormControl('');
   doneControl = new FormControl('');
@@ -54,9 +57,27 @@ export class BucketItemsComponent implements OnInit {
   constructor(
     private bucketItemsService: BucketItemsService,
     private route: ActivatedRoute,
-    private snackBar: SnackbarService,
+
     private router: Router
   ) {}
+  toggleSelectMode(): void {
+    this.isSelecting = !this.isSelecting;
+    if (!this.isSelecting) {
+      this.selectedItems = [];
+      this.showChildUpdate = false;
+    }
+  }
+
+  onItemSelect(taskId: number, event: Event): void {
+    event.stopPropagation();
+    if (this.selectedItems.includes(taskId)) {
+      this.selectedItems = this.selectedItems.filter((id) => id !== taskId);
+    } else {
+      this.selectedItems.push(taskId);
+    }
+
+    console.log('Selected Items:', this.selectedItems);
+  }
 
   ngOnInit(): void {
     const bucketId = this.route.snapshot.paramMap.get('bucketId');
@@ -135,7 +156,6 @@ export class BucketItemsComponent implements OnInit {
   onSelectItem(itemId: number) {
     const selectedItem = this.getItemById(itemId);
     if (selectedItem) {
-      console.log('Selected Item:', selectedItem);
       this.selectedItemId = selectedItem.id;
       this.bucketItemsbyId = selectedItem;
       this.showChildUpdate = true;

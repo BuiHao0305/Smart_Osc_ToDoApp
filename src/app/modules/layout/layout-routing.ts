@@ -5,6 +5,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
 import { CustomTimepickerComponent } from 'src/app/shared/component/custom-timepicker/custom-timepicker.component';
+import { CustomButtonComponent } from 'src/app/shared/component/custom-button/custom-button.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -25,10 +26,10 @@ export const layoutRoutes: Route[] = [
         path: 'bucket-items/:bucketId',
         component: BucketItemsComponent,
       },
-      {
-        path: 'timepicker',
-        component: CustomTimepickerComponent,
-      },
+      // {
+      //   path: 'button',
+      //   component: CustomButtonComponent,
+      // },
     ],
   },
 ];
