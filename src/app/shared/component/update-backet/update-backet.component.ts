@@ -19,16 +19,23 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
 
 import { CommonModule } from '@angular/common';
 import { ListBucket } from 'src/app/core/store/interface/bucket.interface';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../custom-component/delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { CustomStatusComponent } from '../../custom-component/custom-status/custom-status.component';
 
 @Component({
   selector: 'app-update-backet',
   templateUrl: './update-backet.component.html',
   styleUrls: ['./update-backet.component.scss'],
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TranslateModule,
+    CustomStatusComponent,
+  ],
   providers: [BucketService],
 })
 export class UpdateBacketComponent implements OnInit, OnChanges {

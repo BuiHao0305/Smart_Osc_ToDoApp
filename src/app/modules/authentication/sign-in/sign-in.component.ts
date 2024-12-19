@@ -21,7 +21,7 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
-import { CustomButtonComponent } from '../../../shared/component/custom-button/custom-button.component';
+import { CustomButtonComponent } from '../../../shared/custom-component/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-sign-in',

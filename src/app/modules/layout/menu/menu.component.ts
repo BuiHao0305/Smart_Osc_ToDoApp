@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { UserService } from 'src/app/services/page/user.service';
 import { selectUserInfo } from 'src/app/core/store/auth/auth.selectors';
-import { LogoutDialogComponent } from 'src/app/shared/component/logout-dialog/logout-dialog.component';
+import { LogoutDialogComponent } from 'src/app/shared/custom-component/logout-dialog/logout-dialog.component';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
 import { User } from 'src/app/core/store/type/auth.type';

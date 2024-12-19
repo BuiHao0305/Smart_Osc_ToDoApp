@@ -1,0 +1,30 @@
+<div class="button-group">
+  <button
+    type="button"
+    class="status-button"
+    [ngClass]="{ active: value === true }"
+    (click)="changeStatus(true)"
+  >
+    <ng-container *ngIf="iconStart; else publicContent">
+      <i [class]="iconStart" class="icon text-danger"></i>
+    </ng-container>
+    <ng-template #publicContent>
+      <ng-content select="[public-content]"></ng-content>
+    </ng-template>
+    <span *ngIf="status1">{{ status1 }}</span>
+  </button>
+  <button
+    type="button"
+    class="status-button"
+    [ngClass]="{ active: value === false }"
+    (click)="changeStatus(false)"
+  >
+    <ng-container *ngIf="iconEnd; else publicContent">
+      <i [class]="iconEnd" class="icon text-success"></i>
+    </ng-container>
+    <ng-template #publicContent>
+      <ng-content select="[public-content]"></ng-content>
+    </ng-template>
+    <span *ngIf="status2">{{ status2 }}</span>
+  </button>
+</div>

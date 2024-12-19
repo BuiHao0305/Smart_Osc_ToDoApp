@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 import { SnackbarService } from '../../snackbar/snackbar.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { CustomDatepickerComponent } from '../custom-datepicker/custom-datepicker.component';
-import { CustomTimepickerComponent } from '../custom-timepicker/custom-timepicker.component';
+import { CustomDatepickerComponent } from '../../custom-component/custom-datepicker/custom-datepicker.component';
+import { CustomTimepickerComponent } from '../../custom-component/custom-timepicker/custom-timepicker.component';
 
 @Component({
   selector: 'app-add-content-items',

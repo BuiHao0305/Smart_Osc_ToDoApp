@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './logout-dialog.component.html',
   styleUrls: ['./logout-dialog.component.scss'],
   standalone: true,
-  imports: [MatDialogModule,TranslateModule], 
+  imports: [MatDialogModule, TranslateModule],
 })
 export class LogoutDialogComponent {
   constructor(public dialogRef: MatDialogRef<LogoutDialogComponent>) {}
