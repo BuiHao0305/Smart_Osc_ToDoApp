@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ButtonSize, ButtonStyle } from './custombutton.component';
 
 @Component({
   selector: 'app-button',
@@ -8,12 +9,25 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./custom-button.component.scss'],
   standalone: true,
   imports: [FormsModule, CommonModule],
+  host: {
+    class: 'btn',
+    '[class.btn-primary]': `styleButton === 'primary'`,
+    '[class.btn-secondary]': `styleButton === 'secondary'`,
+    '[class.btn-tertiary]': `styleButton === 'tertiary'`,
+    '[class.btn-neutral]': `styleButton === 'neutral'`,
+    '[class.btn-small]': `size === 'small'`,
+    '[class.btn-medium]': `size === 'medium'`,
+    '[class.btn-large]': `size === 'large'`,
+    '[class.btn-disabled]': 'isDisabled',
+    '[class.btn-loading]': 'isLoading',
+  },
 })
 export class CustomButtonComponent {
   @Input() buttonText = '';
-  @Input() icon1Name = '';
-  @Input() icon2Name = '';
-
+  @Input() iconStart = '';
+  @Input() iconEnd = '';
+  @Input() size: ButtonSize = 'medium'; // Mặc định là medium
+  @Input() styleButton: ButtonStyle = 'primary'; // Mặc định là primary
   @Input() isDisabled = false;
   @Input() isLoading = false;
 

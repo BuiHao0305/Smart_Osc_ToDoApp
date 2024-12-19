@@ -18,11 +18,11 @@ import { CommonModule } from '@angular/common';
 import { BucketItemsService } from 'src/app/services/page/bucket-items.service';
 
 import { BucketItem } from 'src/app/core/store/interface/bucket-items.interface';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../custom-component/delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-import { CustomDatepickerComponent } from '../custom-datepicker/custom-datepicker.component';
-import { CustomTimepickerComponent } from '../custom-timepicker/custom-timepicker.component';
+import { CustomDatepickerComponent } from '../../custom-component/custom-datepicker/custom-datepicker.component';
+import { CustomTimepickerComponent } from '../../custom-component/custom-timepicker/custom-timepicker.component';
 
 @Component({
   selector: 'app-update-items',

@@ -1,0 +1,24 @@
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-button {
+    cursor: pointer;
+    border: 1px solid #9c9c9c;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.button-group .icon {
+    margin-right: 10px;
+}
+
+.status-button.active {
+    border-color: #002fff;
+    background-color: #e7f3ff;
+}
+
+.status-button.active {
+    font-weight: bold;
+}

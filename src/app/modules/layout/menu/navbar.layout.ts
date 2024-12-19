@@ -18,12 +18,12 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: 'bi bi-list-check',
     route: '/layout/bucket',
   },
-  // {
-  //   id: 5,
-  //   name: 'LAYOUT.ADD_SUBJECT',
-  //   icon: 'bi bi-plus',
-  //   route: '/layout/button',
-  // },
+  {
+    id: 5,
+    name: 'LAYOUT.ADD_SUBJECT',
+    icon: 'bi bi-plus',
+    route: '/layout/status',
+  },
   // { id: 6, name: 'LAYOUT.CHAT', icon: 'bi bi-chat' },
   // { id: 7, name: 'LAYOUT.BUDGET', icon: 'bi-wallet' },
 ];

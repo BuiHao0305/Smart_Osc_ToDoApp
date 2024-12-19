@@ -24,30 +24,15 @@
         </div>
         }
         <label for="public">{{ 'BUCKET_MODAL.STATUS' | translate }}:</label>
-        <div class="button-group">
-          <button
-            type="button"
-            class="status-button"
-            [ngClass]="{
-              active: bucketForm.get('public')?.value === false
-            }"
-            (click)="setDoneStatus(false)"
-          >
-            <i class="bi bi-check-circle-fill text-success"></i>
-            {{ 'BUCKET_MODAL.PUBLIC' | translate }}
-          </button>
-          <button
-            type="button"
-            class="status-button"
-            [ngClass]="{
-              active: bucketForm.get('public')?.value === true
-            }"
-            (click)="setDoneStatus(true)"
-          >
-            <i class="bi bi-lock text-danger"></i>
-            {{ 'BUCKET_MODAL.PRIVATE' | translate }}
-          </button>
-        </div>
+
+        <app-status
+          [value]="bucketForm.get('public')?.value"
+          [iconEnd]="'bi bi-people'"
+          [iconStart]="'bi bi-lock'"
+          [status2]="'BUCKET_MODAL.PUBLIC' | translate"
+          [status1]="'BUCKET_MODAL.PRIVATE' | translate"
+          (valueChange)="setDoneStatus($event)"
+        ></app-status>
         @if(bucketData){
         <div class="mt-4">
           <p>
