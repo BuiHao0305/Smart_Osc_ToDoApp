@@ -36,7 +36,6 @@ export class AuthServiceService {
   saveUser(emai: string): void {
     if (this.isBrowser()) {
       sessionStorage.setItem('user', emai);
-      console.log('user', emai);
     }
   }
   getUser() {

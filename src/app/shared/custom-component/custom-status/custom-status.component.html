@@ -6,7 +6,7 @@
     (click)="changeStatus(true)"
   >
     <ng-container *ngIf="iconStart; else publicContent">
-      <i [class]="iconStart" class="icon text-danger"></i>
+      <i [class]="iconStart" class="icon text-success"></i>
     </ng-container>
     <ng-template #publicContent>
       <ng-content select="[public-content]"></ng-content>
@@ -20,7 +20,7 @@
     (click)="changeStatus(false)"
   >
     <ng-container *ngIf="iconEnd; else publicContent">
-      <i [class]="iconEnd" class="icon text-success"></i>
+      <i [class]="iconEnd" class="icon text-danger"></i>
     </ng-container>
     <ng-template #publicContent>
       <ng-content select="[public-content]"></ng-content>

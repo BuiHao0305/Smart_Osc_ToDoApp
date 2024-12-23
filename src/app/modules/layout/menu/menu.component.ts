@@ -11,10 +11,10 @@ import { Store } from '@ngrx/store';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { UserService } from 'src/app/services/page/user.service';
 import { selectUserInfo } from 'src/app/core/store/auth/auth.selectors';
-import { LogoutDialogComponent } from 'src/app/shared/custom-component/logout-dialog/logout-dialog.component';
 import { authActions } from 'src/app/core/store/auth/auth.action';
 import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
 import { User } from 'src/app/core/store/type/auth.type';
+import { CustomDialogComponent } from 'src/app/shared/custom-component/custom-dialog/custom-dialog.component';
 
 interface MenuItem {
   id: number;
@@ -51,6 +51,7 @@ export class MenuComponent implements OnInit {
     private store: Store,
     private authService: AuthServiceService,
     private userService: UserService,
+
     @Inject(PLATFORM_ID) private platformId: string | undefined
   ) {
     this.userInfo$ = this.store.select(selectUserInfo);
@@ -91,8 +92,15 @@ export class MenuComponent implements OnInit {
     this.showChild = value;
   }
   logoutUser() {
-    const dialogRef = this.dialog.open(LogoutDialogComponent);
-
+    const dialogRef = this.dialog.open(CustomDialogComponent, {
+      data: {
+        icon: 'bi bi-exclamation-triangle',
+        title: 'Confirm Logout',
+        message: 'Are you sure you want to logout?',
+        cancelText: 'Cancel',
+        confirmText: 'Logout',
+      },
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.store.dispatch(authActions.logOut());

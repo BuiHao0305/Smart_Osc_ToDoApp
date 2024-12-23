@@ -19,6 +19,5 @@ export class CustomStatusComponent {
 
   changeStatus(status: boolean): void {
     this.valueChange.emit(status);
-    console.log(status);
   }
 }

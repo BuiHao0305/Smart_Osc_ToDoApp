@@ -26,30 +26,14 @@
         <label for="public"
           >{{ 'BUCKET_TITLE_MODAL.STATUS' | translate }}:</label
         >
-        <div class="button-group">
-          <button
-            type="button"
-            class="status-button"
-            [ngClass]="{
-              active: updateContentForm.get('done')?.value === true
-            }"
-            (click)="setDoneStatus(true)"
-          >
-            <i class="bi bi-check-circle-fill text-success"></i>
-            {{ 'BUCKET_TITLE_MODAL.TRUE' | translate }}
-          </button>
-          <button
-            type="button"
-            class="status-button"
-            [ngClass]="{
-              active: updateContentForm.get('done')?.value === false
-            }"
-            (click)="setDoneStatus(false)"
-          >
-            <i class="bi bi-alarm text-danger"></i>
-            {{ 'BUCKET_TITLE_MODAL.FALSE' | translate }}
-          </button>
-        </div>
+        <app-status
+          [value]="updateContentForm.get('done')?.value"
+          [iconStart]="'bi bi-people'"
+          [iconEnd]="'bi bi-lock'"
+          [status1]="'BUCKET_TITLE_MODAL.TRUE' | translate"
+          [status2]="'BUCKET_TITLE_MODAL.FALSE' | translate"
+          (valueChange)="setDoneStatus($event)"
+        ></app-status>
         <div class="picker">
           <app-custom-datepicker
             formControlName="date"

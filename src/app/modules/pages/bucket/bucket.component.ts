@@ -117,7 +117,6 @@ export class BucketComponent implements OnInit {
   }
 
   onBucketClick(bucketId: number): void {
-    console.log('Selected Bucket ID:', bucketId);
     this.selectedBucketId = bucketId;
   }
 

@@ -27,10 +27,10 @@
 
         <app-status
           [value]="bucketForm.get('public')?.value"
-          [iconEnd]="'bi bi-people'"
-          [iconStart]="'bi bi-lock'"
-          [status2]="'BUCKET_MODAL.PUBLIC' | translate"
-          [status1]="'BUCKET_MODAL.PRIVATE' | translate"
+          [iconStart]="'bi bi-people'"
+          [iconEnd]="'bi bi-lock'"
+          [status1]="'BUCKET_MODAL.PUBLIC' | translate"
+          [status2]="'BUCKET_MODAL.PRIVATE' | translate"
           (valueChange)="setDoneStatus($event)"
         ></app-status>
         @if(bucketData){

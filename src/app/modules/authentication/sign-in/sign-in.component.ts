@@ -21,7 +21,6 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
-import { CustomButtonComponent } from '../../../shared/custom-component/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -71,17 +70,13 @@ export class SignInComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       const redirectUrl = localStorage.getItem('redirectUrl');
       const email = localStorage.getItem('email');
-      console.log('email from :', email);
 
       this.user$.subscribe((user) => {
         if (user) {
-          console.log('Logged in user:', this.useremail);
           if (email === this.useremail) {
             if (redirectUrl) {
               localStorage.removeItem('redirectUrl');
-              this.router.navigateByUrl(redirectUrl).then(() => {
-                console.log('Redirecting to:', redirectUrl);
-              });
+              this.router.navigateByUrl(redirectUrl).then();
             } else {
               this.router.navigate(['layout/dashboard']);
             }
@@ -112,7 +107,7 @@ export class SignInComponent implements OnInit {
     }
     const { email, password } = this.loginForm.value;
     this.useremail = email;
-    console.log(this.useremail);
+
     if (this.router.url !== '/sign-in') {
       localStorage.setItem('redirectUrl', this.router.url);
     }

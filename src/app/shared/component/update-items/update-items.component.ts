@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomDatepickerComponent } from '../../custom-component/custom-datepicker/custom-datepicker.component';
 import { CustomTimepickerComponent } from '../../custom-component/custom-timepicker/custom-timepicker.component';
+import { CustomStatusComponent } from '../../custom-component/custom-status/custom-status.component';
 
 @Component({
   selector: 'app-update-items',
@@ -35,6 +36,7 @@ import { CustomTimepickerComponent } from '../../custom-component/custom-timepic
     TranslateModule,
     CustomDatepickerComponent,
     CustomTimepickerComponent,
+    CustomStatusComponent,
   ],
 })
 export class UpdateItemsComponent implements OnInit, OnChanges {
@@ -69,6 +71,7 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
 
       if (this.bucketItemsbyId.deadline) {
         const deadlineDate = new Date(this.bucketItemsbyId.deadline);
+
         if (this.isValidDate(deadlineDate)) {
           const datePart = deadlineDate.toISOString().split('T')[0];
           const timePart = deadlineDate.toTimeString().split(' ')[0];
@@ -78,6 +81,8 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
             date: datePart,
             time: timePart,
           });
+          console.log(datePart);
+          console.log(timePart);
         } else {
           console.error(
             'Invalid deadline date:',
@@ -148,11 +153,12 @@ export class UpdateItemsComponent implements OnInit, OnChanges {
       });
   }
 
-  combineDateAndTime(date: Date, time: Date): Date {
+  combineDateAndTime(date: string, time: string): Date {
+    const [hours, minutes, seconds] = time.split(':').map(Number);
     const combinedDate = new Date(date);
-    combinedDate.setHours(time.getHours());
-    combinedDate.setMinutes(time.getMinutes());
-    combinedDate.setSeconds(time.getSeconds());
+    combinedDate.setHours(hours);
+    combinedDate.setMinutes(minutes);
+    combinedDate.setSeconds(seconds || 0); // Set seconds to 0 if not provided
     return combinedDate;
   }
 

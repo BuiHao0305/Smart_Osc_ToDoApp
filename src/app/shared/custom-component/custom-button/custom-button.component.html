@@ -6,6 +6,7 @@
     (mousedown)="onPress()"
     (mouseup)="onRelease()"
     [disabled]="isDisabled || isLoading"
+    [style.cursor]="isLoading ? 'not-allowed' : 'pointer'"
   >
     <!-- icon 1 -->
     <i [class]="iconStart"></i>

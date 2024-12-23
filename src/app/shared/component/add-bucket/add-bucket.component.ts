@@ -67,7 +67,7 @@ export class AddBucketComponent implements OnInit {
         },
       });
     } else {
-      console.log('Form is invalid');
+      this.snackBar.show('cancel');
     }
   }
 

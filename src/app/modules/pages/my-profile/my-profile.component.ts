@@ -32,7 +32,6 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class MyProfileComponent implements OnInit {
- 
   @Output() previewVisible = new EventEmitter<boolean>();
   @Output() avatarUpdated = new EventEmitter<void>();
   profileForm: FormGroup;
@@ -116,14 +115,13 @@ export class MyProfileComponent implements OnInit {
           this.router.navigate(['layout/dashboard']);
           this.userService.triggerAvatarUpdate();
           this.changeVisible();
-         
         },
         (error) => {
           console.error('Cập nhật thất bại', error);
         }
       );
     } else {
-      console.log('Form không hợp lệ');
+      this.snackbar.show('cancel');
     }
   }
   private base64ToFile(base64: string, filename: string): File {

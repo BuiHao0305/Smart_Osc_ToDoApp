@@ -6,22 +6,20 @@ import { AppLang } from 'src/app/core/enum/languages.enum';
   providedIn: 'root',
 })
 export class AppLangService {
-  private currentLangContextSubject = new BehaviorSubject<AppLang>(AppLang.SIGN_IN); 
-  currentLangContext$ = this.currentLangContextSubject.asObservable(); 
+  private currentLangContextSubject = new BehaviorSubject<AppLang>(
+    AppLang.SIGN_IN
+  );
+  currentLangContext$ = this.currentLangContextSubject.asObservable();
 
   setLangContext(langContext: AppLang): void {
-    this.currentLangContextSubject.next(langContext); 
+    this.currentLangContextSubject.next(langContext);
   }
 
   getLangContext(): AppLang {
-    return this.currentLangContextSubject.getValue(); 
+    return this.currentLangContextSubject.getValue();
   }
- 
 
   clearLangContext(): void {
     this.currentLangContextSubject.next(AppLang.SIGN_IN);
-    console.log('Lang Context cleared to default');
   }
 }
-
-
