@@ -44,11 +44,11 @@
     <tbody>
       <tr>
         <td class="content-title">{{ items.title }}</td>
-        @if (items.public === true) {
+        @if (items.public === false) {
 
         <td><i tabindex="0" class="bi bi-lock text-danger"></i></td>
 
-        } @if (items.public === false) {
+        } @if (items.public === true) {
 
         <td><i tabindex="0" class="bi bi-people text-success"></i></td>
 

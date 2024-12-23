@@ -16,7 +16,6 @@ export class SignInServiceService {
   constructor(private http: HttpClient) {}
 
   login(loginData: SignIn): Observable<SignInResponse> {
-    console.log(loginData);
     return this.http.post<SignInResponse>(
       `${environments.API_URL}/${environments.ENDPOINT_METHOD.LOGIN}`,
       loginData

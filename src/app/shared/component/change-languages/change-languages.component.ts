@@ -20,7 +20,6 @@ export class ChangeLanguagesComponent implements OnInit {
   }
 
   changeLanguage(lang: string) {
-    console.log(`Changing language to: ${lang}`);
     this.translate.use(lang);
     this.cdr.detectChanges();
     this.setSessionStorageItem('lang', lang);

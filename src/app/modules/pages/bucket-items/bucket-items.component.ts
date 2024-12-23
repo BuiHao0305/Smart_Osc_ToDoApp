@@ -7,14 +7,15 @@ import { AddContentItemsComponent } from '../../../shared/component/add-content-
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PaginationService } from 'src/app/services/page/pagination.service';
 import { UpdateItemsComponent } from '../../../shared/component/update-items/update-items.component';
-
 import { BucketItem } from 'src/app/core/store/interface/bucket-items.interface';
 import { MatInputModule } from '@angular/material/input';
 import { debounceTime, switchMap } from 'rxjs';
 import { RelativeTimePipe } from 'src/app/shared/pipe/relative-time.pipe';
 import { TranslateModule } from '@ngx-translate/core';
-import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { DeadlineWarningDirective } from 'src/app/core/directive/deadlinewarning.direcitve';
+import { CustomDialogComponent } from 'src/app/shared/custom-component/custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-bucket-items',
@@ -57,8 +58,9 @@ export class BucketItemsComponent implements OnInit {
   constructor(
     private bucketItemsService: BucketItemsService,
     private route: ActivatedRoute,
-
-    private router: Router
+    private dialog: MatDialog,
+    private router: Router,
+    private snackbar: SnackbarService
   ) {}
   toggleSelectMode(): void {
     this.isSelecting = !this.isSelecting;
@@ -67,16 +69,51 @@ export class BucketItemsComponent implements OnInit {
       this.showChildUpdate = false;
     }
   }
-
-  onItemSelect(taskId: number, event: Event): void {
-    event.stopPropagation();
-    if (this.selectedItems.includes(taskId)) {
-      this.selectedItems = this.selectedItems.filter((id) => id !== taskId);
-    } else {
+  toggleCheckbox(taskId: number): void {
+    const index = this.selectedItems.indexOf(taskId);
+    if (index === -1) {
       this.selectedItems.push(taskId);
+    } else {
+      this.selectedItems.splice(index, 1);
     }
+    console.log(this.selectedItems);
+  }
 
-    console.log('Selected Items:', this.selectedItems);
+  deleteSelectedItems(): void {
+    const bucketId = this.route.snapshot.paramMap.get('bucketId');
+    if (!bucketId || this.selectedItems.length === 0) {
+      return;
+    }
+    const dialogRef = this.dialog.open(CustomDialogComponent, {
+      data: {
+        icon: 'bi bi-exclamation-triangle',
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete the selected items?',
+        cancelText: 'Cancel',
+        confirmText: 'Delete',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.isLoading = true;
+
+        const deleteRequests = this.selectedItems.map((itemId) =>
+          this.bucketItemsService.deleteItem(+bucketId, itemId)
+        );
+
+        Promise.all(deleteRequests.map((req) => req.toPromise()))
+          .then(() => {
+            this.selectedItems = [];
+            this.onReloadData();
+          })
+          .finally(() => {
+            this.isLoading = false;
+          });
+      } else {
+        this.snackbar.show('Delete cancel');
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -211,26 +248,6 @@ export class BucketItemsComponent implements OnInit {
         },
       });
   }
-
-  // doneFilterControl(): void {
-  //   this.doneControl.valueChanges.subscribe((done) => {
-  //     const bucketId = this.route.snapshot.paramMap.get('bucketId');
-  //     const searchQuery = this.searchControl.value || '';
-  //     if (bucketId) {
-  //       const doneValue = done === null ? '' : done;
-
-  //       this.updateQueryParams(1, searchQuery, doneValue);
-
-  //       this.loadBucketItems(
-  //         +bucketId,
-  //         1,
-  //         this.pageSize,
-  //         searchQuery,
-  //         doneValue
-  //       );
-  //     }
-  //   });
-  // }
 
   doneFilterControl(): void {
     this.doneControl.valueChanges.subscribe((done) => {

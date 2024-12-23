@@ -22,7 +22,6 @@ export class DeadlineWarningDirective implements OnChanges {
     const deadlineMoment = moment(this.deadline);
     const now = moment();
     const hoursLeft = deadlineMoment.diff(now, 'hours');
-    const minutesLeft = deadlineMoment.diff(now, 'minutes');
 
     // Trường hợp deadline còn hơn 12 giờ
     if (hoursLeft > 12) {

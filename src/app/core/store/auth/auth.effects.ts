@@ -23,7 +23,7 @@ export class AuthEffects {
         this.signInService.login(signInData).pipe(
           map((response) => {
             this.authService.saveToken(response.access_token);
-            console.log(response);
+
             if (response.message) {
               this.snackbar.show(response.message);
             }
@@ -63,7 +63,6 @@ export class AuthEffects {
             return authActions.user({ userInfo });
           }),
           tap((action) => {
-            console.log('user');
             localStorage.setItem('userInfo', JSON.stringify(action.userInfo));
             if (action.userInfo && action.userInfo.email) {
               localStorage.setItem('email', action.userInfo.email);

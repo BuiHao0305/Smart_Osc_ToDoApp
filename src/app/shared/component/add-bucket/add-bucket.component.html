@@ -36,17 +36,17 @@
 
         <app-status
           [value]="bucketForm.get('public')?.value"
-          [iconEnd]="'bi bi-people'"
-          [iconStart]="'bi bi-lock'"
-          [status2]="'BUCKET_MODAL.PUBLIC' | translate"
-          [status1]="'BUCKET_MODAL.PRIVATE' | translate"
+          [iconStart]="'bi bi-people'"
+          [iconEnd]="'bi bi-lock'"
+          [status1]="'BUCKET_MODAL.PUBLIC' | translate"
+          [status2]="'BUCKET_MODAL.PRIVATE' | translate"
           (valueChange)="setDoneStatus($event)"
         ></app-status>
 
-        <button class="btn btn-lg loading-btn" *ngIf="loading">
+        <!-- <button class="btn btn-lg loading-btn" *ngIf="loading">
           <span class="spinner-border spinner-border-sm"></span>
           {{ 'BUCKET_MODAL.WAITING' | translate }}
-        </button>
+        </button> -->
         <div class="modal-footer">
           <app-button
             [iconStart]="'bi bi-plus'"
@@ -54,6 +54,7 @@
             [isLoading]="bucketForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
             [styleButton]="'neutral'"
+            [isDisabled]="loading"
             [buttonText]="'BUCKET_MODAL.ADD_BUCKET' | translate"
             tabindex="0"
           ></app-button>

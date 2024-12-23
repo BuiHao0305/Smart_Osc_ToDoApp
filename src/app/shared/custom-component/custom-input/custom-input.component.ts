@@ -28,28 +28,41 @@ export class CustomInputComponent implements ControlValueAccessor {
   @Input() label = 'Noi Dung';
   @Input() placeholder = '';
 
-  value: any = '';
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  value = '';
 
-  writeValue(value: any): void {
-    this.value = value;
+  private onChange: (value: string | null) => void = () => {
+    return null;
+  };
+  private onTouched: () => void = () => {
+    return null;
+  };
+
+  writeValue(value: string | null): void {
+    this.value = value || '';
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string | null) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(): void {
+    console.log();
+  }
 
   onInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.value = input.value;
-    this.onChange(this.value);
-    this.onTouched();
+
+    if (this.onChange) {
+      this.onChange(this.value);
+    }
+
+    if (this.onTouched) {
+      this.onTouched();
+    }
   }
 }
