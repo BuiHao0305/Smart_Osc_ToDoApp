@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ChangeLanguagesComponent } from '../../../shared/component/change-languages/change-languages.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ThemeSwitcherComponent } from '../../../shared/component/theme-switcher/theme-switcher.component';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,12 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [
     RouterModule,
-
     ChangeLanguagesComponent,
     TranslateModule,
+    ThemeSwitcherComponent,
   ],
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   today: Date = new Date();
   dayOfWeek = '';
   formattedDate = '';
@@ -25,9 +26,14 @@ export class HeaderComponent implements OnInit{
   }
 
   formatDate(): void {
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long' };
-    this.dayOfWeek = this.today.toLocaleDateString('en-US', { weekday: 'long' });
-    this.formattedDate = this.today.toLocaleDateString('en-GB', options); 
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+    };
+    this.dayOfWeek = this.today.toLocaleDateString('en-US', {
+      weekday: 'long',
+    });
+    this.formattedDate = this.today.toLocaleDateString('en-GB', options);
   }
-
 }

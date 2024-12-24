@@ -21,6 +21,7 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
+import { ThemeSwitcherComponent } from '../../../shared/component/theme-switcher/theme-switcher.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,6 +36,7 @@ import { AppErrorDirective } from 'src/app/core/directive/error.directive';
     ChangeLanguagesComponent,
     ForgotPasswordComponent,
     AppErrorDirective,
+    ThemeSwitcherComponent,
   ],
 })
 export class SignInComponent implements OnInit {

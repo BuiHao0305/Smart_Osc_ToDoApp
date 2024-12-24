@@ -43,11 +43,16 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     { provide: NZ_I18N, useValue: en_US },
+
     provideHttpClient(withInterceptorsFromDi()),
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     ...animationsProviders,
     ...translationProviders,
-    provideAnimationsAsync(), provideNzI18n(en_US), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient(),
+    provideAnimationsAsync(),
+    provideNzI18n(en_US),
+    importProvidersFrom(FormsModule),
+    provideAnimationsAsync(),
+    provideHttpClient(),
   ],
 };

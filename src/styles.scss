@@ -8,11 +8,21 @@
 html,
 body {
     height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-body {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: #f8f9fa;
-    margin: 0;
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+
+}
+
+.dark-mode {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
 
 }
