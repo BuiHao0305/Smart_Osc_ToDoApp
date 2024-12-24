@@ -9,17 +9,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/TodoApp",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
-        "polyfills": [
-          "zone.js",
-          "@angular/localize/init"
-        ],
+        "polyfills": ["zone.js", "@angular/localize/init"],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -40,7 +35,9 @@
           "node_modules/bootstrap/dist/css/bootstrap.min.css",
           "node_modules/bootstrap-icons/font/bootstrap-icons.css",
           "node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css",
-          "node_modules/@coreui/coreui/dist/css/coreui.min.css"
+          "node_modules/@coreui/coreui/dist/css/coreui.min.css",
+          "src/app/shared/component/theme-switcher/dark.scss",
+          "src/app/shared/component/theme-switcher/light.scss"
         ],
         "scripts": [
           "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -58,7 +55,7 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "2mb",
+              "maximumWarning": "3mb",
               "maximumError": "10mb"
             },
             {
@@ -98,16 +95,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "./src"
-        ]
+        "lintFilePatterns": ["./src"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectName}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
       "options": {
         "jestConfig": "jest.config.ts"
       }

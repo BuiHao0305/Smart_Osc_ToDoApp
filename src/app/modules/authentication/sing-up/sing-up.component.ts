@@ -20,6 +20,7 @@ import {
 } from 'src/app/core/store/auth/auth.selectors';
 import { ChangeLanguagesComponent } from 'src/app/shared/component/change-languages/change-languages.component';
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
+import { ThemeSwitcherComponent } from '../../../shared/component/theme-switcher/theme-switcher.component';
 
 @Component({
   selector: 'app-sing-up',
@@ -33,6 +34,7 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
     ChangeLanguagesComponent,
     TranslateModule,
     AppErrorDirective,
+    ThemeSwitcherComponent,
   ],
 })
 export class SingUpComponent {

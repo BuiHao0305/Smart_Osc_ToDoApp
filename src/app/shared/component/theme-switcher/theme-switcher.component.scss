@@ -1,0 +1,14 @@
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background: #fff;
+}

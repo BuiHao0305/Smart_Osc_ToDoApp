@@ -1,18 +1,24 @@
-
 <nav class="navbar">
-  <p class="navbar-brand mt-1" ><span>ToDoApp</span> BuiHao</p>
-  <form class="d-flex mx-auto" style="width: 50%;">
-      <input class="form-control me-2" type="search" placeholder="{{ 'LAYOUT.SEARCH' | translate }}" aria-label="Search">
-      <button class="btn btn-search" type="submit"><i class="bi bi-search"></i></button>
+  <p class="navbar-brand mt-1"><span>ToDoApp</span> BuiHao</p>
+  <form class="d-flex mx-auto" style="width: 50%">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="{{ 'LAYOUT.SEARCH' | translate }}"
+      aria-label="Search"
+    />
+    <button class="btn btn-search" type="submit">
+      <i class="bi bi-search"></i>
+    </button>
   </form>
   <div class="d-flex align-items-center">
     <app-change-languages></app-change-languages>
-      <button class="btn btn-icon"><i class="bi bi-bell"></i></button>
-      <button class="btn btn-icon"><i class="bi bi-calendar"></i></button>
-      <div class="ms-3 text-end">
-        <div>{{ dayOfWeek }}</div>
-        <div class="date">{{ formattedDate }}</div>
-      </div>
+    <app-theme-switcher></app-theme-switcher>
+    <button class="btn btn-icon"><i class="bi bi-bell"></i></button>
+    <button class="btn btn-icon"><i class="bi bi-calendar"></i></button>
+    <div class="ms-3 text-end">
+      <div>{{ dayOfWeek }}</div>
+      <div class="date">{{ formattedDate }}</div>
+    </div>
   </div>
 </nav>
-
