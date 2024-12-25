@@ -28,10 +28,31 @@
             formControlName="date"
             class="mt-2"
           ></app-custom-datepicker>
+
+          <span
+            [error]="addcontentForm.get('date')?.errors"
+            [params]="{ fieldName: 'date' }"
+            [show]="
+              addcontentForm.get('date')?.dirty ||
+              (addcontentForm.get('date')?.touched ?? false)
+            "
+            class="text-danger"
+          ></span>
+
           <app-custom-timepicker
             formControlName="time"
             class="mt-2"
           ></app-custom-timepicker>
+
+          <span
+            [error]="addcontentForm.get('time')?.errors"
+            [params]="{ fieldName: 'time' }"
+            [show]="
+              addcontentForm.get('time')?.dirty ||
+              (addcontentForm.get('time')?.touched ?? false)
+            "
+            class="text-danger"
+          ></span>
         </div>
         @if(loading){
         <button class="btn btn-lg loading-btn">

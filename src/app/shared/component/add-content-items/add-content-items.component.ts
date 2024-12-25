@@ -11,6 +11,7 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomDatepickerComponent } from '../../custom-component/custom-datepicker/custom-datepicker.component';
 import { CustomTimepickerComponent } from '../../custom-component/custom-timepicker/custom-timepicker.component';
+import { AppErrorDirective } from 'src/app/core/directive/error.directive';
 
 @Component({
   selector: 'app-add-content-items',
@@ -19,6 +20,7 @@ import { CustomTimepickerComponent } from '../../custom-component/custom-timepic
   imports: [
     ReactiveFormsModule,
     TranslateModule,
+    AppErrorDirective,
     CustomDatepickerComponent,
     CustomTimepickerComponent,
   ],
