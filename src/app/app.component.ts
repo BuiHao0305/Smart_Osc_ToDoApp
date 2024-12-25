@@ -26,43 +26,43 @@ export class AppComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: string
   ) {}
 
-  // ngOnInit(): void {
-  //   this.router.events.subscribe((event) => {
-  //     if (event instanceof NavigationEnd) {
-  //       this.checkTokenAndRedirect();
-  //     }
-  //   });
-  // }
-  // checkTokenAndRedirect(): void {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     const token = localStorage.getItem('access_token');
-  //     if (token && this.authService.isTokenValid(token)) {
-  //       const currentUrl = this.router.url;
-  //       if (currentUrl === '/sign-in') {
-  //         this.router.navigate(['layout/dashboard']);
-  //       }
-  //     } else {
-  //       const currentUrl = this.router.url;
-  //       if (currentUrl !== '/sign-in' && currentUrl !== '/sign-up') {
-  //         this.router.navigate(['/sign-in']);
-  //       }
-  //     }
-  //   }
-  // }
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.checkTokenAndRedirect();
+      }
+    });
+  }
+  checkTokenAndRedirect(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          localStorage.setItem('lastVisitedUrl', event.urlAfterRedirects);
+      const token = localStorage.getItem('access_token');
+      if (token && this.authService.isTokenValid(token)) {
+        const currentUrl = this.router.url;
+        if (currentUrl === '/sign-in') {
+          this.router.navigate(['layout/dashboard']);
         }
-      });
-
-      const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
-      if (lastVisitedUrl) {
-        this.router.navigateByUrl(lastVisitedUrl);
       } else {
-        this.router.navigate(['layout/dashboard']);
+        const currentUrl = this.router.url;
+        if (currentUrl !== '/sign-in' && currentUrl !== '/sign-up') {
+          this.router.navigate(['/sign-in']);
+        }
       }
     }
   }
+  // ngOnInit(): void {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     this.router.events.subscribe((event) => {
+  //       if (event instanceof NavigationEnd) {
+  //         localStorage.setItem('lastVisitedUrl', event.urlAfterRedirects);
+  //       }
+  //     });
+
+  //     const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
+  //     if (lastVisitedUrl) {
+  //       this.router.navigateByUrl(lastVisitedUrl);
+  //     } else {
+  //       this.router.navigate(['layout/dashboard']);
+  //     }
+  //   }
+  // }
 }

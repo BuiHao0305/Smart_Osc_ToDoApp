@@ -1,0 +1,81 @@
+// ===== Primary Colors =====
+$primary-color: #007bff;
+$primary-light: #69b3ff;
+$primary-dark: #0056b3;
+
+// ===== Secondary Colors =====
+$secondary-color: #6c757d;
+$secondary-light: #a2a9b0;
+$secondary-dark: #494f54;
+
+// ===== Success Colors =====
+$success-color: #28a745;
+$success-light: #81d28b;
+$success-dark: #1b6d2a;
+
+// ===== Danger Colors =====
+$danger-color: #dc3545;
+$danger-light: #f898a3;
+$danger-dark: #9b2431;
+
+// ===== Warning Colors =====
+$warning-color: #ffc107;
+$warning-light: #ffe680;
+$warning-dark: #b38604;
+
+// ===== Info Colors =====
+$info-color: #17a2b8;
+$info-light: #81d6e1;
+$info-dark: #106b7a;
+// ===== Neutral / Grayscale =====
+$white: #ffffff;
+$light-gray: #f8f9fa;
+$gray: #ced4da;
+$dark-gray: #495057;
+$black: #000000;
+
+// ===== Background Colors =====
+$background-light: #f4f4f4;
+$background-dark: #343a40;
+$background-accent: #e9ecef;
+
+// ===== Text Colors =====
+$text-primary: $dark-gray;
+$text-secondary: $gray;
+$text-light: $light-gray;
+$text-inverse: $white;
+
+// ===== Gradient Colors =====
+$gradient-primary: linear-gradient(90deg, #69b3ff, #007bff);
+$gradient-success: linear-gradient(90deg, #81d28b, #28a745);
+$gradient-danger: linear-gradient(90deg, #f898a3, #dc3545);
+$gradient-warning: linear-gradient(90deg, #ffe680, #ffc107);
+$gradient-info: linear-gradient(90deg, #81d6e1, #17a2b8);
+
+// ===== Accent Colors =====
+$accent-blue: #4a90e2;
+$accent-green: #5cb85c;
+$accent-red: #d9534f;
+$accent-orange: #f0ad4e;
+$accent-purple: #8e44ad;
+$accent-pink: #e83e8c;
+$accent-yellow: #ffeb3b;
+
+// ===== Alert Colors =====
+$alert-primary-bg: rgba(0, 123, 255, 0.2);
+$alert-success-bg: rgba(40, 167, 69, 0.2);
+$alert-danger-bg: rgba(220, 53, 69, 0.2);
+$alert-warning-bg: rgba(255, 193, 7, 0.2);
+$alert-info-bg: rgba(23, 162, 184, 0.2);
+$alert-border: $dark-gray;
+
+
+// ===== Light Theme =====
+$theme-light-background: $background-light;
+$theme-light-text: $text-primary;
+$theme-light-border: $gray;
+
+// ===== Dark Theme =====
+$theme-dark-background: $background-dark;
+$theme-dark-text: $text-inverse;
+$theme-dark-border: $dark-gray;
