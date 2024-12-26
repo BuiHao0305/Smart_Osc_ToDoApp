@@ -12,14 +12,14 @@
             >*</span
           ></label
         >
-        <!-- <input type="text" id="text" formControlName="title" />  -->
-        <app-input
+        <input type="text" id="text" formControlName="title" />
+        <!-- <app-input
           [type]="'text'"
           [id]="'text'"
           formControlName="title"
           [label]="'BUCKET_MODAL.CONTENT' | translate"
           [placeholder]="'Enter description'"
-        ></app-input>
+        ></app-input> -->
 
         <span
           [error]="bucketForm.get('title')?.errors"
@@ -41,7 +41,15 @@
           [status2]="'BUCKET_MODAL.PRIVATE' | translate"
           (valueChange)="setDoneStatus($event)"
         ></app-status>
-
+        <span
+          [error]="bucketForm.get('public')?.errors"
+          [params]="{ fieldName: 'public' }"
+          [show]="
+            bucketForm.get('public')?.dirty ||
+            (bucketForm.get('public')?.touched ?? false)
+          "
+          class="text-danger"
+        ></span>
         <!-- <button class="btn btn-lg loading-btn" *ngIf="loading">
           <span class="spinner-border spinner-border-sm"></span>
           {{ 'BUCKET_MODAL.WAITING' | translate }}
@@ -50,10 +58,8 @@
           <app-button
             [iconStart]="'bi bi-plus'"
             [size]="'small'"
-            [isLoading]="bucketForm.invalid || loading"
             [style.cursor]="loading ? 'not-allowed' : 'pointer'"
             [styleButton]="'neutral'"
-            [isDisabled]="loading"
             [buttonText]="'BUCKET_MODAL.ADD_BUCKET' | translate"
             tabindex="0"
           ></app-button>

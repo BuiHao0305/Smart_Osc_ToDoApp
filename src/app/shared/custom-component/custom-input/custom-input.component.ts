@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
+  selector: 'input[AppInput]',
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss'],
   standalone: true,

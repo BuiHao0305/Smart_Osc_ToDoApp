@@ -59,7 +59,7 @@ export class SignInComponent implements OnInit {
   ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.email],
-      password: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       rememberMe: [false],
     });
 

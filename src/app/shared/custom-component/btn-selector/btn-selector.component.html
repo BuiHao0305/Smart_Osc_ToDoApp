@@ -1,0 +1,52 @@
+<div class="form-group mt-2">
+  <label for="variantSelect">Select Variant:</label>
+  <select id="variantSelect" [(ngModel)]="selectedVariant" class="form-control">
+    <option *ngFor="let variant of variants" [value]="variant">
+      {{ variant | titlecase }}
+    </option>
+  </select>
+</div>
+
+<div class="form-group1 mt-2">
+  <label for="sizeSelect">Select Size:</label>
+  <select id="sizeSelect" [(ngModel)]="selectedSize" class="form-control">
+    <option *ngFor="let size of sizes" [value]="size">
+      {{ size | titlecase }}
+    </option>
+  </select>
+</div>
+
+<div class="form-check1 mt-3">
+  <input
+    id="disableCheckbox"
+    type="checkbox"
+    [(ngModel)]="isDisabled"
+    class="form-check-input1"
+  />
+  <label for="disableCheckbox" class="form-check-label">Disabled</label>
+</div>
+
+<div class="form-check1 mt-3">
+  <input
+    id="loadingCheckbox"
+    type="checkbox"
+    [(ngModel)]="isLoading"
+    class="form-check-input1"
+  />
+  <label for="loadingCheckbox" class="form-check-label">Loading</label>
+</div>
+
+<button
+  class="mt-3"
+  appButton
+  [variant]="selectedVariant"
+  [size]="selectedSize"
+  [disable]="isDisabled"
+  [loading]="isLoading"
+>
+  {{ selectedVariant | titlecase }} Button
+</button>
+
+<div class="form-group mt-4">
+  <input AppInput />
+</div>

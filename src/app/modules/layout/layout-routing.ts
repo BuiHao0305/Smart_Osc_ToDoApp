@@ -5,6 +5,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
 import { CustomDialogComponent } from 'src/app/shared/custom-component/custom-dialog/custom-dialog.component';
+import { BtnSelectorComponent } from 'src/app/shared/custom-component/btn-selector/btn-selector.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -27,7 +28,7 @@ export const layoutRoutes: Route[] = [
       },
       {
         path: 'status',
-        component: CustomDialogComponent,
+        component: BtnSelectorComponent,
       },
     ],
   },

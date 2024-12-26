@@ -52,15 +52,12 @@ export class SingUpComponent {
     private router: Router,
     private snackbar: SnackbarService
   ) {
-    this.registerForm = this.fb.group(
-      {
-        username: ['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(2)]],
-        passwordconfirm: ['', [Validators.required, Validators.minLength(2)]],
-      },
-      { validators: this.passwordMatchValidator }
-    );
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(2)]],
+      passwordconfirm: ['', [Validators.required, Validators.minLength(2)]],
+    });
   }
 
   onRegister() {
@@ -92,6 +89,17 @@ export class SingUpComponent {
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const passwordConfirm = control.get('passwordconfirm')?.value;
-    return password === passwordConfirm ? null : { passwordMismatch: true };
+
+    if (password && passwordConfirm) {
+      if (password.length == passwordConfirm.length) {
+        return { lengthMismatch: true };
+      }
+
+      if (password !== passwordConfirm) {
+        return { passwordMismatch: true };
+      }
+    }
+
+    return null;
   }
 }

@@ -89,8 +89,8 @@ export class UpdateBacketComponent implements OnInit, OnChanges {
       this.loading = true;
       if (this.bucketId) {
         this.bucketService.updateBucket(this.bucketId, updatedBucket).subscribe(
-          (response) => {
-            this.snackBar.show('Bucket updated ' + response);
+          () => {
+            this.snackBar.show('Bucket updated ');
             this.reloadData.emit();
             this.previewVisible.emit(false);
             this.loading = false;
@@ -110,8 +110,8 @@ export class UpdateBacketComponent implements OnInit, OnChanges {
       if (result && this.bucketId) {
         this.loading = true;
         this.bucketService.deleteBucket(this.bucketId).subscribe(
-          (response) => {
-            this.snackBar.show('Bucket deleted ' + response);
+          () => {
+            this.snackBar.show('Bucket deleted ');
             this.reloadData.emit();
             this.previewVisible.emit(false);
             this.loading = false;
