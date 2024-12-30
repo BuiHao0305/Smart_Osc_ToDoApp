@@ -9,9 +9,8 @@
 @if (endIcon()) {
 <ng-container [ngTemplateOutlet]="startIcon()" />
 } @if (loading()) {
-<ng-container class="spinner-border spinner-border-sm" />
+<ng-container />
+<span class="spinner-border text-primary"></span>
 } @else {
-<div class="absolute inset-0 bg-inherit grid place-items-center">
-  <!-- <i-lucide [img]="Loader2" class="animate-spin" /> -->
-</div>
+<div class="absolute inset-0 bg-inherit grid place-items-center"></div>
 }

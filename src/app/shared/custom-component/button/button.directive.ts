@@ -46,7 +46,4 @@ export class ButtonComponent {
 
   readonly variant = input<ButtonVariant>(ButtonVariant.primary);
   readonly size = input<ButtonSize>(ButtonSize.medium);
-
-  //   @Input() variant = ButtonVariant;
-  //   @Input() size = ButtonSize;
 }

@@ -1,5 +1,5 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   ButtonComponent,
@@ -11,7 +11,6 @@ import { CustomInputComponent } from '../custom-input/custom-input.component';
 @Component({
   selector: 'app-btn-selector',
   templateUrl: './btn-selector.component.html',
-
   standalone: true,
   imports: [
     FormsModule,
