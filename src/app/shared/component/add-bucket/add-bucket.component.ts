@@ -12,7 +12,7 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomStatusComponent } from '../../custom-component/custom-status/custom-status.component';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
-import { CustomInputComponent } from '../../custom-component/custom-input/custom-input.component';
+
 import { CustomButtonComponent } from '../../custom-component/custom-button/custom-button.component';
 
 @Component({
@@ -26,7 +26,6 @@ import { CustomButtonComponent } from '../../custom-component/custom-button/cust
     TranslateModule,
     CustomStatusComponent,
     AppErrorDirective,
-    CustomInputComponent,
     CustomButtonComponent,
   ],
   providers: [BucketService],

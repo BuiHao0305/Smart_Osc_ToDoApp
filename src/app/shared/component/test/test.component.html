@@ -1,0 +1,25 @@
+<form action="" [formGroup]="form">
+  <app-custom-input formControlName="email" labelText="Email" inputType="email">
+  </app-custom-input>
+
+  <app-custom-input
+    formControlName="username"
+    labelText="UserName"
+    inputType="text"
+    [ngClass]="{
+      'is-invalid':
+        form.get('username')?.invalid &&
+        (form.get('username')?.touched || form.get('username')?.dirty)
+    }"
+    required
+  >
+  </app-custom-input>
+  <span
+    [error]="form.get('username')?.errors"
+    [params]="{ fieldName: 'username' }"
+    [show]="
+      form.get('username')?.dirty || (form.get('username')?.touched ?? false)
+    "
+    class="text-danger"
+  ></span>
+</form>

@@ -1,0 +1,33 @@
+// @import "/src/app/styles/golbal.scss";
+
+
+.input-container {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 13px 16px;
+
+    &.error-border {
+        border: 1px solid red;
+        box-shadow: 0px 0px 0px 3px red;
+    }
+}
+
+.input {
+    outline: none;
+    border: none;
+
+}
+
+.disabled {
+    color: black !important;
+}
+
+.email-icon {
+    width: 20px;
+    height: 16px;
+}
+
+.number-icon {
+    width: 20px;
+    height: 20px;
+}
