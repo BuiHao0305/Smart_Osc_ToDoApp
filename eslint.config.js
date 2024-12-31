@@ -21,7 +21,7 @@ module.exports = [
         'error',
         {
           type: 'attribute',
-          prefix: '',
+          prefix: 'app',
           style: 'camelCase',
         },
       ],

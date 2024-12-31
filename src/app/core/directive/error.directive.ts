@@ -6,6 +6,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 interface ErrorMessages {
   required?: boolean;
   minlength?: { requiredLength: number; actualLength: number };
@@ -21,8 +22,8 @@ interface Params {
   standalone: true,
 })
 export class AppErrorDirective implements OnChanges {
-  @Input() error: ErrorMessages | null | undefined = null; // Allow undefined as well
-  @Input() params: Params | null = null; // More specific type
+  @Input() error: ErrorMessages | null | undefined = null;
+  @Input() params: Params | null = null;
   @Input() show = false;
 
   constructor(
@@ -40,19 +41,6 @@ export class AppErrorDirective implements OnChanges {
       this.renderer.setStyle(this.el.nativeElement, 'display', 'none');
     }
   }
-
-  // private getErrorMessage(error: ErrorMessages, params: Params): string {
-  //   if (error.required) {
-  //     return `${params.fieldName} is required.`;
-  //   }
-  //   if (error.minlength) {
-  //     return `${params.fieldName} must be at least ${error.minlength.requiredLength} characters long.`;
-  //   }
-  //   if (error.email) {
-  //     return `Invalid email format for ${params.fieldName}.`;
-  //   }
-  //   return '';
-  // }
 
   private getErrorMessage(
     error: ErrorMessages,

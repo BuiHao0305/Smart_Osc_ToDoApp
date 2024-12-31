@@ -40,10 +40,12 @@ export class ThemeSwitcherComponent implements OnInit {
   }
 
   private updateTheme() {
-    if (this.isDarkMode) {
-      this.renderer.addClass(document.body, 'dark-mode');
-    } else {
-      this.renderer.removeClass(document.body, 'dark-mode');
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.isDarkMode) {
+        this.renderer.addClass(document.body, 'dark-mode');
+      } else {
+        this.renderer.removeClass(document.body, 'dark-mode');
+      }
     }
   }
 }

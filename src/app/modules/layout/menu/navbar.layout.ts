@@ -22,7 +22,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 5,
     name: 'LAYOUT.ADD_SUBJECT',
     icon: 'bi bi-plus',
-    route: '/layout/status',
+    route: '/layout/test',
   },
   // { id: 6, name: 'LAYOUT.CHAT', icon: 'bi bi-chat' },
   // { id: 7, name: 'LAYOUT.BUDGET', icon: 'bi-wallet' },

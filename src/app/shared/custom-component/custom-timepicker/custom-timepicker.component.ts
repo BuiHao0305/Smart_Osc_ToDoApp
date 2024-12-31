@@ -31,8 +31,6 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 export class CustomTimepickerComponent implements ControlValueAccessor, OnInit {
   selectedTime: Date | null = null;
   timeControl: FormControl = new FormControl();
-  // onChange: (value: any) => void = () => {};
-  // onTouched: () => void = () => {};
 
   private onChange: (value: Date | null) => void = null as unknown as (
     value: Date | null

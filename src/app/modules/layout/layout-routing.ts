@@ -5,6 +5,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { BucketItemsComponent } from '../pages/bucket-items/bucket-items.component';
 import { UpdateBacketComponent } from 'src/app/shared/component/update-backet/update-backet.component';
 import { CustomDialogComponent } from 'src/app/shared/custom-component/custom-dialog/custom-dialog.component';
+import { TestComponent } from 'src/app/shared/component/test/test.component';
 
 export const layoutRoutes: Route[] = [
   {
@@ -26,8 +27,8 @@ export const layoutRoutes: Route[] = [
         component: BucketItemsComponent,
       },
       {
-        path: 'status',
-        component: CustomDialogComponent,
+        path: 'test',
+        component: TestComponent,
       },
     ],
   },

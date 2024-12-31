@@ -1,0 +1,16 @@
+@if (startIcon()) {
+<ng-container [ngTemplateOutlet]="startIcon()" />
+}
+
+<span class="button-text-content">
+  <ng-content></ng-content>
+</span>
+
+@if (endIcon()) {
+<ng-container [ngTemplateOutlet]="startIcon()" />
+} @if (loading()) {
+<ng-container />
+<span class="spinner-border text-primary"></span>
+} @else {
+<div class="absolute inset-0 bg-inherit grid place-items-center"></div>
+}

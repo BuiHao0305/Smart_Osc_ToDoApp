@@ -1,0 +1,87 @@
+/* Định nghĩa kiểu cho các variant */
+.button-primary {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+
+    &:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+}
+
+.button-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+
+    &:hover {
+        background-color: #5a6268;
+        border-color: #5a6268;
+    }
+}
+
+.button-tertiary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #f8f9fa;
+
+    &:hover {
+        background-color: #e2e6ea;
+        border-color: #dae0e5;
+    }
+}
+
+.button-neutral {
+    background-color: #ffffff;
+    color: #495057;
+    border: 1px solid #ced4da;
+
+    &:hover {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+    }
+}
+
+/* Định nghĩa kiểu cho các kích thước */
+.button-small {
+    padding: 10px;
+    font-size: 0.875rem;
+}
+
+.button-medium {
+    padding: 30px;
+    font-size: 1rem;
+}
+
+.button-large {
+    padding: 50px;
+    font-size: 1.25rem;
+}
+
+/* Định nghĩa kiểu cho trạng thái disabled và loading */
+.button-disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.button-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        animation: spin 1s linear infinite;
+    }
+}
+
+/* Định nghĩa animation loading */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

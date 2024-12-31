@@ -1,0 +1,36 @@
+<div [ngClass]="{ 'pe-none': isDisabled }">
+  <label-field
+    [text]="labelText"
+    [isRequired]="isRequired"
+    [isDisabled]="isDisabled"
+    [hasRequiredValidator]="hasRequiredValidators()"
+  >
+    <div
+      class="input-container d-flex align-items-center mt-2"
+      [ngClass]="{
+        'error-border': control && control.invalid && control.touched
+      }"
+    >
+      @if (startIcon()) {
+      <ng-container [ngTemplateOutlet]="startIcon()" />
+      }
+
+      <span class="button-text-content">
+        <ng-content></ng-content>
+      </span>
+
+      @if (endIcon()) {
+      <ng-container [ngTemplateOutlet]="startIcon()" />
+      }
+      <input
+        #input
+        class="input w-100"
+        [ngClass]="{ disabled: isDisabled }"
+        [placeholder]="placeholderText"
+        [type]="inputType"
+        (input)="onValueChange()"
+        (focusout)="onFocusOut()"
+      />
+    </div>
+  </label-field>
+</div>

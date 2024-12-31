@@ -26,8 +26,8 @@ export class CustomButtonComponent {
   @Input() buttonText = '';
   @Input() iconStart = '';
   @Input() iconEnd = '';
-  @Input() size: ButtonSize = 'medium'; // Mặc định là medium
-  @Input() styleButton: ButtonStyle = 'primary'; // Mặc định là primary
+  @Input() size: ButtonSize = 'medium';
+  @Input() styleButton: ButtonStyle = 'primary';
   @Input() isDisabled = false;
   @Input() isLoading = false;
 
