@@ -22,6 +22,7 @@ import {
 import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 import { AppErrorDirective } from 'src/app/core/directive/error.directive';
 import { ThemeSwitcherComponent } from '../../../shared/component/theme-switcher/theme-switcher.component';
+import { CustomInputComponent } from 'src/app/shared/custom-component/custom-input/component/custom-input.component';
 
 @Component({
   selector: 'app-sign-in',
