@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomInputComponent } from '../../custom-component/custom-input/component/custom-input.component';
+
 import {
   FormBuilder,
   FormGroup,
@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AppErrorDirective } from 'src/app/core/directive/error.directive';
+import { CustomInputComponent } from 'src/app/shared/custom-component/custom-input/component/custom-input.component';
 
 @Component({
   selector: 'app-test',
@@ -18,7 +18,6 @@ import { AppErrorDirective } from 'src/app/core/directive/error.directive';
     CustomInputComponent,
     ReactiveFormsModule,
     FormsModule,
-    AppErrorDirective,
     CommonModule,
   ],
 })
@@ -26,7 +25,10 @@ export class TestComponent implements OnInit {
   form!: FormGroup;
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      email: ['', Validators.email],
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.minLength(2)],
+      ],
       username: ['', [Validators.required, Validators.minLength(5)]],
     });
   }

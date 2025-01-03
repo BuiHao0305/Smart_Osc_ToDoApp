@@ -8,15 +8,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { InputType } from '../types/type.input';
-import {
-  ControlValueAccessor,
-  FormsModule,
-  NgControl,
-  Validators,
-} from '@angular/forms';
-import { LabelFieldComponent } from './label-field/label-field.component';
+import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
+import { AppErrorDirective } from 'src/app/core/directive/error.directive';
+import { LabelDomain } from '../types/tyoe.label';
 
 @Component({
   selector: 'app-custom-input',
@@ -30,7 +26,7 @@ import { CommonModule } from '@angular/common';
   //     multi: true,
   //   },
   // ],
-  imports: [FormsModule, CommonModule, LabelFieldComponent],
+  imports: [FormsModule, CommonModule, AppErrorDirective],
 })
 export class CustomInputComponent implements ControlValueAccessor {
   readonly startIcon = input<TemplateRef<any> | null>(null);
@@ -38,30 +34,29 @@ export class CustomInputComponent implements ControlValueAccessor {
   /**
    * Label text
    */
-  @Input() labelText: string = '';
+  @Input() labelText = '';
+
   /**
    * Input has different types - text, email, number
    */
   @Input() inputType: InputType = 'text';
+  @Input() labelDomain: LabelDomain = '@gmail.com';
   /**
    * Placeholder text
    */
-  @Input() placeholderText: string = '';
+  @Input() placeholderText = '';
   /**
    * Flag which allows display required symbol (*) manually
    */
-  @Input() isRequired?: boolean;
   /**
    * Custom error message that will be displayed in @see{@link ErrorMessageComponent}
    */
-  @Input() customErrorMessage?: string;
   /**
    * Setter for @see{@link isDisabled} property
    */
   @Input() set disabled(value: boolean) {
     this.setDisabledState(value);
   }
-
   /**
    * Reference to input element
    */
@@ -130,13 +125,4 @@ export class CustomInputComponent implements ControlValueAccessor {
    * Checks if control has required / requiredTrue validators.
    * @returns TRUE if has, otherwise FALSE
    */
-  hasRequiredValidators(): boolean {
-    if (!this.control) {
-      return false;
-    }
-    return (
-      this.control.hasValidator(Validators.required) ||
-      this.control.hasValidator(Validators.requiredTrue)
-    );
-  }
 }

@@ -12,7 +12,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'layout',
+    path: '',
     loadChildren: () =>
       import('./modules/layout/layout-routing').then((m) => m.layoutRoutes),
     canActivate: [guardGuard],

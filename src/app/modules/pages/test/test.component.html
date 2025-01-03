@@ -1,0 +1,38 @@
+<form action="" [formGroup]="form">
+  <app-custom-input
+    [startIcon]="emailIconTemplate"
+    [endIcon]="successIconTemplate"
+    formControlName="email"
+    labelText="Email"
+    inputType="text"
+    placeholderText="email"
+    labelDomain="@smartosc.com.vn"
+  >
+  </app-custom-input>
+
+  <app-custom-input
+    [startIcon]="userIconTemplate"
+    [endIcon]="checkIconTemplate"
+    formControlName="username"
+    [placeholderText]="'number'"
+    [labelText]="'UserName'"
+    [labelDomain]="''"
+    [inputType]="'number'"
+  >
+  </app-custom-input>
+</form>
+<ng-template #emailIconTemplate>
+  <i class="bi bi-envelope"></i>
+</ng-template>
+
+<ng-template #successIconTemplate>
+  <i class="bi bi-check-circle"></i>
+</ng-template>
+
+<ng-template #userIconTemplate>
+  <i class="bi bi-person"></i>
+</ng-template>
+
+<ng-template #checkIconTemplate>
+  <i class="bi bi-check-lg"></i>
+</ng-template>
